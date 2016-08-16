@@ -11,12 +11,14 @@ import {PostService} from "./post.service";
     providers: [PostService],
 })
 export class PostsComponent {
+    isLoading = true;
     posts: any[];
 
     constructor(private _service: PostService) { }
 
     ngOnInit() {
         this._service.getPosts().subscribe(posts => this.posts = posts);
+        this.isLoading = false;
     }
 
 }

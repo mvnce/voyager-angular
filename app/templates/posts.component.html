@@ -1,4 +1,6 @@
-
+<div *ngIf="isLoading">
+    <i class="fa fa-spinner fa-spin fa-3x"></i>
+</div>
 
 <div class="col-md-8 col-md-offset-2">
 
@@ -8,6 +10,10 @@
             <img src="{{post.image}}" class="img-responsive">
 
             <p>{{ post.caption }}</p>
+
+            <p>{{ post.updated }}</p>
+            <br>
+            <p>{{ post.created }}</p>
 
             <hr>
         </div>
