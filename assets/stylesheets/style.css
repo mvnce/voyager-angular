@@ -1,8 +1,14 @@
 body {
     font-family: 'Ubuntu', sans-serif;
+    background-color: lightgrey;
 }
 
 .brand-name {
     font-family: 'Damion', cursive;
     font-size: 2em;
+}
+
+.post-title {
+    font-weight: bold;
+    font-size: 1.2em;
 }

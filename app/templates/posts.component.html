@@ -1,0 +1,16 @@
+
+
+<div class="col-md-8 col-md-offset-2">
+
+    <div class="row" *ngFor="#post of posts">
+        <div>
+            <p class="post-title">{{ post.title }}</p>
+            <img src="{{post.image}}" class="img-responsive">
+
+            <p>{{ post.caption }}</p>
+
+            <hr>
+        </div>
+    </div>
+
+</div>
