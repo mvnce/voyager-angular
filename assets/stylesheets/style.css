@@ -1,6 +1,6 @@
 body {
     font-family: 'Ubuntu', sans-serif;
-    background-color: lightgrey;
+    background-color: #fafafa;
 }
 
 .brand-name {
@@ -8,7 +8,23 @@ body {
     font-size: 2em;
 }
 
+.post {
+    background-color: #fff;
+    border: 1px solid #efefef;
+    margin-left: -1px;
+    margin-right: -1px;
+    margin-bottom: 20px;
+}
+
+.post-body {
+    padding: 10px 10px 0 10px;
+}
+
 .post-title {
     font-weight: bold;
+    font-size: 1.2em;
+}
+
+.post-username {
     font-size: 1.2em;
 }

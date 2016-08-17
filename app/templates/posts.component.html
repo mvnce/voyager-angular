@@ -5,18 +5,28 @@
 <div class="col-md-8 col-md-offset-2">
 
     <div class="row" *ngFor="#post of posts">
-        <div>
-            <p class="post-title">{{ post.title }}</p>
-            <img src="{{post.image}}" class="img-responsive">
+        <article class="post">
+            <div class="row post-body">
+                <div class="col-md-8">
+                    <p class="post-title">{{ post.title }}</p>
+                </div>
+                <div class="col-md-4 text-right">
+                    <p class="post-username">- {{ post.user }}</p>
+                </div>
+            </div>
+            <img src="{{ post.image }}" class="img-responsive">
 
-            <p>{{ post.caption }}</p>
+            <p class="post-body">{{ post.caption }}</p>
 
-            <p>{{ post.updated }}</p>
-            <br>
-            <p>{{ post.created }}</p>
-
-            <hr>
-        </div>
+            <div class="row post-body">
+                <div class="col-md-2">
+                    <span class="glyphicon glyphicon-thumbs-up"></span>
+                </div>
+                <div class="col-md-10 text-right">
+                    <p>- {{ post.created }}</p>
+                </div>
+            </div>
+        </article>
     </div>
 
 </div>
