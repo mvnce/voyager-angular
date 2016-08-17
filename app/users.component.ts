@@ -17,7 +17,9 @@ export class UsersComponent {
     constructor(private _service: UserService) { }
 
     ngOnInit() {
-        this._service.getUsers().subscribe(users => this.users = users);
-        this.isLoading = false;
+        this._service.getUsers().subscribe(users => {
+            this.isLoading = false;
+            this.users = users;
+        });
     }
 }

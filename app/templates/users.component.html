@@ -1,5 +1,8 @@
-<div *ngIf="isLoading">
-    <i class="fa fa-spinner fa-spin fa-3x"></i>
+<div class="col-md-8 col-md-offset-2" *ngIf="isLoading">
+    <div class="text-center">
+        <i class="fa fa-refresh fa-spin fa-3x fa-fw"></i>
+        <p>Fetching Data From Server</p>
+    </div>
 </div>
 
 <div class="col-md-8 col-md-offset-2">
@@ -25,8 +28,10 @@
             <td>{{ user.email }}</td>
             <!--<td>{{ user.date_joined }}</td>-->
         </tr>
-
         </tbody>
-
     </table>
+
+    <p>
+        {{ users | json }}
+    </p>
 </div>
