@@ -4,6 +4,7 @@ import {RouteConfig, ROUTER_DIRECTIVES} from "angular2/router";
 
 import {HomeComponent} from "./home.component";
 import {PostsComponent} from "./posts.component";
+import {UsersComponent} from "./users.component";
 
 
 @RouteConfig([
@@ -16,6 +17,11 @@ import {PostsComponent} from "./posts.component";
         path: '/posts',
         name: 'Posts',
         component: PostsComponent,
+    },
+    {
+        path: '/users',
+        name: 'Users',
+        component: UsersComponent,
     },
     {
         path: '/*other',
