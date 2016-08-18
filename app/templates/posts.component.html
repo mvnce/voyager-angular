@@ -8,7 +8,7 @@
 <div class="col-md-8 col-md-offset-2">
 
     <div class="row" *ngFor="#post of posts">
-        <article class="post">
+        <article class="post" id="{{ post.id }}">
             <div class="row post-body">
                 <div class="col-md-8">
                     <p class="post-title">{{ post.title }}</p>
@@ -23,10 +23,11 @@
 
             <div class="row post-body">
                 <div class="col-md-2">
-                    <span class="glyphicon glyphicon-thumbs-up"></span>
+                    <span class="glyphicon glyphicon-heart" [class.highlighted]="iLike" (click)="likeClick()"></span>
+                    <span>{{ post.like }}</span>
                 </div>
                 <div class="col-md-10 text-right">
-                    <p>- {{ post.elapsed }}</p>
+                    <p>{{ post.elapsed }}</p>
                 </div>
             </div>
         </article>

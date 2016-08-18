@@ -33,3 +33,12 @@ body {
 .post-username {
     font-size: 1.2em;
 }
+
+
+.glyphicon-thumbs-up {
+    cursor: pointer;
+}
+
+.highlighted {
+    color: red;
+}

@@ -2,11 +2,11 @@
  * Created by vincentma on 8/16/16.
  */
 
-import {Component} from "angular2/src/core/metadata";
+import {Component, Input} from "angular2/src/core/metadata";
+import {OnInit} from "angular2/src/core/linker/interfaces";
+
 import {PostService} from "./post.service";
 import {UserService} from "./user.service";
-import {OnInit} from "angular2/src/core/linker/interfaces";
-import DateTimeFormat = Intl.DateTimeFormat;
 
 
 @Component({
@@ -16,6 +16,8 @@ import DateTimeFormat = Intl.DateTimeFormat;
 export class PostsComponent implements OnInit {
     isLoading = true;
     posts: any[];
+    // @Input() totalLikes = 0;
+    @Input() iLike = false;
 
     constructor(private _postService: PostService, private _userService: UserService) { }
 
@@ -44,9 +46,6 @@ export class PostsComponent implements OnInit {
     }
 
     prettifyTime(posts) {
-        console.log(posts);
-
-
         for (var post of posts) {
             var dtOld = Date.parse(post["created"]);
             var dtNow = Date.now();
@@ -68,5 +67,9 @@ export class PostsComponent implements OnInit {
         }
 
         return posts;
+    }
+
+    likeClick() {
+        this.iLike = !this.iLike;
     }
 }
