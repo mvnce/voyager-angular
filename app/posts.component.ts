@@ -4,21 +4,69 @@
 
 import {Component} from "angular2/src/core/metadata";
 import {PostService} from "./post.service";
+import {UserService} from "./user.service";
+import {OnInit} from "angular2/src/core/linker/interfaces";
+import DateTimeFormat = Intl.DateTimeFormat;
 
 
 @Component({
     templateUrl: "app/templates/posts.component.html",
-    providers: [PostService],
+    providers: [PostService, UserService],
 })
-export class PostsComponent {
+export class PostsComponent implements OnInit {
     isLoading = true;
     posts: any[];
 
-    constructor(private _service: PostService) { }
+    constructor(private _postService: PostService, private _userService: UserService) { }
 
     ngOnInit() {
-        this._service.getPosts().subscribe(posts => this.posts = posts);
-        this.isLoading = false;
+        this._postService.getPosts().subscribe(posts => {
+            this.isLoading = false;
+            this.posts = this.prettifyTime(this.addUserInfo(posts));
+        });
     }
 
+    addUserInfo(posts) {
+        this._userService.getUsers().subscribe(users => {
+
+            for(var post of posts) {
+                for(var user of users) {
+                    if (user["id"] == post['user']) {
+                        post['username'] = user['username'];
+                        post['first_name'] = user['first_name'];
+                        post['last_name'] = user['last_name'];
+                    }
+                }
+            }
+        });
+
+        return posts;
+    }
+
+    prettifyTime(posts) {
+        console.log(posts);
+
+
+        for (var post of posts) {
+            var dtOld = Date.parse(post["created"]);
+            var dtNow = Date.now();
+
+            var diffMs = (dtNow - dtOld); // milliseconds between now & Christmas
+            var diffDays = Math.round(diffMs / 86400000); // days
+            var diffHrs = Math.round((diffMs % 86400000) / 3600000); // hours
+            var diffMins = Math.round(((diffMs % 86400000) % 3600000) / 60000); // minutes
+
+            if (diffDays > 0) {
+                post["elapsed"] = diffDays + " days ago";
+            }
+            else if (diffHrs > 0) {
+                post["elapsed"] = diffHrs + " hours " + diffMins + " mins ago"
+            }
+            else {
+                post["elapsed"] = diffMins + " mins ago";
+            }
+        }
+
+        return posts;
+    }
 }

@@ -14,7 +14,7 @@
                     <p class="post-title">{{ post.title }}</p>
                 </div>
                 <div class="col-md-4 text-right">
-                    <p class="post-username">- {{ posts.user }}</p>
+                    <p class="post-username">- {{ post.username }}</p>
                 </div>
             </div>
             <img src="{{ post.image }}" class="img-responsive post-image">
@@ -26,7 +26,7 @@
                     <span class="glyphicon glyphicon-thumbs-up"></span>
                 </div>
                 <div class="col-md-10 text-right">
-                    <p>- {{ post.created }}</p>
+                    <p>- {{ post.elapsed }}</p>
                 </div>
             </div>
         </article>
