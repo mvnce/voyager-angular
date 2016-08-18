@@ -6,11 +6,13 @@ import {Component, Input, OnInit} from "@angular/core";
 
 import {PostService} from "./post.service";
 import {UserService} from "./user.service";
+import {LoadingComponent} from "./loading.component";
 
 
 @Component({
     templateUrl: "app/templates/posts.component.html",
     providers: [PostService, UserService],
+    directives: [LoadingComponent],
 })
 export class PostsComponent implements OnInit {
     isLoading = true;
