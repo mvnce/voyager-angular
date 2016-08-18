@@ -1,6 +1,6 @@
-import {Component} from "angular2/core";
+import {Component} from "@angular/core";
 import {NavBarComponent} from "./navbar.component";
-import {RouteConfig, ROUTER_DIRECTIVES} from "angular2/router";
+import {RouteConfig, ROUTER_DIRECTIVES} from "@angular/router-deprecated";
 
 import {HomeComponent} from "./home.component";
 import {PostsComponent} from "./posts.component";

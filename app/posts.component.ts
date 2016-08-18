@@ -2,8 +2,7 @@
  * Created by vincentma on 8/16/16.
  */
 
-import {Component, Input} from "angular2/src/core/metadata";
-import {OnInit} from "angular2/src/core/linker/interfaces";
+import {Component, Input, OnInit} from "@angular/core";
 
 import {PostService} from "./post.service";
 import {UserService} from "./user.service";
