@@ -9,7 +9,7 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class UserService {
-    private _url = "http://127.0.0.1:8000/api/accounts/users/";
+    private _url = "http://104.131.139.229:8000/api/accounts/users/";
 
     constructor(private _http: Http) { }
 

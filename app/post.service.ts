@@ -9,7 +9,7 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class PostService {
-    private _url = "http://127.0.0.1:8000/api/posts/";
+    private _url = "http://104.131.139.229:8000/api/posts/";
     // private  _url = "https://jsonplaceholder.typicode.com/users";
 
     constructor(private _http: Http) { }
