@@ -1,0 +1,35 @@
+/**
+ * Created by vincentma on 8/24/16.
+ */
+
+import {Routes, RouterModule} from '@angular/router';
+
+import {HomeComponent} from "./home.component";
+import {PostsComponent} from "./posts.component";
+import {UsersComponent} from "./users.component";
+import {NotFoundComponent} from "./notfound.component";
+
+
+const appRoutes: Routes = [
+    {
+        path: '',
+        component: HomeComponent,
+    },
+    {
+        path: 'posts',
+        component: PostsComponent,
+    },
+    {
+        path: 'users',
+        component: UsersComponent,
+    },
+    {
+        path: '**',
+        component: NotFoundComponent,
+    },
+
+];
+
+export const routing = RouterModule.forRoot(appRoutes);
+
+export const routedComponents = [HomeComponent, PostsComponent, UsersComponent, NotFoundComponent];

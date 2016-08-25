@@ -3,19 +3,19 @@
  */
 
 import {Component} from "@angular/core";
-import {Router, ROUTER_DIRECTIVES} from "@angular/router-deprecated";
+import {Router} from "@angular/router";
 
 
 @Component({
     selector: "navbar",
     templateUrl: "app/templates/navbar.component.html",
-    directives: [ROUTER_DIRECTIVES],
+    directives: [],
 })
 export class NavBarComponent {
     constructor(private _router: Router) { }
 
-    isCurrentRoute(route) {
-        var inst = this._router.generate(route);
-        return this._router.isRouteActive(inst);
-    }
+    // isCurrentRoute(route) {
+    //     var inst = this._router..generate(route);
+    //     return this._router.isRouteActive(inst);
+    // }
 }
