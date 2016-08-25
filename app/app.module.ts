@@ -11,9 +11,6 @@ import {AppComponent}  from './app.component';
 import { routing, routedComponents } from './app.routing';
 import {PostService} from "./post.service";
 import {UserService} from "./user.service";
-import {HomeComponent} from "./home.component";
-import {PostsComponent} from "./posts.component";
-import {UsersComponent} from "./users.component";
 
 
 @NgModule({
