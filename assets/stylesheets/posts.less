@@ -1,0 +1,37 @@
+@import "colors.less";
+
+.posts {
+  .post {
+    background-color: @postgrid;
+    border: 1px solid @postborder;
+    margin-left: -1px;
+    margin-right: -1px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+  }
+
+  .post-image {
+    border: 1px solid @imageborder;
+  }
+
+  .post-body {
+    padding: 10px 10px 0 10px;
+  }
+
+  .post-title {
+    font-weight: bold;
+    font-size: 1.2em;
+  }
+
+  .post-username {
+    font-size: 1.2em;
+  }
+
+  .glyphicon-thumbs-up {
+    cursor: pointer;
+  }
+
+  .highlighted {
+    color: @heart;
+  }
+}
