@@ -19,7 +19,7 @@
                 </div>
             </div>
 
-            <img src="{{ post.image }}" class="img-responsive post-image" (click)="onClick()">
+            <img src="{{ post.image }}" class="img-responsive post-image" (click)="openPostModal($event)" id="{{ post.id }}">
 
             <p class="post-body">{{ post.caption }}</p>
 

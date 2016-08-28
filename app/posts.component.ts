@@ -82,12 +82,22 @@ export class PostsComponent implements OnInit {
         this.iLike = !this.iLike;
     }
 
-    onClick() {
-        this._modal.alert()
-            .size('lg')
-            .showClose(true)
-            .title('modal window')
-            .body('<h4>this is a modal</h4>')
-            .open();
+    openPostModal(event) {
+        var postId = event.target.id;
+
+        this._postService.getPost(postId).subscribe(post => {
+
+            var html = '<img src="' + post['image'] + '"' + ' class="img-responsive post-image">'
+                + '<p class="post-body">' + post['caption'] + '</p>';
+
+            this._modal.alert()
+                .size('lg')
+                .showClose(true)
+                .title(post['title'])
+                .body(html)
+                .open();
+        });
     }
+
+
 }

@@ -18,4 +18,7 @@ export class PostService {
         return this._http.get(this._url).map(res => res.json());
     }
 
+    getPost(id) {
+        return this._http.get(this._url + id).map(res => res.json());
+    }
 }
