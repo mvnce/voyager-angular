@@ -12,6 +12,9 @@ import { routing, routedComponents } from './app.routing';
 import {PostService} from "./post.service";
 import {UserService} from "./user.service";
 
+import { ModalModule } from 'angular2-modal';
+import { BootstrapModalModule } from 'angular2-modal/plugins/bootstrap';
+
 
 @NgModule({
     imports: [
@@ -19,6 +22,8 @@ import {UserService} from "./user.service";
         FormsModule,
         HttpModule,
         routing,
+        ModalModule.forRoot(),
+        BootstrapModalModule,
     ],
     declarations: [
         AppComponent,

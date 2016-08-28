@@ -2,7 +2,9 @@
  * Created by vincentma on 8/16/16.
  */
 
-import {Component, Input, OnInit} from "@angular/core";
+import {Component, Input, OnInit, ViewContainerRef} from "@angular/core";
+import { Overlay } from 'angular2-modal';
+import { Modal } from 'angular2-modal/plugins/bootstrap';
 
 import {PostService} from "./post.service";
 import {UserService} from "./user.service";
@@ -20,7 +22,13 @@ export class PostsComponent implements OnInit {
     // @Input() totalLikes = 0;
     @Input() iLike = false;
 
-    constructor(private _postService: PostService, private _userService: UserService) { }
+    constructor(private _postService: PostService,
+                private _userService: UserService,
+                private _overlay: Overlay,
+                private _vcRef: ViewContainerRef,
+                public _modal: Modal) {
+        _overlay.defaultViewContainer = _vcRef;
+    }
 
     ngOnInit() {
         this._postService.getPosts().subscribe(posts => {
@@ -72,5 +80,14 @@ export class PostsComponent implements OnInit {
 
     likeClick() {
         this.iLike = !this.iLike;
+    }
+
+    onClick() {
+        this._modal.alert()
+            .size('lg')
+            .showClose(true)
+            .title('modal window')
+            .body('<h4>this is a modal</h4>')
+            .open();
     }
 }
