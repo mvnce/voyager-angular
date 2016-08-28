@@ -1,6 +1,10 @@
 {
   "name": "angular2-voyager",
   "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vincentsma/angular2-voyager.git"
+  },
   "scripts": {
     "start": "tsc && concurrently \"npm run tsc:w\" \"npm run lite\" ",
     "lite": "lite-server",
