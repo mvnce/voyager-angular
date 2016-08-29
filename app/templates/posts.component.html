@@ -1,12 +1,7 @@
-<loading></loading>
-<div class="col-md-8 col-md-offset-2" *ngIf="isLoading">
-    <div class="text-center">
-        <i class="fa fa-refresh fa-spin fa-3x fa-fw"></i>
-        <p>Fetching Data From Server</p>
-    </div>
-</div>
-
 <div class="col-md-8 col-md-offset-2 posts">
+    <div class="text-center" *ngIf="isLoading()">
+        <loading></loading>
+    </div>
 
     <div class="row" *ngFor="let post of posts">
         <article class="post" id="{{ post.id }}">
@@ -34,5 +29,4 @@
             </div>
         </article>
     </div>
-
 </div>
