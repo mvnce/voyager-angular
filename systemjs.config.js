@@ -10,7 +10,7 @@
         'angular2-in-memory-web-api': 'node_modules/angular2-in-memory-web-api',
         'rxjs':                       'node_modules/rxjs',
         'angular2-modal':             'node_modules/angular2-modal',
-        'angular2-fontawesome':       'node_modules/angular2-fontawesome',
+        'angular2-fontawesome':       'node_modules/angular2-fontawesome'
     };
     // packages tells the System loader how to load when no filename and/or no extension
     var packages = {
@@ -18,7 +18,7 @@
         'rxjs':                       { defaultExtension: 'js' },
         'angular2-in-memory-web-api': { main: 'index.js', defaultExtension: 'js' },
         'angular2-modal':             { main: 'bundles/angular2-modal.umd', defaultExtension: 'js'},
-        'angular2-fontawesome':       { defaultExtension: 'js' },
+        'angular2-fontawesome':       { defaultExtension: 'js' }
     };
 
     map['angular2-modal/plugins/bootstrap'] = map['angular2-modal'] + '/bundles';
@@ -34,7 +34,7 @@
         'platform-browser-dynamic',
         'router',
         'router-deprecated',
-        'upgrade',
+        'upgrade'
     ];
     // Individual files (~300 requests):
     function packIndex(pkgName) {
@@ -53,4 +53,18 @@
         packages: packages
     };
     System.config(config);
-})(this);
+
+    global.bootstrapping = System
+        .import( "app" )
+        .then(
+            function handleResolve() {
+                console.info( "System.js successfully bootstrapped app." );
+            },
+            function handleReject( error ) {
+                console.warn( "System.js could not bootstrap the app." );
+                console.error( error );
+                return( Promise.reject( error ) );
+            }
+        )
+    ;
+})(window);
