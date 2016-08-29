@@ -10,7 +10,10 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class PostService {
     private _url = "http://104.131.139.229:8000/api/posts/";
-    // private  _url = "https://jsonplaceholder.typicode.com/users";
+
+    private getPostUrl(postId) {
+        return this._url + postId +"/";
+    }
 
     constructor(private _http: Http) { }
 
@@ -18,7 +21,7 @@ export class PostService {
         return this._http.get(this._url).map(res => res.json());
     }
 
-    getPost(id) {
-        return this._http.get(this._url + id).map(res => res.json());
+    getPost(postId) {
+        return this._http.get(this.getPostUrl(postId)).map(res => res.json());
     }
 }

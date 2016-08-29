@@ -1,1 +1,5 @@
-*.css
+bootstrap.css
+colors.css
+navbar.css
+posts.css
+users.css

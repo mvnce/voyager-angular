@@ -3,30 +3,35 @@
         <loading></loading>
     </div>
 
-    <div class="row" *ngFor="let post of posts">
-        <article class="post" id="{{ post.id }}">
-            <div class="row post-body">
-                <div class="col-md-8">
-                    <p class="post-title">{{ post.title }}</p>
+    <div *ngIf="!isLoading()">
+        <div class="row" *ngFor="let post of posts">
+            <article class="post" id="{{ post.id }}">
+                <div class="row post-body">
+                    <div class="col-md-8">
+                        <p class="post-title">{{ post.title }}</p>
+                    </div>
+                    <div class="col-md-4 text-right">
+                        <p class="post-username">- {{ post.username }}</p>
+                    </div>
                 </div>
-                <div class="col-md-4 text-right">
-                    <p class="post-username">- {{ post.username }}</p>
-                </div>
-            </div>
 
-            <img src="{{ post.image }}" class="img-responsive post-image" (click)="openPostModal($event)" id="{{ post.id }}">
+                <img src="{{ post.image }}" class="img-responsive post-image" (click)="openPostModal($event)" id="{{ post.id }}">
 
-            <p class="post-body">{{ post.caption }}</p>
+                <p class="post-body">{{ post.caption }}</p>
 
-            <div class="row post-body">
-                <div class="col-md-2">
-                    <span class="glyphicon glyphicon-heart glyphicon-heart-clickable" [class.highlighted]="iLike" (click)="likeClick()"></span>
-                    <span>{{ post.like }}</span>
+                <div class="row post-body">
+                    <div class="col-md-2">
+                        <span class="glyphicon glyphicon-heart glyphicon-heart-clickable" [class.highlighted]="iLike" (click)="likeClick()"></span>
+                        <span>{{ post.like }}</span>
+                    </div>
+                    <div class="col-md-10 text-right">
+                        <p>{{ post.elapsed }}</p>
+                    </div>
                 </div>
-                <div class="col-md-10 text-right">
-                    <p>{{ post.elapsed }}</p>
-                </div>
-            </div>
-        </article>
+            </article>
+        </div>
+        <div class="text-center">
+            <p>- End -</p>
+        </div>
     </div>
 </div>
