@@ -9,8 +9,14 @@ Screenshots:
 - clone voyager Django project first
 - start the backend server
 - clone this angular2 project
-- enable cross-origin resource sharing in your browser
 - start the node server
-- try it!
+
+The default cors only supports localhost:3000.
+
+
+Installation
+- `npm install`
+- `npm run typings install`
+- `npm start`
 
 -Vincent
