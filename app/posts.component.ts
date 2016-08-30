@@ -2,7 +2,7 @@
  * Created by vincentma on 8/16/16.
  */
 
-import {Component, Input, OnInit, ViewContainerRef} from '@angular/core';
+import {Component, Input, OnInit, ViewContainerRef, trigger, state, style, transition, animate, group} from '@angular/core';
 import {Overlay} from 'angular2-modal';
 import {Modal} from 'angular2-modal/plugins/bootstrap';
 
@@ -16,10 +16,27 @@ import {LoadingComponent} from './loading.component';
     templateUrl: 'app/templates/posts.component.html',
     providers: [PostService, UserService],
     directives: [LoadingComponent],
+    animations: [
+        trigger('flyInOut', [
+            state('in', style({transform: 'translateY(0)', opacity: 1})),
+            transition('void => *', [
+                style({transform: 'translateY(50px)', opacity: 0}),
+                group([
+                    animate('1.0s 0.1s ease', style({
+                        transform: 'translateY(0)',
+                    })),
+                    animate('1.0s ease', style({
+                        opacity: 1
+                    }))
+                ])
+            ])
+        ])
+    ]
 })
 export class PostsComponent implements OnInit {
     loading = true;
     posts: any[];
+    state = 'inactive';
     @Input() iLike = false;
 
     constructor(private _postService: PostService,
