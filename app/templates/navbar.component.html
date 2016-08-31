@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-default" [@flyInOut]="'in'">
     <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -35,7 +35,7 @@
                 <!--<button type="submit" class="btn btn-default">Submit</button>-->
             <!--</form>-->
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">Accounts</a></li>
+                <li><a routerLink="account/login" routerLinkActive="active">Accounts</a></li>
             </ul>
         </div>
     </div>

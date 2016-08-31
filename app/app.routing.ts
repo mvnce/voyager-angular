@@ -8,6 +8,7 @@ import {HomeComponent} from "./home.component";
 import {PostsComponent} from "./posts.component";
 import {UsersComponent} from "./users.component";
 import {NotFoundComponent} from "./notfound.component";
+import {LoginComponent} from "./login.component";
 
 
 const appRoutes: Routes = [
@@ -24,6 +25,10 @@ const appRoutes: Routes = [
         component: UsersComponent,
     },
     {
+        path: 'account/login',
+        component: LoginComponent,
+    },
+    {
         path: '**',
         component: NotFoundComponent,
     },
@@ -32,4 +37,4 @@ const appRoutes: Routes = [
 
 export const routing = RouterModule.forRoot(appRoutes);
 
-export const routedComponents = [HomeComponent, PostsComponent, UsersComponent, NotFoundComponent];
+export const routedComponents = [HomeComponent, PostsComponent, UsersComponent, NotFoundComponent, LoginComponent];
