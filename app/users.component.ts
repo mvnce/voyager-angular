@@ -16,7 +16,7 @@ import {LoadingComponent} from './loading.component';
         trigger('flyInOut', [
             state('in', style({transform: 'translateY(0)', opacity: 1})),
             transition('void => *', [
-                style({transform: 'translateY(-50px)', opacity: 0}),
+                style({transform: 'translateY(50px)', opacity: 0}),
                 group([
                     animate('1.0s 0.1s ease', style({
                         transform: 'translateY(0)',
