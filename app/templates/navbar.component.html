@@ -36,7 +36,7 @@
             <!--</form>-->
             <ul class="nav navbar-nav navbar-right" *ngIf="isLogin">
                     <li><a routerLink="account/info" routerLinkActive="active">Accounts</a></li>
-                    <li><a class="clickable"><logout></logout></a></li>
+                    <li><a class="clickable" (click)="logout()">Logout</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right" *ngIf="!isLogin">
                 <li><a routerLink="account/login">Login</a></li>

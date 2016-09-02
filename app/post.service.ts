@@ -2,8 +2,8 @@
  * Created by vincentma on 8/16/16.
  */
 
-import {Injectable} from "@angular/core";
-import {Http} from "@angular/http";
+import { Injectable } from '@angular/core';
+import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 
 

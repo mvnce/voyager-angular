@@ -3,12 +3,12 @@
  */
 
 
-import {EventEmitter, Injectable} from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 
 @Injectable()
 export class EventsService {
 
-    public isLogin: EventEmitter<boolean> = new EventEmitter();
+    public isLogin: EventEmitter<any> = new EventEmitter();
 
     constructor() { }
 }

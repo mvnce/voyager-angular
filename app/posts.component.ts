@@ -2,20 +2,15 @@
  * Created by vincentma on 8/16/16.
  */
 
-import {Component, Input, OnInit, ViewContainerRef, trigger, state, style, transition, animate, group} from '@angular/core';
-import {Overlay} from 'angular2-modal';
-import {Modal} from 'angular2-modal/plugins/bootstrap';
-
-import {PostService} from './post.service';
-import {UserService} from './user.service';
-
-import {LoadingComponent} from './loading.component';
+import { Component, Input, OnInit, trigger, state, style, transition, animate, group } from '@angular/core';
+import { PostService } from './post.service';
+import { UserService } from './user.service';
 
 
 @Component({
     templateUrl: 'app/templates/posts.component.html',
     providers: [PostService, UserService],
-    directives: [LoadingComponent],
+    // directives: [LoadingComponent],
     animations: [
         trigger('flyInOut', [
             state('in', style({transform: 'translateY(0)', opacity: 1})),
@@ -40,11 +35,7 @@ export class PostsComponent implements OnInit {
     @Input() iLike = false;
 
     constructor(private _postService: PostService,
-                private _userService: UserService,
-                private _overlay: Overlay,
-                private _vcRef: ViewContainerRef,
-                public _modal: Modal) {
-        _overlay.defaultViewContainer = _vcRef;
+                private _userService: UserService) {
     }
 
     ngOnInit() {
@@ -99,22 +90,7 @@ export class PostsComponent implements OnInit {
         this.iLike = !this.iLike;
     }
 
-    openPostModal(event) {
-        var postId = event.target.id;
-
-        this._postService.getPost(postId).subscribe(post => {
-
-            var html = '<img src="' + post['image'] + '"' + ' class="img-responsive post-image">'
-                + '<p class="post-body">' + post['caption'] + '</p>';
-
-            this._modal.alert()
-                .size('lg')
-                .showClose(true)
-                .title(post['title'])
-                .body(html)
-                .open();
-        });
-    }
+    openPostModal(event) { }
 
     isLoading() {
         return this.loading;

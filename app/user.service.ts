@@ -2,10 +2,10 @@
  * Created by vincentma on 8/17/16.
  */
 
-import {Injectable} from "@angular/core";
-import {Http} from "@angular/http";
+import { Injectable } from '@angular/core';
+import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
-import {User} from './user';
+import { User } from './user';
 
 var users = [
     new User('admin@mail.com','admin'),

@@ -2,12 +2,11 @@
  * Created by vincentma on 8/15/16.
  */
 
-import {Component, OnInit, Input, trigger, state, style, animate, transition, group} from "@angular/core";
-import {Router} from "@angular/router";
+import {Component, OnInit, trigger, state, style, animate, transition, group} from '@angular/core';
+import {Router} from '@angular/router';
 
-import {LogoutDirective} from './logout.directive';
-
-import {EventsService} from './events.service';
+import { UserService } from './user.service';
+import { EventsService } from './events.service';
 
 
 @Component({
@@ -29,23 +28,30 @@ import {EventsService} from './events.service';
             ]),
         ])
     ],
-    directives: [LogoutDirective],
 })
-export class NavBarComponent {
+export class NavBarComponent implements OnInit {
     public isLogin =  false;
 
-    constructor(private _router: Router, private _eventsService: EventsService) {
+    constructor(private _router: Router,
+                private _userService: UserService,
+                private _eventsService: EventsService) {
         this._eventsService.isLogin.subscribe((mode : boolean) =>{
             this.isLogin = mode;
         });
     }
 
-    // ngOnInit() {
-    //     var user = localStorage.getItem('user');
-    //     console.log('authUser' ,user);
-    //
-    //     if (user) {
-    //         this.isLogin = true;
-    //     }
-    // }
+    ngOnInit() {
+        var user = localStorage.getItem('user');
+        console.log('authUser' ,user);
+
+        if (user) {
+            this.isLogin = true;
+        }
+    }
+
+    logout() {
+        this._userService.logout();
+        this._eventsService.isLogin.emit(false);
+        this._router.navigate(['account/login']);
+    }
 }

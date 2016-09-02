@@ -2,14 +2,14 @@
  * Created by vincentma on 8/31/16.
  */
 
-import {Component, OnInit, trigger, state, style, animate, transition, group} from '@angular/core';
-import {Validators, FormBuilder} from "@angular/common";
-import {Router} from "@angular/router";
+import { Component, OnInit, trigger, state, style, animate, transition, group } from '@angular/core';
+import { Validators, FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
 
-import {UserService} from './user.service';
-import {EventsService} from './events.service';
+import { UserService } from './user.service';
+import { EventsService } from './events.service';
 
-import {User} from './user';
+import { User } from './user';
 
 
 @Component({
@@ -42,7 +42,7 @@ import {User} from './user';
         ])
     ]
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit{
     loginForm;
     active = true;
     msgFlag = false;

@@ -5,13 +5,10 @@
 import {Component, OnInit, trigger, state, style, animate, transition, group} from '@angular/core';
 import {UserService} from './user.service';
 
-import {LoadingComponent} from './loading.component';
-
 
 @Component({
     templateUrl: 'app/templates/users.component.html',
     providers: [UserService],
-    directives: [LoadingComponent],
     animations: [
         trigger('flyInOut', [
             state('in', style({transform: 'translateY(0)', opacity: 1})),

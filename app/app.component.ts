@@ -1,12 +1,12 @@
-import {Component} from "@angular/core";
-import {NavBarComponent} from "./navbar.component";
+/**
+ * Created by vincentma.
+ */
+
+import { Component } from '@angular/core';
 
 
 @Component({
-    moduleId: module.id,
     selector: 'my-app',
-    templateUrl: 'templates/app.component.html',
-    styleUrls: ['../assets/stylesheets/style.css'],
-    directives: [NavBarComponent],
+    templateUrl: 'app/templates/app.component.html',
 })
 export class AppComponent { }
