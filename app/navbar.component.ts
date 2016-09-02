@@ -2,8 +2,12 @@
  * Created by vincentma on 8/15/16.
  */
 
-import {Component, trigger, state, style, animate, transition, group} from "@angular/core";
+import {Component, OnInit, Input, trigger, state, style, animate, transition, group} from "@angular/core";
 import {Router} from "@angular/router";
+
+import {LogoutDirective} from './logout.directive';
+
+import {EventsService} from './events.service';
 
 
 @Component({
@@ -24,13 +28,24 @@ import {Router} from "@angular/router";
                 ])
             ]),
         ])
-    ]
+    ],
+    directives: [LogoutDirective],
 })
 export class NavBarComponent {
-    constructor(private _router: Router) { }
+    public isLogin =  false;
 
-    // isCurrentRoute(route) {
-    //     var inst = this._router..generate(route);
-    //     return this._router.isRouteActive(inst);
+    constructor(private _router: Router, private _eventsService: EventsService) {
+        this._eventsService.isLogin.subscribe((mode : boolean) =>{
+            this.isLogin = mode;
+        });
+    }
+
+    // ngOnInit() {
+    //     var user = localStorage.getItem('user');
+    //     console.log('authUser' ,user);
+    //
+    //     if (user) {
+    //         this.isLogin = true;
+    //     }
     // }
 }

@@ -12,6 +12,8 @@ import { routing, routedComponents } from './app.routing';
 import {PostService} from "./post.service";
 import {UserService} from "./user.service";
 
+import {EventsService} from './events.service';
+
 import { ModalModule } from 'angular2-modal';
 import { BootstrapModalModule } from 'angular2-modal/plugins/bootstrap';
 
@@ -32,6 +34,7 @@ import { BootstrapModalModule } from 'angular2-modal/plugins/bootstrap';
     providers: [
         PostService,
         UserService,
+        EventsService,
     ],
     bootstrap: [AppComponent]
 })

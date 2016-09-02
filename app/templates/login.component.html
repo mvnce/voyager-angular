@@ -1,6 +1,6 @@
 
 
-<div class="col-md-4 col-md-offset-4" [@flyInOut]="'in1'">
+<div *ngIf="active" class="col-md-4 col-md-offset-4" [@flyInOut]="'in'" id="login-form">
     <h2>Login</h2>
 
     <!--<form (ngSubmit)="login($event)">-->
@@ -14,8 +14,8 @@
 
         <div class="form-group">
             <label for="email">Email</label>
-            <input type="email" class="form-control" id="email" required [(ngModel)]="loginForm.username" name="name" #username="ngModel">
-            <div [hidden]="username.valid || username.pristine" class="alert alert-danger">
+            <input type="email" class="form-control" id="email" required [(ngModel)]="loginForm.email" name="email" #email="ngModel">
+            <div [hidden]="email.valid || email.pristine" class="alert alert-danger">
                 Email is required
             </div>
         </div>
@@ -31,6 +31,10 @@
 
         <div class="text-center">
             <button type="button" class="btn btn-default" [disabled]="!loginForm.valid" (click)="login()">Login</button>
+        </div>
+
+        <div [hidden]="!msgFlag" class="alert alert-danger">
+            Failed to login
         </div>
 
     </form>
