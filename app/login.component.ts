@@ -74,7 +74,7 @@ export class LoginComponent implements OnInit{
         if (this._userService.login(this.user)) {
             this.active = false;
             this._eventsService.isLogin.emit(true);
-            this._router.navigate(['posts']);
+            this._router.navigate(['threads']);
             console.log('login successful');
         }
         else {

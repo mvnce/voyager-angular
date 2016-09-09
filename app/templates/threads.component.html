@@ -1,19 +1,29 @@
-<div class="col-md-8 col-md-offset-2 posts">
-    <div class="text-center" *ngIf="isLoading()">
-        <loading></loading>
-    </div>
-
-    <div *ngIf="!isLoading()">
-        <div class="row" *ngFor="let thread of threads" [@flyInOut]="'in'">
-            <article class="post">
-
-                <p>{{ thread.Title }}</p>
-
-                <p>{{ thread.Content }}</p>
-
-                <p>{{ thread.Updated }}</p>
-            </article>
+<div class="threads-container">
+    <div class="col-md-8 col-md-offset-2 threads">
+        <div class="text-center" *ngIf="isLoading()">
+            <loading></loading>
         </div>
 
+        <div *ngIf="!isLoading()">
+            <div class="row" *ngFor="let thread of threads" [@flyInOut]="'in'">
+                <article class="thread">
+                    <div class="thread-body">
+                        <div class="thread-header">
+                                <p class="inline thread-title">{{ thread.Title }}</p>
+                                <p class="inline thread-updated">- {{ thread.Updated }}</p>
+                        </div>
+
+                        <div class="thread-content">
+                            <p>{{ thread.Content }}</p>
+                        </div>
+                        <div class="thread-footer">
+                                <button class="btn btn-xs btn-default thread-detail inline">Detail</button>
+                                <p class="inline thread-stat">37 Comments - 64 views</p>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+        </div>
     </div>
 </div>

@@ -1,0 +1,39 @@
+@import "colors.less";
+
+.threads-container {
+
+  .thread {
+    background-color: @postgrid;
+    border: 1px solid @postborder;
+    margin-left: -1px;
+    margin-right: -1px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+  }
+
+  .thread-body {
+    padding: 10px 10px 0 10px;
+
+    .inline {
+      display: inline-block;
+    }
+
+    .thread-title {
+      font-weight: bold;
+      font-size: 1.1em;
+    }
+
+    .thread-comment {
+      color: green;
+    }
+
+    .thread-detail {
+      margin-bottom: 0.2em;
+    }
+
+    .thread-updated {
+      font-size: 0.8em;
+      margin-top: 0.1em;
+    }
+  }
+}
