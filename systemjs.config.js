@@ -43,9 +43,10 @@
     var packages = {
         app: {
             main: './main.js',
-                defaultExtension: 'js'
+            defaultExtension: 'js'
         },
         rxjs: {
+            main: '/bundles/Rx.umd.js',
             defaultExtension: 'js'
         },
         'angular2-in-memory-web-api': {

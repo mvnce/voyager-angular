@@ -36,6 +36,7 @@
                 <!--<button type="submit" class="btn btn-default">Submit</button>-->
             <!--</form>-->
             <ul class="nav navbar-nav navbar-right" *ngIf="isLogin">
+                    <li><a routerLink="threads/new" routerLinkActive="active">new thread</a></li>
                     <li><a routerLink="account/info" routerLinkActive="active">Accounts</a></li>
                     <li><a class="clickable" (click)="logout()">Logout</a></li>
             </ul>
