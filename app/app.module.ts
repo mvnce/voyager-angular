@@ -16,6 +16,7 @@ import { routing, routedComponents } from './app.routing';
 import { PostService } from './post.service';
 import { UserService } from './user.service';
 import { EventsService } from './events.service';
+import { ThreadService } from "./thread.service";
 
 
 @NgModule({
@@ -37,6 +38,7 @@ import { EventsService } from './events.service';
         PostService,
         UserService,
         EventsService,
+        ThreadService,
     ],
     bootstrap: [AppComponent]
 })

@@ -1,0 +1,19 @@
+<div class="col-md-8 col-md-offset-2 posts">
+    <div class="text-center" *ngIf="isLoading()">
+        <loading></loading>
+    </div>
+
+    <div *ngIf="!isLoading()">
+        <div class="row" *ngFor="let thread of threads" [@flyInOut]="'in'">
+            <article class="post">
+
+                <p>{{ thread.Title }}</p>
+
+                <p>{{ thread.Content }}</p>
+
+                <p>{{ thread.Updated }}</p>
+            </article>
+        </div>
+
+    </div>
+</div>

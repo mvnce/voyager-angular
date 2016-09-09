@@ -6,11 +6,9 @@ import { Component, Input, OnInit, trigger, state, style, transition, animate, g
 import { PostService } from './post.service';
 import { UserService } from './user.service';
 
-
 @Component({
     templateUrl: 'app/templates/posts.component.html',
     providers: [PostService, UserService],
-    // directives: [LoadingComponent],
     animations: [
         trigger('flyInOut', [
             state('in', style({transform: 'translateY(0)', opacity: 1})),
