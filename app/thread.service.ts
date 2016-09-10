@@ -22,6 +22,7 @@ export class ThreadService {
         let body = res.json();
         return body.data || { };
     }
+
     private handleError (error: any) {
         let errMsg = (error.message) ? error.message :
             error.status ? `${error.status} - ${error.statusText}` : 'Server error';
@@ -29,24 +30,40 @@ export class ThreadService {
         return Observable.throw(errMsg);
     }
 
-    getThreads(): Observable<Thread[]> {
+    getThreads(): Observable<any[]> {
         return this._http.get(this._url)
             .map(this.extractData)
             .catch(this.handleError);
     }
 
-    getThread(id: number | string): Observable<Thread[]> {
-        return this._http.get(this.getThreadUrl(id))
-            .map(this.extractData)
-            .catch(this.handleError);
-    }
-
-    addThread(thread: Thread): Observable<Thread> {
+    addThread(thread: Thread): Observable<any> {
         let body = JSON.stringify(thread);
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
 
         return this._http.post(this._url, body, options)
+            .map(this.extractData)
+            .catch(this.handleError);
+    }
+
+    getThread(id: number): Observable<any> {
+        return this._http.get(this.getThreadUrl(id))
+            .map(this.extractData)
+            .catch(this.handleError);
+    }
+
+    deleteThread(id: number): Observable<any> {
+        return this._http.delete(this.getThreadUrl(id))
+            .map(this.extractData)
+            .catch(this.handleError);
+    }
+
+    updateThread(id: number, thread: Thread): Observable<any> {
+        let body = JSON.stringify(thread);
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+
+        return this._http.put(this.getThreadUrl(id), body, options)
             .map(this.extractData)
             .catch(this.handleError);
     }

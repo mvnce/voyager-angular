@@ -1,29 +1,55 @@
-<div class="threads-container">
+<div class="threads-container" [@flyInOut]="'in'">
 
-    <div class="col-md-1 col-md-offset-1">
+    <div class="col-md-8 col-md-offset-2 threads" *ngIf="!isFinish">
+        <div class="text-center" *ngIf="isLoading()">
+            <loading></loading>
+        </div>
 
+        <div *ngIf="!isLoading()">
+            <div class="row">
+
+                <article class="thread">
+                    <div class="thread-body">
+                        <div class="thread-header">
+                            <ul class="left">
+                                <li><p class="thread-title">{{ thread.Title }}</p></li>
+                            </ul>
+                            <ul class="right">
+                                <li><p class="thread-updated">- {{ thread.Updated }}</p></li>
+                            </ul>
+                        </div>
+                        <hr>
+
+                        <div class="thread-content">
+                            <p>{{ thread.Content }}</p>
+                        </div>
+
+                        <hr>
+                        <div class="thread-footer">
+                            <ul class="left">
+                                <li><button class="btn btn-xs btn-default thread-detail-button" (click)="goToThreads()">&nbsp;&nbsp;&nbsp;Back&nbsp;&nbsp;&nbsp;</button></li>
+                                <li><button class="btn btn-xs btn-warning thread-detail-button" (click)="goToEditThread()">&nbsp;&nbsp;&nbsp;Edit&nbsp;&nbsp;&nbsp;</button></li>
+                                <li><button class="btn btn-xs btn-danger thread-detail-button" (click)="deleteThread()">&nbsp;&nbsp;&nbsp;Delete&nbsp;&nbsp;&nbsp;</button></li>
+                            </ul>
+                            <ul class="right">
+                                <li><p class="btn btn-xs btn-success">37 Comments</p></li>
+                                <li><p class="btn btn-xs btn-success">64 views</p></li>
+                            </ul>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="thread">
+                    <h1 class="text-center">Comment Area</h1>
+                </article>
+            </div>
+        </div>
     </div>
-    <div class="col-md-8 threads" [@flyInOut]="'in'">
-        <!--<div class="row" *ngFor="let thread of threads" [@flyInOut]="'in'">-->
 
-        <!--<article class="thread">-->
-            <!--<div class="thread-body">-->
-                <!--<div class="thread-header">-->
-                    <!--&lt;!&ndash;<p class="inline thread-title">{{ thread.Content }}</p>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<p class="inline thread-updated">- {{ thread.Content }}</p>&ndash;&gt;-->
-                <!--&lt;!&ndash;</div>&ndash;&gt;-->
-
-                <!--&lt;!&ndash;<div class="thread-content">&ndash;&gt;-->
-                    <!--&lt;!&ndash;<p>{{ threads.Content }}</p>&ndash;&gt;-->
-                <!--&lt;!&ndash;</div>&ndash;&gt;-->
-                <!--&lt;!&ndash;<div class="thread-footer">&ndash;&gt;-->
-                    <!--&lt;!&ndash;<button class="btn btn-xs btn-default thread-detail inline">Detail</button>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<p class="inline thread-stat">37 Comments - 64 views</p>&ndash;&gt;-->
-                <!--&lt;!&ndash;</div>&ndash;&gt;-->
-            <!--</div>-->
-        <!--</article>-->
-
-        <button class="btn btn-xs btn-info" (click)="goToThreads()">Back</button>
-        <!--</div>-->
+    <div *ngIf="isFinish">
+        <hr>
+        <div class="text-center" >
+            <button type="button" class="btn btn-primary" (click)="goToThreads()">Go Back</button>
+        </div>
     </div>
 </div>

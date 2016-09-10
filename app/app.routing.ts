@@ -13,6 +13,7 @@ import { LoadingComponent } from './loading.component';
 import { ThreadsComponent } from './threads.component';
 import { ThreadFormComponent } from './thread-form.component';
 import { ThreadDetailComponent } from './threaddetail.component';
+import {EditThreadComponent} from "./editthread.component";
 
 const appRoutes: Routes = [
     {
@@ -40,6 +41,10 @@ const appRoutes: Routes = [
         component: ThreadFormComponent,
     },
     {
+        path: 'threads/edit/:id',
+        component: EditThreadComponent,
+    },
+    {
         path: 'account/login',
         component: LoginComponent,
     },
@@ -52,4 +57,4 @@ const appRoutes: Routes = [
 
 export const routing = RouterModule.forRoot(appRoutes);
 
-export const routedComponents = [HomeComponent, PostsComponent, UsersComponent, ThreadsComponent, ThreadDetailComponent, ThreadFormComponent, NotFoundComponent, LoginComponent, LoadingComponent];
+export const routedComponents = [HomeComponent, PostsComponent, UsersComponent, ThreadsComponent, ThreadDetailComponent, ThreadFormComponent, EditThreadComponent, NotFoundComponent, LoginComponent, LoadingComponent];

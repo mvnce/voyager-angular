@@ -3,8 +3,8 @@
  */
 
 export class Thread {
-    constructor(public title: string,
-                public content: string,
-                public id?: number) {}
-
+    constructor(
+        public title: string,
+        public content: string,
+    ) {}
 }

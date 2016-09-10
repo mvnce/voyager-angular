@@ -1,9 +1,9 @@
 /**
- * Created by vincentma on 9/9/16.
+ * Created by vincentma on 9/10/16.
  */
 
 import { Component, OnInit, trigger, state, style, transition, animate, group } from '@angular/core';
-import { Router } from "@angular/router";
+import { Router, ActivatedRoute } from "@angular/router";
 
 import { ThreadService } from './thread.service';
 import { Thread } from './thread';
@@ -29,13 +29,17 @@ import { EventsService } from './events.service';
         ])
     ]
 })
-export class ThreadFormComponent implements OnInit {
-    title = "New Thread";
+export class EditThreadComponent implements OnInit {
+    title = "Edit Thread";
+    loading = true;
     public isFinish = false;
-
+    errorMessage: string;
     thread = new Thread('', '');
+    mode = 'Observable';
+    id: number;
 
-    constructor(private _router: Router,
+    constructor(private _route: ActivatedRoute,
+                private _router: Router,
                 private _threadService:ThreadService,
                 private _eventsService: EventsService) {
         this._eventsService.isFinish.subscribe((mode : boolean) => {
@@ -43,14 +47,36 @@ export class ThreadFormComponent implements OnInit {
         });
     }
 
-    ngOnInit() { }
+    ngOnInit() {
+        this.getId();
+        this.getThread();
+    }
 
-    addThread() {
-        this._threadService.addThread(this.thread)
+    getId() {
+        this._route.params.subscribe(
+            params => {
+                this.id = params['id'];
+            });
+    }
+
+    getThread() {
+        this._threadService.getThread(this.id)
+            .subscribe(
+                thread => {
+                    this.thread.title = thread['Title'];
+                    this.thread.content = thread['Content'];
+                    this.loading = false;
+                },
+                error => this.errorMessage = <any>error
+            );
+    }
+
+    updateThread() {
+        this._threadService.updateThread(this.id, this.thread)
             .subscribe(_ => {
-                this._eventsService.isFinish.emit(true);
-            }
-        );
+                    this._eventsService.isFinish.emit(true);
+                }
+            );
     }
 
     goToThreads() {
@@ -58,6 +84,6 @@ export class ThreadFormComponent implements OnInit {
     }
 
     addOrUpdate() {
-        this.addThread();
+        this.updateThread()
     }
 }

@@ -8,7 +8,6 @@ import {Router} from '@angular/router';
 import { UserService } from './user.service';
 import { EventsService } from './events.service';
 
-
 @Component({
     selector: "navbar",
     templateUrl: "app/templates/navbar.component.html",

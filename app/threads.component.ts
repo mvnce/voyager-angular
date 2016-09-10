@@ -4,8 +4,8 @@
 
 import { Component, OnInit, trigger, state, style, transition, animate, group } from '@angular/core';
 import { Router } from '@angular/router';
+
 import { ThreadService } from "./thread.service";
-import { Thread } from "./thread";
 
 @Component({
     templateUrl: 'app/templates/threads.component.html',
@@ -14,12 +14,12 @@ import { Thread } from "./thread";
         trigger('flyInOut', [
             state('in', style({transform: 'translateY(0)', opacity: 1})),
             transition('void => *', [
-                style({transform: 'translateY(50px)', opacity: 0}),
+                style({transform: 'translateY(20px)', opacity: 0}),
                 group([
-                    animate('1.0s 0.1s ease', style({
+                    animate('0.5s 0.1s ease', style({
                         transform: 'translateY(0)',
                     })),
-                    animate('1.0s ease', style({
+                    animate('0.5s ease', style({
                         opacity: 1
                     }))
                 ])
@@ -29,7 +29,7 @@ import { Thread } from "./thread";
 })
 export class ThreadsComponent implements OnInit {
     loading = true;
-    threads: Thread[];
+    threads: any[];
     errorMessage: string;
     mode = 'Observable';
 
@@ -70,14 +70,13 @@ export class ThreadsComponent implements OnInit {
                 threads => {
                     this.threads = this.prettifyTime(threads);
                     this.loading = false;
-                    console.log(threads);
                 },
-                error => this.errorMessage = <any>error,
+                error => this.errorMessage = <any>error
             );
     }
 
-    onSelect(thread: Thread) {
-        this._router.navigate(['/thread', thread["Id"]]);
+    onSelect(thread) {
+        this._router.navigate(['thread', thread["Id"]]);
     }
 
     isLoading() {

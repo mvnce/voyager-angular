@@ -2,13 +2,11 @@
  * Created by vincentma on 9/9/16.
  */
 
-import { Component, OnInit, OnDestroy, trigger, state, style, transition, animate, group } from '@angular/core';
+import { Component, OnInit, trigger, state, style, transition, animate, group } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { Subscription } from 'rxjs/Subscription';
-
 import { ThreadService } from './thread.service';
-import { Thread } from './thread';
+import { EventsService } from './events.service';
 
 @Component({
     templateUrl: 'app/templates/threaddetail.component.html',
@@ -17,12 +15,12 @@ import { Thread } from './thread';
         trigger('flyInOut', [
             state('in', style({transform: 'translateY(0)', opacity: 1})),
             transition('void => *', [
-                style({transform: 'translateY(50px)', opacity: 0}),
+                style({transform: 'translateY(-20px)', opacity: 0}),
                 group([
-                    animate('1.0s 0.1s ease', style({
+                    animate('0.5s 0.1s ease', style({
                         transform: 'translateY(0)',
                     })),
-                    animate('1.0s ease', style({
+                    animate('0.5s ease', style({
                         opacity: 1
                     }))
                 ])
@@ -31,51 +29,84 @@ import { Thread } from './thread';
     ]
 })
 export class ThreadDetailComponent implements OnInit {
-    threads: Thread[];
-    thread = new Thread('', '', 1);
-    errorMessage: string;
     loading = true;
-    private sub: Subscription;
+    public isFinish = false;
+    thread: any;
+    errorMessage: string;
+    mode = 'Observable';
+    id: number;
 
     constructor(
         private _route: ActivatedRoute,
         private _router: Router,
-        private _threadService: ThreadService) {
-    }
-
-    ngOnInit() {
-        this._route.params.subscribe(
-            params => {
-            let id = +params['id'];
-            this._threadService.getThread(id).subscribe(
-                threads => {
-                    this.threads = threads;
-                    this.loading = false;
-                    console.log(this.threads);
-                },
-                error => this.errorMessage = <any>error,
-            );
+        private _threadService: ThreadService,
+        private _eventsService: EventsService) {
+        this._eventsService.isFinish.subscribe((mode : boolean) => {
+            this.isFinish = mode;
         });
     }
 
-    // ngOnDestroy() {
-    //     this.sub.unsubscribe();
-    // }
+    ngOnInit() {
+        this.getId();
+        this.getThread();
+    }
 
-    // ngOnInit() {
-    //     this.sub = this._route.params.subscribe(params => {
-    //         let id = +params['id']; // (+) converts string 'id' to a number
-    //         this._threadService.getThread(id).subscribe(
-    //             threads => {
-    //                 this.threads = threads;
-    //                 this.loading = false;
-    //                 this.thread = this.threads[0];
-    //             },
-    //             error => this.errorMessage = <any>error,);
-    //     });
-    // }
+    getId() {
+        this._route.params.subscribe(
+            params => {
+                this.id = params['id'];
+            });
+    }
+
+    getThread() {
+        this._threadService.getThread(this.id)
+            .subscribe(
+                thread => {
+                    this.thread = this.prettifyTime(thread);
+                    this.loading = false;
+                },
+                error => this.errorMessage = <any>error
+            );
+    }
 
     goToThreads() {
-        this._router.navigate(['/threads']);
+        this._router.navigate(['threads']);
+    }
+
+    goToEditThread() {
+        this._router.navigate(['threads/edit', this.id]);
+    }
+
+    deleteThread() {
+        this._threadService.deleteThread(this.id)
+            .subscribe(_ => {
+                this._eventsService.isFinish.emit(true);
+            });
+    }
+
+    private prettifyTime(thread) {
+        var dtOld = Date.parse(thread['Updated']);
+        var dtNow = Date.now();
+
+        var diffMs = (dtNow - dtOld); // milliseconds between now & Christmas
+        var diffDays = Math.round(diffMs / 86400000); // days
+        var diffHrs = Math.round((diffMs % 86400000) / 3600000); // hours
+        var diffMins = Math.round(((diffMs % 86400000) % 3600000) / 60000); // minutes
+
+        if (diffDays > 0) {
+            thread['Updated'] = diffDays + ' days ago';
+        }
+        else if (diffHrs > 0) {
+            thread['Updated'] = diffHrs + ' hours ago';
+        }
+        else {
+            thread['Updated'] = diffMins + ' mins ago';
+        }
+
+        return thread;
+    }
+
+    isLoading() {
+        return this.loading;
     }
 }

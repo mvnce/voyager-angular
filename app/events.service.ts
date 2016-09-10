@@ -9,6 +9,7 @@ import { EventEmitter, Injectable } from '@angular/core';
 export class EventsService {
 
     public isLogin: EventEmitter<any> = new EventEmitter();
+    public isFinish: EventEmitter<any> = new EventEmitter();
 
     constructor() { }
 }

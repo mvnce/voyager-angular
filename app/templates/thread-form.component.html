@@ -1,7 +1,7 @@
 <div class="col-md-8 col-md-offset-2" [@flyInOut]="'in'" id="login-form">
-    <h2>New Post</h2>
+    <h2>{{ title }}</h2>
 
-    <form (ngSubmit)="onSubmit()" #threadForm="ngForm">
+    <form (ngSubmit)="onSubmit()" #threadForm="ngForm" *ngIf="!isFinish">
         <div class="form-group">
             <label for="title">Title</label>
             <input type="text" class="form-control" id="title" required [(ngModel)]="thread.title" name="title">
@@ -21,8 +21,16 @@
         </div>
         <hr>
         <div class="text-center">
-            <button type="button" class="btn btn-default" (click)="addThread()">Submit</button>
+            <button type="button" class="btn btn-success" (click)="addOrUpdate()">Submit</button>
         </div>
-
     </form>
+
+    <div *ngIf="isFinish">
+        <hr>
+        <div class="text-center" >
+            <button type="button" class="btn btn-primary" (click)="goToThreads()">Go Back</button>
+        </div>
+    </div>
+
+
 </div>
