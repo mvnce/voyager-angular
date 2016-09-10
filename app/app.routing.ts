@@ -11,8 +11,7 @@ import { NotFoundComponent } from './notfound.component';
 import { LoginComponent } from './login.component';
 import { LoadingComponent } from './loading.component';
 import { ThreadsComponent } from "./threads.component";
-import { NewThreadComponent } from "./newthread.component";
-
+import { ThreadFormComponent } from "./thread-form.component";
 
 const appRoutes: Routes = [
     {
@@ -33,7 +32,7 @@ const appRoutes: Routes = [
     },
     {
         path: 'threads/new',
-        component: NewThreadComponent,
+        component: ThreadFormComponent,
     },
     {
         path: 'account/login',
@@ -48,4 +47,4 @@ const appRoutes: Routes = [
 
 export const routing = RouterModule.forRoot(appRoutes);
 
-export const routedComponents = [HomeComponent, PostsComponent, UsersComponent, ThreadsComponent, NewThreadComponent, NotFoundComponent, LoginComponent, LoadingComponent];
+export const routedComponents = [HomeComponent, PostsComponent, UsersComponent, ThreadsComponent, ThreadFormComponent, NotFoundComponent, LoginComponent, LoadingComponent];

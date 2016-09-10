@@ -4,6 +4,7 @@
 
 import { Component, OnInit, trigger, state, style, transition, animate, group } from '@angular/core';
 import { ThreadService } from "./thread.service";
+import { Thread } from "./thread";
 
 @Component({
     templateUrl: 'app/templates/threads.component.html',
@@ -27,16 +28,14 @@ import { ThreadService } from "./thread.service";
 })
 export class ThreadsComponent implements OnInit {
     loading = true;
-    threads: any[];
+    threads: Thread[];
+    errorMessage: string;
+    mode = 'Observable';
 
     constructor(private _threadService: ThreadService) {}
 
     ngOnInit() {
-        this._threadService.getThreads().subscribe(threads => {
-            this.threads = this.prettifyTime(threads);
-            console.log(threads);
-            this.loading = false;
-        });
+        this.getThreads();
     }
 
     private prettifyTime(threads) {
@@ -53,7 +52,7 @@ export class ThreadsComponent implements OnInit {
                 thread['Updated'] = diffDays + ' days ago';
             }
             else if (diffHrs > 0) {
-                thread['Updated'] = diffHrs + ' hours ' + diffMins + ' mins ago';
+                thread['Updated'] = diffHrs + ' hours ago';
             }
             else {
                 thread['Updated'] = diffMins + ' mins ago';
@@ -61,6 +60,17 @@ export class ThreadsComponent implements OnInit {
         }
 
         return threads;
+    }
+
+    getThreads() {
+        this._threadService.getThreads()
+            .subscribe(
+                threads => {
+                    this.threads = this.prettifyTime(threads);
+                    this.loading = false;
+                },
+                error => this.errorMessage = <any>error,
+            );
     }
 
     isLoading() {

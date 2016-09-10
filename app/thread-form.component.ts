@@ -5,11 +5,11 @@
 import { Component, OnInit, trigger, state, style, transition, animate, group } from '@angular/core';
 import { Router } from "@angular/router";
 
-import { ThreadService } from "./thread.service";
-import { Thread } from "./thread";
+import { ThreadService } from './thread.service';
+import { Thread } from './thread';
 
 @Component({
-    templateUrl: 'app/templates/newthread.component.html',
+    templateUrl: 'app/templates/thread-form.component.html',
     providers: [ThreadService],
     animations: [
         trigger('flyInOut', [
@@ -28,7 +28,7 @@ import { Thread } from "./thread";
         ])
     ]
 })
-export class NewThreadComponent implements OnInit {
+export class ThreadFormComponent implements OnInit {
 
     thread = new Thread('', '');
 

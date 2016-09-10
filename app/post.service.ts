@@ -6,7 +6,6 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 
-
 @Injectable()
 export class PostService {
     private _url = "http://104.131.139.229:8000/api/posts/";
