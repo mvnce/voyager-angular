@@ -35,7 +35,7 @@ export class ThreadService {
             .catch(this.handleError);
     }
 
-    getThread(id: number): Observable<Thread[]> {
+    getThread(id: number | string): Observable<Thread[]> {
         return this._http.get(this.getThreadUrl(id))
             .map(this.extractData)
             .catch(this.handleError);

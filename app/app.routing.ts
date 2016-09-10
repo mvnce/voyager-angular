@@ -10,8 +10,9 @@ import { UsersComponent } from './users.component';
 import { NotFoundComponent } from './notfound.component';
 import { LoginComponent } from './login.component';
 import { LoadingComponent } from './loading.component';
-import { ThreadsComponent } from "./threads.component";
-import { ThreadFormComponent } from "./thread-form.component";
+import { ThreadsComponent } from './threads.component';
+import { ThreadFormComponent } from './thread-form.component';
+import { ThreadDetailComponent } from './threaddetail.component';
 
 const appRoutes: Routes = [
     {
@@ -31,6 +32,10 @@ const appRoutes: Routes = [
         component: ThreadsComponent,
     },
     {
+        path: 'thread/:id',
+        component: ThreadDetailComponent,
+    },
+    {
         path: 'threads/new',
         component: ThreadFormComponent,
     },
@@ -47,4 +52,4 @@ const appRoutes: Routes = [
 
 export const routing = RouterModule.forRoot(appRoutes);
 
-export const routedComponents = [HomeComponent, PostsComponent, UsersComponent, ThreadsComponent, ThreadFormComponent, NotFoundComponent, LoginComponent, LoadingComponent];
+export const routedComponents = [HomeComponent, PostsComponent, UsersComponent, ThreadsComponent, ThreadDetailComponent, ThreadFormComponent, NotFoundComponent, LoginComponent, LoadingComponent];

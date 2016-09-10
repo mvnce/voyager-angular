@@ -3,6 +3,7 @@
  */
 
 import { Component, OnInit, trigger, state, style, transition, animate, group } from '@angular/core';
+import { Router } from '@angular/router';
 import { ThreadService } from "./thread.service";
 import { Thread } from "./thread";
 
@@ -32,7 +33,8 @@ export class ThreadsComponent implements OnInit {
     errorMessage: string;
     mode = 'Observable';
 
-    constructor(private _threadService: ThreadService) {}
+    constructor(private _router: Router,
+                private _threadService: ThreadService) {}
 
     ngOnInit() {
         this.getThreads();
@@ -68,9 +70,14 @@ export class ThreadsComponent implements OnInit {
                 threads => {
                     this.threads = this.prettifyTime(threads);
                     this.loading = false;
+                    console.log(threads);
                 },
                 error => this.errorMessage = <any>error,
             );
+    }
+
+    onSelect(thread: Thread) {
+        this._router.navigate(['/thread', thread["Id"]]);
     }
 
     isLoading() {
