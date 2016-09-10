@@ -9,16 +9,27 @@
                 <article class="thread">
                     <div class="thread-body">
                         <div class="thread-header">
-                                <p class="inline thread-title">{{ thread.Title }}</p>
-                                <p class="inline thread-updated">- {{ thread.Updated }}</p>
+                            <ul class="left">
+                                <li><p class="thread-title">{{ thread.Title }}</p></li>
+                            </ul>
+                            <ul class="right">
+                                <li><p class="thread-updated">- {{ thread.Updated }}</p></li>
+                            </ul>
                         </div>
+                        <hr>
 
                         <div class="thread-content">
                             <p>{{ thread.Content }}</p>
                         </div>
+
+                        <hr>
                         <div class="thread-footer">
-                                <button class="btn btn-xs btn-default thread-detail inline" (click)="onSelect(thread)">Detail</button>
-                                <p class="inline thread-stat">37 Comments - 64 views</p>
+                            <ul class="left">
+                                <li><button class="btn btn-xs btn-info thread-detail-button" (click)="onSelect(thread)">Detail</button></li>
+                            </ul>
+                            <ul class="right">
+                                <li><p class="thread-stat">37 Comments - 64 views</p></li>
+                            </ul>
                         </div>
                     </div>
                 </article>
