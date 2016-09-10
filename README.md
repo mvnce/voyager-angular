@@ -4,9 +4,9 @@
 A native Angular2 application
 
 Screenshots:
-![alt tag](https://raw.githubusercontent.com/vincentsma/angular2-voyager/master/screenshots/threads.png)
-![alt tag](https://raw.githubusercontent.com/vincentsma/angular2-voyager/master/screenshots/thread.png)
-![alt tag](https://raw.githubusercontent.com/vincentsma/angular2-voyager/master/screenshots/edit.png)
+![alt tag](https://raw.githubusercontent.com/vincentsma/angular2-voyager/master/screenshots/threads.jpeg)
+![alt tag](https://raw.githubusercontent.com/vincentsma/angular2-voyager/master/screenshots/thread.jpeg)
+![alt tag](https://raw.githubusercontent.com/vincentsma/angular2-voyager/master/screenshots/edit.jpeg)
 
 - clone voyager Django project first
 - start the backend server
