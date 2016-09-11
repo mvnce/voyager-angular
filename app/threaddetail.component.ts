@@ -85,7 +85,7 @@ export class ThreadDetailComponent implements OnInit {
     }
 
     private prettifyTime(thread) {
-        var dtOld = Date.parse(thread['Updated']);
+        var dtOld = Date.parse(thread['updated']);
         var dtNow = Date.now();
 
         var diffMs = (dtNow - dtOld); // milliseconds between now & Christmas
@@ -94,13 +94,13 @@ export class ThreadDetailComponent implements OnInit {
         var diffMins = Math.round(((diffMs % 86400000) % 3600000) / 60000); // minutes
 
         if (diffDays > 0) {
-            thread['Updated'] = diffDays + ' days ago';
+            thread['updated'] = diffDays + ' days ago';
         }
         else if (diffHrs > 0) {
-            thread['Updated'] = diffHrs + ' hours ago';
+            thread['updated'] = diffHrs + ' hours ago';
         }
         else {
-            thread['Updated'] = diffMins + ' mins ago';
+            thread['updated'] = diffMins + ' mins ago';
         }
 
         return thread;

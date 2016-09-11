@@ -10,7 +10,8 @@ import { Thread } from './thread';
 
 @Injectable()
 export class ThreadService {
-    private _url = 'http://104.131.139.229:8080/api/v1/posts';
+    // private _url = 'http://104.131.139.229:8080/api/v1/posts';
+    private _url = 'http://localhost:8080/api/v1/posts';
 
     constructor(private _http: Http) { }
 
