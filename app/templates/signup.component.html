@@ -1,0 +1,47 @@
+<div class="col-md-4 col-md-offset-4" [@flyInOut]="'in'">
+    <h2>Sign Up</h2>
+
+    <form (ngSubmit)="onSubmit()" #signUpForm="ngForm">
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" required [(ngModel)]="signupForm.email" name="email" #email="ngModel" #spy>
+            <br>TODO: remove this: {{spy.className}}
+            <!--<div [hidden]="email.valid || email.pristine" class="alert alert-danger">-->
+                <!--Email is required-->
+            <!--</div>-->
+        </div>
+
+        <div class="form-group">
+            <label for="name">Username</label>
+            <input type="text" class="form-control" id="name" required [(ngModel)]="signupForm.name" name="name">
+            <!--<br>TODO: remove this: {{spy.className}}-->
+        </div>
+
+
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" required [(ngModel)]="signupForm.password" name="password" #password="ngModel">
+            <!--<div [hidden]="password.valid || password.pristine" class="alert alert-danger">-->
+                <!--Password is required-->
+            <!--</div>-->
+        </div>
+
+        <div class="form-group">
+            <label for="confirm-password">Confirm Password</label>
+            <input type="password" class="form-control" id="confirm-password" required [(ngModel)]="signupForm.password" name="confirm-password" #password="ngModel">
+            <!--<div [hidden]="password.valid || password.pristine" class="alert alert-danger">-->
+            <!--Password is required-->
+            <!--</div>-->
+        </div>
+
+        <div class="text-center">
+            <button type="button" class="btn btn-default" (click)="signUp()">Create Account</button>
+        </div>
+
+        <div [hidden]="!msgFlag" class="alert alert-danger">
+            Failed to login
+        </div>
+
+    </form>
+
+</div>

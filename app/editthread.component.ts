@@ -63,8 +63,8 @@ export class EditThreadComponent implements OnInit {
         this._threadService.getThread(this.id)
             .subscribe(
                 thread => {
-                    this.thread.title = thread['Title'];
-                    this.thread.content = thread['Content'];
+                    this.thread.title = thread['title'];
+                    this.thread.content = thread['content'];
                     this.loading = false;
                 },
                 error => this.errorMessage = <any>error

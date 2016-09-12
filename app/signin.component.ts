@@ -11,9 +11,8 @@ import { EventsService } from './events.service';
 
 import { User } from './user';
 
-
 @Component({
-    templateUrl: 'app/templates/login.component.html',
+    templateUrl: 'app/templates/signin.component.html',
     providers: [FormBuilder],
     animations: [
         trigger('flyInOut', [
@@ -42,7 +41,7 @@ import { User } from './user';
         ])
     ]
 })
-export class LoginComponent implements OnInit{
+export class SignInComponent implements OnInit{
     loginForm;
     active = true;
     msgFlag = false;
