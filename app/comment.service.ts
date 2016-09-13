@@ -9,8 +9,8 @@ import { Observable }     from 'rxjs/Observable';
 
 @Injectable()
 export class CommentService {
-    // private _url = 'http://104.131.139.229:8080/api/v1/comments';
-    private _url = 'http://localhost:8080/api/v1/comments';
+    private _url = 'http://104.131.139.229:8080/api/v1/comments';
+    // private _url = 'http://localhost:8080/api/v1/comments';
 
     constructor(private _http: Http) {}
 
