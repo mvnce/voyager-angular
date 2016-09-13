@@ -1,13 +1,7 @@
-<div class="threads-container" [@flyInOut]="'in'">
-
-    <div class="col-md-8 col-md-offset-2 threads" *ngIf="!isFinish">
-        <div class="text-center" *ngIf="isLoading()">
-            <loading></loading>
-        </div>
-
-        <div *ngIf="!isLoading()">
+<div class="col-md-8 col-md-offset-2 threads" *ngIf="!isFinish">
+    <div class="threads-container" [@flyInOut]="'in'">
+        <div *ngIf="!isLoading">
             <div class="row">
-
                 <article class="thread">
                     <div class="thread-body">
                         <div class="thread-header">
@@ -38,18 +32,16 @@
                         </div>
                     </div>
                 </article>
-
-                <article class="thread">
-                    <h1 class="text-center">Comment Area</h1>
-                </article>
             </div>
         </div>
     </div>
 
-    <div *ngIf="isFinish">
-        <hr>
-        <div class="text-center" >
-            <button type="button" class="btn btn-primary" (click)="goToThreads()">Go Back</button>
-        </div>
+    <comment #comment (isShowComment)="isShowComment"></comment>
+</div>
+
+<div *ngIf="isFinish">
+    <hr>
+    <div class="text-center" >
+        <button type="button" class="btn btn-primary" (click)="goToThreads()">Go Back</button>
     </div>
 </div>

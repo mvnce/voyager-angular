@@ -4,44 +4,41 @@
     <form (ngSubmit)="onSubmit()" #signUpForm="ngForm">
         <div class="form-group">
             <label for="email">Email</label>
-            <input type="email" class="form-control" id="email" required [(ngModel)]="signupForm.email" name="email" #email="ngModel" #spy>
-            <br>TODO: remove this: {{spy.className}}
-            <!--<div [hidden]="email.valid || email.pristine" class="alert alert-danger">-->
-                <!--Email is required-->
-            <!--</div>-->
+            <input type="email" class="form-control" id="email" required [(ngModel)]="signupForm.email" name="email" #email="ngModel">
+            <div [hidden]="email.valid || email.pristine" class="alert alert-danger">
+                Email is required
+            </div>
         </div>
 
         <div class="form-group">
             <label for="name">Username</label>
-            <input type="text" class="form-control" id="name" required [(ngModel)]="signupForm.name" name="name">
-            <!--<br>TODO: remove this: {{spy.className}}-->
+            <input type="text" class="form-control" id="name" required [(ngModel)]="signupForm.name" name="name" #name="ngModel">
+            <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
+                Username is required
+            </div>
         </div>
-
 
         <div class="form-group">
             <label for="password">Password</label>
             <input type="password" class="form-control" id="password" required [(ngModel)]="signupForm.password" name="password" #password="ngModel">
-            <!--<div [hidden]="password.valid || password.pristine" class="alert alert-danger">-->
-                <!--Password is required-->
-            <!--</div>-->
+            <div [hidden]="password.valid || password.pristine" class="alert alert-danger">
+                Password is required
+            </div>
         </div>
 
         <div class="form-group">
-            <label for="confirm-password">Confirm Password</label>
-            <input type="password" class="form-control" id="confirm-password" required [(ngModel)]="signupForm.password" name="confirm-password" #password="ngModel">
-            <!--<div [hidden]="password.valid || password.pristine" class="alert alert-danger">-->
-            <!--Password is required-->
-            <!--</div>-->
+            <label for="password2">Confirm Password</label>
+            <input type="password" class="form-control" id="password2" required [(ngModel)]="password2" name="password2">
+            <div [hidden]="confirmPassword()" class="alert alert-danger">
+                Password does not match
+            </div>
         </div>
+
+        <hr>
 
         <div class="text-center">
-            <button type="button" class="btn btn-default" (click)="signUp()">Create Account</button>
+            <button type="button" class="btn btn-default" [disabled]="checkForm()" (click)="signUp()">Create Account</button>
         </div>
-
-        <div [hidden]="!msgFlag" class="alert alert-danger">
-            Failed to login
-        </div>
-
     </form>
 
 </div>

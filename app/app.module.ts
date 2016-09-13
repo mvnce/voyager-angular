@@ -11,12 +11,14 @@ import { AppComponent }  from './app.component';
 import { NavBarComponent } from './navbar.component';
 import { FaComponent } from 'angular2-fontawesome/components';
 import { LoadingComponent } from './loading.component';
+import { CommentComponent } from './comment.component';
 import { routing, routedComponents } from './app.routing';
 
 import { PostService } from './post.service';
 import { UserService } from './user.service';
 import { EventsService } from './events.service';
-import { ThreadService } from "./thread.service";
+import { ThreadService } from './thread.service';
+import { CommentService } from './comment.service';
 
 
 @NgModule({
@@ -31,7 +33,7 @@ import { ThreadService } from "./thread.service";
         NavBarComponent,
         FaComponent,
         LoadingComponent,
-
+        CommentComponent,
         routedComponents,
     ],
     providers: [
@@ -39,6 +41,7 @@ import { ThreadService } from "./thread.service";
         UserService,
         EventsService,
         ThreadService,
+        CommentService,
     ],
     bootstrap: [AppComponent]
 })

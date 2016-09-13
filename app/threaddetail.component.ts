@@ -7,6 +7,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { ThreadService } from './thread.service';
 import { EventsService } from './events.service';
+import { CommentService } from './comment.service';
 
 @Component({
     templateUrl: 'app/templates/threaddetail.component.html',
@@ -29,12 +30,16 @@ import { EventsService } from './events.service';
     ]
 })
 export class ThreadDetailComponent implements OnInit {
-    loading = true;
+    isLoading = true;
     public isFinish = false;
     thread: any;
     errorMessage: string;
     mode = 'Observable';
     id: number;
+
+    isShowComment = true;
+
+
 
     constructor(
         private _route: ActivatedRoute,
@@ -63,7 +68,7 @@ export class ThreadDetailComponent implements OnInit {
             .subscribe(
                 thread => {
                     this.thread = this.prettifyTime(thread);
-                    this.loading = false;
+                    this.isLoading = false;
                 },
                 error => this.errorMessage = <any>error
             );
@@ -106,7 +111,7 @@ export class ThreadDetailComponent implements OnInit {
         return thread;
     }
 
-    isLoading() {
-        return this.loading;
+    changeShowComment() {
+        this.isShowComment = !this.isShowComment;
     }
 }

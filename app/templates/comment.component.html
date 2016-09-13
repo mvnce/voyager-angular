@@ -1,0 +1,25 @@
+<div class="comments-container">
+
+    <div *ngIf="!isLoading">
+        <div class="row" [@flyInOut]="'in'">
+            <article class="comments">
+                <div *ngIf="!isShowing">
+                    <div *ngFor="let comment of comments">
+                        <div class="comment">
+                            <p>{{comment.content}}</p>
+                            <p>{{comment.status}}</p>
+                            <p>{{comment.updated}}</p>
+                            <hr>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="text-center">
+                    <button type="button" class="btn btn-xs btn-primary comment-show-button" (click)="changeShowComment()">show/hide</button>
+                </div>
+
+            </article>
+        </div>
+    </div>
+</div>

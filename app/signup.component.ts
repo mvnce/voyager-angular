@@ -41,6 +41,7 @@ import { SignUpForm } from "./forms";
 })
 export class SignUpComponent implements OnInit{
     private signupForm = new SignUpForm('', '', '');
+    private password2 = '';
 
     constructor(private _router: Router,
                 private _userService: UserService,
@@ -49,7 +50,23 @@ export class SignUpComponent implements OnInit{
     ngOnInit() {
     }
 
+    confirmPassword() {
+        return  !(this.signupForm.password != this.password2 &&
+                this.password2 != '');
+    }
+
+    checkForm() {
+        return (
+            this.signupForm.name == '' ||
+            this.signupForm.email == '' ||
+            this.signupForm.password == '' ||
+            this.password2 == '');
+    }
+
     signUp() {
-        console.log('signup clicked');
+        console.log('signUp clicked');
+        console.log(this.signupForm);
+
+        this._userService.SignUp(this.signupForm).subscribe();
     }
 }

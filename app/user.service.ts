@@ -3,38 +3,43 @@
  */
 
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
-import 'rxjs/add/operator/map';
-import { User } from './user';
+import { Http, Response, Headers, RequestOptions } from '@angular/http';
 
-var users = [
-    new User('admin@mail.com','admin'),
-    new User('user@mail.com','user')
-];
+import { Observable }     from 'rxjs/Observable';
+import { SignUpForm } from './forms';
 
 @Injectable()
 export class UserService {
-    private _url = "http://104.131.139.229:8000/api/accounts/users/";
+    private _url = "http://localhost:8080/api/v1/user";
 
     constructor(private _http: Http) { }
 
-    getUsers() {
-        return this._http.get(this._url).map(res => res.json());
+    private getUrl(type: string) {
+        return this._url + "/" + type;
     }
 
-    login(user) {
-        var authUser = users.find(u => u.email === user.email);
-
-        if (authUser && authUser.password === user.password) {
-            localStorage.setItem('user', authUser.toString());
-            return true;
-        }
-
-        return false;
+    private extractData(res: Response) {
+        console.log('res service: ', res);
+        let body = res.json();
+        console.log('body service: ', body);
+        return body.data || { };
     }
 
-    logout() {
-        localStorage.removeItem('user');
-        return true;
+    private handleError (error: any) {
+        let errMsg = (error.message) ? error.message :
+            error.status ? `${error.status} - ${error.statusText}` : 'Server error';
+        console.error('123456789', errMsg); // log to console instead
+        return Observable.throw(errMsg);
+    }
+
+    SignUp(signupForm: SignUpForm) {
+        let body = JSON.stringify(signupForm);
+        console.log('user service: ', body);
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+
+        return this._http.post(this.getUrl('signup'), body, options)
+            .map(this.extractData)
+            .catch(this.handleError);
     }
 }

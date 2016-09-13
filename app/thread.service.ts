@@ -13,7 +13,7 @@ export class ThreadService {
     // private _url = 'http://104.131.139.229:8080/api/v1/posts';
     private _url = 'http://localhost:8080/api/v1/posts';
 
-    constructor(private _http: Http) { }
+    constructor(private _http: Http) {}
 
     private getThreadUrl(id) {
         return this._url + "/" + id;

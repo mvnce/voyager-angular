@@ -68,17 +68,17 @@ export class SignInComponent implements OnInit{
     login(event) {
         console.log('login clicked!');
 
-        this.user = new User('admin@mail.com', 'admin');
-
-        if (this._userService.login(this.user)) {
-            this.active = false;
-            this._eventsService.isLogin.emit(true);
-            this._router.navigate(['threads']);
-            console.log('login successful');
-        }
-        else {
-            this.msgFlag = true;
-            console.log('login failed');
-        }
+        // this.user = new User('admin@mail.com', 'admin');
+        //
+        // if (this._userService.login(this.user)) {
+        //     this.active = false;
+        //     this._eventsService.isLogin.emit(true);
+        //     this._router.navigate(['threads']);
+        //     console.log('login successful');
+        // }
+        // else {
+        //     this.msgFlag = true;
+        //     console.log('login failed');
+        // }
     }
 }

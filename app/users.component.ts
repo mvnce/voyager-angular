@@ -33,10 +33,10 @@ export class UsersComponent implements OnInit {
     constructor(private _service: UserService) { }
 
     ngOnInit() {
-        this._service.getUsers().subscribe(users => {
-            this.users = users;
-            this.loading = false;
-        });
+        // this._service.getUsers().subscribe(users => {
+        //     this.users = users;
+        //     this.loading = false;
+        // });
     }
 
     isLoading() {

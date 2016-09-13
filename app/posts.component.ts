@@ -44,20 +44,20 @@ export class PostsComponent implements OnInit {
     }
 
     addUserInfo(posts) {
-        this._userService.getUsers().subscribe(users => {
-
-            for(var post of posts) {
-                for(var user of users) {
-                    if (user['id'] == post['user']) {
-                        post['username'] = user['username'];
-                        post['first_name'] = user['first_name'];
-                        post['last_name'] = user['last_name'];
-                    }
-                }
-            }
-        });
-
-        return posts;
+        // this._userService.getUsers().subscribe(users => {
+        //
+        //     for(var post of posts) {
+        //         for(var user of users) {
+        //             if (user['id'] == post['user']) {
+        //                 post['username'] = user['username'];
+        //                 post['first_name'] = user['first_name'];
+        //                 post['last_name'] = user['last_name'];
+        //             }
+        //         }
+        //     }
+        // });
+        //
+        // return posts;
     }
 
     prettifyTime(posts) {

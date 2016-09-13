@@ -49,7 +49,7 @@ export class NavBarComponent implements OnInit {
     }
 
     logout() {
-        this._userService.logout();
+        // this._userService.logout();
         this._eventsService.isLogin.emit(false);
         this._router.navigate(['account/login']);
     }
