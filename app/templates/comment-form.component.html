@@ -1,3 +1,13 @@
-<form>
-    <p>Comment Form Box</p>
-</form>
+<div [@flyInOut]="'in'" id="comment-form">
+    <form (ngSubmit)="onSubmit()" #threadForm="ngForm">
+
+        <div class="form-group">
+            <label for="comment">New Comment</label>
+            <textarea class="form-control" rows="5" id="comment" name="comment"></textarea>
+        </div>
+
+        <div class="text-center">
+            <button type="button" class="btn btn-sm btn-success btn-block">Add Comment</button>
+        </div>
+    </form>
+</div>

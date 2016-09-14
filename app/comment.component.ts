@@ -66,7 +66,6 @@ export class CommentComponent implements OnInit{
             comments => {
                 this.comments = this.prettifyTime(comments);
                 this.isLoading = false;
-                console.log(comments);
             }
         )
     }

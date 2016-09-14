@@ -1,7 +1,6 @@
 <div class="col-md-8 col-md-offset-2 threads" *ngIf="!isFinish">
     <div class="threads-container" [@flyInOut]="'in'">
         <div *ngIf="!isLoading">
-            <div class="row">
                 <article class="thread">
                     <div class="thread-body">
                         <div class="thread-header">
@@ -21,18 +20,17 @@
                         <hr>
                         <div class="thread-footer">
                             <ul class="left">
-                                <li><button class="btn btn-xs btn-default thread-detail-button" (click)="goToThreads()">&nbsp;&nbsp;&nbsp;Back&nbsp;&nbsp;&nbsp;</button></li>
-                                <li><button class="btn btn-xs btn-warning thread-detail-button" (click)="goToEditThread()">&nbsp;&nbsp;&nbsp;Edit&nbsp;&nbsp;&nbsp;</button></li>
-                                <li><button class="btn btn-xs btn-danger thread-detail-button" (click)="deleteThread()">&nbsp;&nbsp;&nbsp;Delete&nbsp;&nbsp;&nbsp;</button></li>
+                                <li><button class="btn btn-sm btn-default thread-detail-button" (click)="goToThreads()">&nbsp;&nbsp;&nbsp;Back&nbsp;&nbsp;&nbsp;</button></li>
+                                <li><button class="btn btn-sm btn-warning thread-detail-button" (click)="goToEditThread()">&nbsp;&nbsp;&nbsp;Edit&nbsp;&nbsp;&nbsp;</button></li>
+                                <li><button class="btn btn-sm btn-danger thread-detail-button" (click)="deleteThread()">&nbsp;&nbsp;&nbsp;Delete&nbsp;&nbsp;&nbsp;</button></li>
                             </ul>
                             <ul class="right">
-                                <li><p class="btn btn-xs btn-success">37 Comments</p></li>
-                                <li><p class="btn btn-xs btn-success">64 views</p></li>
+                                <li><p class="btn btn-sm btn-success">37 Comments</p></li>
+                                <li><p class="btn btn-sm btn-success">64 views</p></li>
                             </ul>
                         </div>
                     </div>
                 </article>
-            </div>
         </div>
     </div>
 

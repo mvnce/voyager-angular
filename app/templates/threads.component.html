@@ -5,7 +5,7 @@
         </div>
 
         <div *ngIf="!isLoading()">
-            <div class="row" *ngFor="let thread of threads" [@flyInOut]="'in'">
+            <div *ngFor="let thread of threads" [@flyInOut]="'in'">
                 <article class="thread">
                     <div class="thread-body">
                         <div class="thread-header">
@@ -25,11 +25,11 @@
                         <hr>
                         <div class="thread-footer">
                             <ul class="left">
-                                <li><button class="btn btn-xs btn-primary thread-detail-button" (click)="onSelect(thread)">&nbsp;&nbsp;&nbsp;Detail&nbsp;&nbsp;&nbsp;</button></li>
+                                <li><button class="btn btn-sm btn-primary thread-detail-button" (click)="onSelect(thread)">&nbsp;&nbsp;&nbsp;Detail&nbsp;&nbsp;&nbsp;</button></li>
                             </ul>
                             <ul class="right">
-                                <li><p class="btn btn-xs btn-success" (click)="onSelect(thread)">37 Comments</p></li>
-                                <li><p class="btn btn-xs btn-success" (click)="onSelect(thread)">64 views</p></li>
+                                <li><p class="btn btn-sm btn-success" (click)="onSelect(thread)">37 Comments</p></li>
+                                <li><p class="btn btn-sm btn-success" (click)="onSelect(thread)">64 views</p></li>
                             </ul>
                         </div>
                     </div>

@@ -9,8 +9,6 @@ import { Router } from '@angular/router';
 import { UserService } from './user.service';
 import { EventsService } from './events.service';
 
-import { User } from './user';
-
 @Component({
     templateUrl: 'app/templates/signin.component.html',
     providers: [FormBuilder],
@@ -45,7 +43,6 @@ export class SignInComponent implements OnInit{
     loginForm;
     active = true;
     msgFlag = false;
-    user: User;
 
     constructor(_fb: FormBuilder,
                 private _router: Router,
@@ -67,18 +64,5 @@ export class SignInComponent implements OnInit{
 
     login(event) {
         console.log('login clicked!');
-
-        // this.user = new User('admin@mail.com', 'admin');
-        //
-        // if (this._userService.login(this.user)) {
-        //     this.active = false;
-        //     this._eventsService.isLogin.emit(true);
-        //     this._router.navigate(['threads']);
-        //     console.log('login successful');
-        // }
-        // else {
-        //     this.msgFlag = true;
-        //     console.log('login failed');
-        // }
     }
 }

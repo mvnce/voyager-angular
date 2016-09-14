@@ -1,7 +1,7 @@
 <div class="comments-container">
 
     <div *ngIf="!isLoading">
-        <div class="row" [@flyInOut]="'in'">
+        <div [@flyInOut]="'in'">
             <article class="comments">
                 <div *ngIf="isShowing">
                     <div *ngFor="let comment of comments">
@@ -15,7 +15,7 @@
                 </div>
 
                 <div class="text-center">
-                    <button type="button" class="btn btn-xs btn-primary comment-show-button" (click)="changShowStatus()">show/hide</button>
+                    <button type="button" class="btn btn-sm btn-primary comment-show-button" (click)="changShowStatus()">show/hide</button>
                 </div>
             </article>
         </div>

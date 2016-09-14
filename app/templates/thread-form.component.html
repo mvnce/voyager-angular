@@ -1,4 +1,4 @@
-<div class="col-md-8 col-md-offset-2" [@flyInOut]="'in'" id="login-form">
+<div class="col-md-8 col-md-offset-2" [@flyInOut]="'in'" id="thread-form">
     <h2>{{ title }}</h2>
 
     <form (ngSubmit)="onSubmit()" #threadForm="ngForm" *ngIf="!isFinish">
@@ -8,7 +8,7 @@
         </div>
         <div class="form-group">
             <label for="content">Content</label>
-            <input type="text" class="form-control" id="content" required [(ngModel)]="thread.content" name="content">
+            <textarea class="form-control" id="content" required [(ngModel)]="thread.content" name="content"></textarea>
         </div>
         <div class="form-group">
             <label for="status">Status</label>
