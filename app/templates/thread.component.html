@@ -1,42 +1,52 @@
 <div class="col-md-8 col-md-offset-2 threads" *ngIf="!isFinish">
-    <div class="threads-container" [@flyInOut]="'in'">
-        <div *ngIf="!isLoading">
-                <article class="thread">
-                    <div class="thread-body">
-                        <div class="thread-header">
-                            <ul class="left">
-                                <li><p class="thread-title">{{ thread.title }}</p></li>
-                            </ul>
-                            <ul class="right">
-                                <li><p class="thread-updated">- {{ thread.updated }}</p></li>
-                            </ul>
-                        </div>
-                        <hr>
-
-                        <div class="thread-content">
-                            <p>{{ thread.content }}</p>
-                        </div>
-
-                        <hr>
-                        <div class="thread-footer">
-                            <ul class="left">
-                                <li><button class="btn btn-sm btn-default thread-detail-button" (click)="goToThreads()">&nbsp;&nbsp;&nbsp;Back&nbsp;&nbsp;&nbsp;</button></li>
-                                <li><button class="btn btn-sm btn-warning thread-detail-button" (click)="goToEditThread()">&nbsp;&nbsp;&nbsp;Edit&nbsp;&nbsp;&nbsp;</button></li>
-                                <li><button class="btn btn-sm btn-danger thread-detail-button" (click)="deleteThread()">&nbsp;&nbsp;&nbsp;Delete&nbsp;&nbsp;&nbsp;</button></li>
-                            </ul>
-                            <ul class="right">
-                                <li><p class="btn btn-sm btn-success">37 Comments</p></li>
-                                <li><p class="btn btn-sm btn-success">64 views</p></li>
-                            </ul>
-                        </div>
-                    </div>
-                </article>
-        </div>
+    <div class="text-center" *ngIf="isLoading">
+        <loading></loading>
     </div>
 
-    <comment (onChanged)="onChanged()"></comment>
+    <div *ngIf="!isLoading" [@flyInOut]="'in'">
+        <div class="threads-container" >
+            <article class="thread">
+                <div class="thread-body">
+                    <div class="thread-header">
+                        <ul class="left">
+                            <li><p class="thread-title">{{ thread.title }}</p></li>
+                        </ul>
+                        <ul class="right">
+                            <li><p class="thread-updated">- {{ thread.updated }}</p></li>
+                        </ul>
+                    </div>
+                    <hr>
 
-    <comment-form></comment-form>
+                    <div class="thread-content">
+                        <p>{{ thread.content }}</p>
+                    </div>
+
+                    <hr>
+                    <div class="thread-footer">
+                        <ul class="left">
+                            <li><button class="btn btn-sm btn-default thread-detail-button" (click)="goToThreads()">&nbsp;&nbsp;&nbsp;Back&nbsp;&nbsp;&nbsp;</button></li>
+                            <li><button class="btn btn-sm btn-warning thread-detail-button" (click)="goToEditThread()">&nbsp;&nbsp;&nbsp;Edit&nbsp;&nbsp;&nbsp;</button></li>
+                            <li><button class="btn btn-sm btn-danger thread-detail-button" (click)="deleteThread()">&nbsp;&nbsp;&nbsp;Delete&nbsp;&nbsp;&nbsp;</button></li>
+                        </ul>
+                        <ul class="right">
+                            <li><p class="btn btn-sm btn-success">37 Comments</p></li>
+                            <li><p class="btn btn-sm btn-success">64 views</p></li>
+                        </ul>
+                    </div>
+                </div>
+            </article>
+        </div>
+
+
+        <comment *ngIf="isShowComment"></comment>
+
+        <div class="text-center">
+            <button type="button" class="btn btn-sm btn-default comment-show-button" (click)="changeShowComment()">Show/Hide Comments</button>
+        </div>
+
+        <comment-form></comment-form>
+
+    </div>
 </div>
 
 <div *ngIf="isFinish">

@@ -2,7 +2,7 @@
  * Created by vincentma on 9/12/16.
  */
 
-import {Component, OnInit, trigger, state, style, transition, animate, group, Output, EventEmitter } from '@angular/core';
+import {Component, OnInit, trigger, state, style, transition, animate, group } from '@angular/core';
 import {CommentService} from "./comment.service";
 
 @Component({
@@ -28,13 +28,21 @@ import {CommentService} from "./comment.service";
 export class CommentComponent implements OnInit{
     private isLoading = true;
     private comments: any[];
-    private isShowing = true;
-    @Output() onChanged = new EventEmitter<boolean>();
 
     constructor(private _commentService: CommentService) {}
 
     ngOnInit() {
         this.getComments();
+    }
+
+    getComments() {
+        this._commentService.getComments(19).subscribe(
+            comments => {
+                this.comments = this.prettifyTime(comments);
+                this.isLoading = false;
+                console.log(comments);
+            }
+        )
     }
 
     private prettifyTime(comments) {
@@ -59,18 +67,5 @@ export class CommentComponent implements OnInit{
         }
 
         return comments;
-    }
-
-    getComments() {
-        this._commentService.getComments(19).subscribe(
-            comments => {
-                this.comments = this.prettifyTime(comments);
-                this.isLoading = false;
-            }
-        )
-    }
-
-    changeShowStatus() {
-        this.isShowing = !this.isShowing;
     }
 }

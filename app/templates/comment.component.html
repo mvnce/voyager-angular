@@ -3,20 +3,21 @@
     <div *ngIf="!isLoading">
         <div [@flyInOut]="'in'">
             <article class="comments">
-                <div *ngIf="isShowing">
                     <div *ngFor="let comment of comments">
                         <div class="comment">
                             <p>{{comment.content}}</p>
-                            <p>{{comment.status}}</p>
-                            <p>{{comment.updated}}</p>
+
+                            <div class="comment-header">
+                                <ul class="left">
+                                    <li><p class="comment-username">username</p></li>
+                                </ul>
+                                <ul class="right">
+                                    <li><p class="">{{comment.updated}}</p></li>
+                                </ul>
+                            </div>
                             <hr>
                         </div>
                     </div>
-                </div>
-
-                <div class="text-center">
-                    <button type="button" class="btn btn-sm btn-primary comment-show-button" (click)="changShowStatus()">show/hide</button>
-                </div>
             </article>
         </div>
     </div>

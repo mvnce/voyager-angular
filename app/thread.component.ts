@@ -13,15 +13,26 @@ import { EventsService } from './events.service';
     providers: [ThreadService],
     animations: [
         trigger('flyInOut', [
-            state('in', style({transform: 'translateY(0)', opacity: 1})),
+            state('in', style({transform: 'translateX(0)', opacity: 1})),
             transition('void => *', [
-                style({transform: 'translateY(-20px)', opacity: 0}),
+                style({transform: 'translateY(10px)', opacity: 0}),
                 group([
-                    animate('0.5s 0.1s ease', style({
+                    animate('0.3s 0.1s ease', style({
                         transform: 'translateY(0)',
                     })),
-                    animate('0.5s ease', style({
+                    animate('0.3s ease', style({
                         opacity: 1
+                    }))
+                ])
+            ]),
+            transition('* => void', [
+                style({transform: 'translateY(0px)', opacity: 1}),
+                group([
+                    animate('0s ease', style({
+                        transform: 'translateX(10px)',
+                    })),
+                    animate('0s 0.2s ease', style({
+                        opacity: 0
                     }))
                 ])
             ])
@@ -31,6 +42,7 @@ import { EventsService } from './events.service';
 export class ThreadComponent implements OnInit {
     private isLoading = true;
     private isFinish = false;
+    private isShowComment = true;
     private thread: any;
     private errorMessage: string;
     mode = 'Observable';
@@ -106,7 +118,7 @@ export class ThreadComponent implements OnInit {
         return thread;
     }
 
-    onChanged() {
-        return true;
+    changeShowComment() {
+        this.isShowComment = !this.isShowComment;
     }
 }
