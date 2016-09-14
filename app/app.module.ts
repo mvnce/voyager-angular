@@ -19,7 +19,7 @@ import { UserService } from './user.service';
 import { EventsService } from './events.service';
 import { ThreadService } from './thread.service';
 import { CommentService } from './comment.service';
-
+import {CommentFormComponent} from './comment-form.component';
 
 @NgModule({
     imports: [
@@ -34,6 +34,7 @@ import { CommentService } from './comment.service';
         FaComponent,
         LoadingComponent,
         CommentComponent,
+        CommentFormComponent,
         routedComponents,
     ],
     providers: [

@@ -7,10 +7,9 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { ThreadService } from './thread.service';
 import { EventsService } from './events.service';
-import { CommentService } from './comment.service';
 
 @Component({
-    templateUrl: 'app/templates/threaddetail.component.html',
+    templateUrl: 'app/templates/thread.component.html',
     providers: [ThreadService],
     animations: [
         trigger('flyInOut', [
@@ -29,17 +28,13 @@ import { CommentService } from './comment.service';
         ])
     ]
 })
-export class ThreadDetailComponent implements OnInit {
-    isLoading = true;
-    public isFinish = false;
-    thread: any;
-    errorMessage: string;
+export class ThreadComponent implements OnInit {
+    private isLoading = true;
+    private isFinish = false;
+    private thread: any;
+    private errorMessage: string;
     mode = 'Observable';
-    id: number;
-
-    isShowComment = true;
-
-
+    private id: number;
 
     constructor(
         private _route: ActivatedRoute,
@@ -111,7 +106,7 @@ export class ThreadDetailComponent implements OnInit {
         return thread;
     }
 
-    changeShowComment() {
-        this.isShowComment = !this.isShowComment;
+    onChanged() {
+        return true;
     }
 }

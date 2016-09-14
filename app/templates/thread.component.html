@@ -36,7 +36,9 @@
         </div>
     </div>
 
-    <comment #comment (isShowComment)="isShowComment"></comment>
+    <comment (onChanged)="onChanged()"></comment>
+
+    <comment-form></comment-form>
 </div>
 
 <div *ngIf="isFinish">
