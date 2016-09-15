@@ -2,13 +2,13 @@
  * Created by vincentma on 9/2/16.
  */
 
-(function(global) {
+ (function(global) {
     var path = {
             // paths serve as alias
             'npm:': 'node_modules/'
-    };
+        };
 
-    var map = {
+        var map = {
         // our app is within the app folder
         app: 'app',
 
@@ -33,7 +33,7 @@
         '@angular/forms/testing': 'npm:@angular/forms/bundles/forms-testing.umd.js',
 
         // other libraries
-        'rxjs': 'npm:rxjs',
+        'rxjs':                       'npm:rxjs',
         'angular2-in-memory-web-api': 'npm:angular2-in-memory-web-api',
 
         // others
@@ -46,13 +46,15 @@
             defaultExtension: 'js'
         },
         rxjs: {
-            main: '/bundles/Rx.umd.js',
             defaultExtension: 'js'
         },
         'angular2-in-memory-web-api': {
+            main: './index.js',
             defaultExtension: 'js'
         },
-        'angular2-fontawesome':       { defaultExtension: 'js' }
+        'angular2-fontawesome': {
+            defaultExtension: 'js'
+        }
     };
 
     System.config({
@@ -62,14 +64,14 @@
     });
 
     global.bootstrapping = System.import( "app" )
-        .then(
-            function handleResolve() {
-                console.info( "System.js successfully bootstrapped app." );
-            },
-            function handleReject( error ) {
-                console.warn( "System.js could not bootstrap the app." );
-                console.error( error );
-                return( Promise.reject( error ) );
-            }
+    .then(
+        function handleResolve() {
+            console.info( "System.js successfully bootstrapped app." );
+        },
+        function handleReject( error ) {
+            console.warn( "System.js could not bootstrap the app." );
+            console.error( error );
+            return( Promise.reject( error ) );
+        }
         );
 })(window);
