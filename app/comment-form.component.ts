@@ -28,6 +28,7 @@ import { CommentService } from './comment.service';
     ]
 })
 export class CommentFormComponent implements OnInit {
+    private comment = new Comment(0 ,0 , '', '');
     private postId: number;
 
     constructor(private _route: ActivatedRoute, private _commentService: CommentService) {}
@@ -44,9 +45,8 @@ export class CommentFormComponent implements OnInit {
     }
 
     addComment() {
-        console.log("submit clicked");
-        var comment = new Comment(this.postId, 12, 'Posting Comment', 'posted Comment');
-
-        this._commentService.addComment(comment).subscribe();
+        this.comment.post_id = this.postId;
+        this._commentService.addComment(this.comment).subscribe();
+        this.comment = new Comment(0, 0, '', '');
     }
 }

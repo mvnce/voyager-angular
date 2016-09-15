@@ -2,8 +2,8 @@
     <form (ngSubmit)="onSubmit()" #threadForm="ngForm">
 
         <div class="form-group">
-            <label for="comment">New Comment</label>
-            <textarea class="form-control" rows="3" id="comment" name="comment"></textarea>
+            <label for="comment-content">New Comment</label>
+            <textarea class="form-control" rows="3" id="comment-content" [(ngModel)]="comment.content" name="comment-content"></textarea>
         </div>
 
         <div class="text-center">
