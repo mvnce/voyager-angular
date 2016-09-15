@@ -5,6 +5,8 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 
+import { Comment } from './comment';
+
 import { Observable }     from 'rxjs/Observable';
 
 @Injectable()
@@ -30,8 +32,18 @@ export class CommentService {
         return Observable.throw(errMsg);
     }
 
-    getComments(id: number): Observable<any> {
-        return this._http.get(this.getCommentUrl(id))
+    getComments(post_id: number): Observable<any> {
+        return this._http.get(this.getCommentUrl(post_id))
+            .map(this.extractData)
+            .catch(this.handleError);
+    }
+
+    addComment(comment: Comment): Observable<any> {
+        let body = JSON.stringify(comment);
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+
+        return this._http.post(this._url, body, options)
             .map(this.extractData)
             .catch(this.handleError);
     }

@@ -2,7 +2,10 @@
  * Created by Vincent on 9/13/2016.
  */
 
-import { Component, OnInit, trigger, state, style, transition, animate, group } from '@angular/core';
+import {Component, OnInit, trigger, state, style, transition, animate, group } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Comment } from './comment';
+import { CommentService } from './comment.service';
 
 @Component({
     selector: 'comment-form',
@@ -25,10 +28,25 @@ import { Component, OnInit, trigger, state, style, transition, animate, group } 
     ]
 })
 export class CommentFormComponent implements OnInit {
+    private postId: number;
 
-    constructor() {}
+    constructor(private _route: ActivatedRoute, private _commentService: CommentService) {}
 
-    ngOnInit() {}
+    ngOnInit() {
+        this.getPostId();
+    }
 
+    getPostId() {
+        this._route.params.subscribe(
+            params => {
+                this.postId = +params['id'];
+            });
+    }
 
+    addComment() {
+        console.log("submit clicked");
+        var comment = new Comment(this.postId, 12, 'Posting Comment', 'posted Comment');
+
+        this._commentService.addComment(comment).subscribe();
+    }
 }

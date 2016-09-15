@@ -2,7 +2,7 @@
  * Created by vincentma on 9/9/16.
  */
 
-import { Component, OnInit, trigger, state, style, transition, animate, group } from '@angular/core';
+import {Component, OnInit, trigger, state, style, transition, animate, group } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { ThreadService } from './thread.service';
@@ -45,8 +45,8 @@ export class ThreadComponent implements OnInit {
     private isShowComment = true;
     private thread: any;
     private errorMessage: string;
-    mode = 'Observable';
     private id: number;
+    mode = 'Observable';
 
     constructor(
         private _route: ActivatedRoute,
@@ -91,9 +91,7 @@ export class ThreadComponent implements OnInit {
 
     deleteThread() {
         this._threadService.deleteThread(this.id)
-            .subscribe(_ => {
-                this._eventsService.isFinish.emit(true);
-            });
+            .subscribe(_ => {this._eventsService.isFinish.emit(true) });
     }
 
     private prettifyTime(thread) {

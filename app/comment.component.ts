@@ -3,6 +3,7 @@
  */
 
 import {Component, OnInit, trigger, state, style, transition, animate, group } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import {CommentService} from "./comment.service";
 
 @Component({
@@ -28,15 +29,24 @@ import {CommentService} from "./comment.service";
 export class CommentComponent implements OnInit{
     private isLoading = true;
     private comments: any[];
+    private postId: number;
 
-    constructor(private _commentService: CommentService) {}
+    constructor(private _route: ActivatedRoute, private _commentService: CommentService) {}
 
     ngOnInit() {
+        this.getPostId();
         this.getComments();
     }
 
+    getPostId() {
+        this._route.params.subscribe(
+            params => {
+                this.postId = +params['id'];
+            });
+    }
+
     getComments() {
-        this._commentService.getComments(19).subscribe(
+        this._commentService.getComments(this.postId).subscribe(
             comments => {
                 this.comments = this.prettifyTime(comments);
                 this.isLoading = false;
