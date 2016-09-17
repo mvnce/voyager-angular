@@ -14,7 +14,7 @@
             <ul class="nav navbar-nav">
                 <li><a routerLink="" routerLinkActive="active">Home</a></li>
                 <li><a routerLink="posts" routerLinkActive="active">Posts</a></li>
-                <li><a routerLink="threads" routerLinkActive="active">Forum</a></li>
+                <li><a routerLink="forum" routerLinkActive="active">Forum</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right" *ngIf="isLogin">
                     <li><a routerLink="threads/new" routerLinkActive="active">New Thread</a></li>
@@ -22,7 +22,7 @@
                     <li><a class="clickable" (click)="logout()">Sign Out</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right" *ngIf="!isLogin">
-                <li><a routerLink="threads/new" routerLinkActive="active">New Thread</a></li>
+                <li><a routerLink="thread/new" routerLinkActive="active">New Thread</a></li>
                 <li><a routerLink="account/signin">Sign In</a></li>
                 <li><a routerLink="account/signup">Sign Up</a></li>
             </ul>

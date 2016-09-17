@@ -4,16 +4,16 @@
 
 import { Routes, RouterModule } from '@angular/router';
 
-import { HomeComponent } from './home.component';
-import { PostsComponent } from './posts.component';
+import { HomeComponent } from './home/home.component';
+import { PostsComponent } from './post/posts.component';
 import { NotFoundComponent } from './notfound.component';
-import { SignInComponent } from './signin.component';
-import { SignUpComponent } from './signup.component';
+import { SignInComponent } from './user/signin.component';
+import { SignUpComponent } from './user/signup.component';
 import { LoadingComponent } from './loading.component';
-import { ThreadsComponent } from './threads.component';
-import { ThreadFormComponent } from './thread-form.component';
-import { ThreadComponent } from './thread.component';
-import {EditThreadComponent} from "./editthread.component";
+import { ThreadsComponent } from './forum/threads.component';
+import { ThreadFormComponent } from './forum/thread-form.component';
+import { ThreadComponent } from './forum/thread.component';
+import {EditThreadComponent} from "./forum/editthread.component";
 
 const appRoutes: Routes = [
     {
@@ -25,7 +25,7 @@ const appRoutes: Routes = [
         component: PostsComponent,
     },
     {
-        path: 'threads',
+        path: 'forum',
         component: ThreadsComponent,
     },
     {
@@ -33,7 +33,7 @@ const appRoutes: Routes = [
         component: ThreadComponent,
     },
     {
-        path: 'threads/new',
+        path: 'thread/new',
         component: ThreadFormComponent,
     },
     {

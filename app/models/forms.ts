@@ -9,3 +9,10 @@ export class SignUpForm {
         public password: string
     ) {}
 }
+
+export class SignInForm {
+    constructor(
+        public email: string,
+        public password: string
+    ) {}
+}

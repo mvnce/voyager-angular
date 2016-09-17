@@ -11,15 +11,15 @@ import { AppComponent }  from './app.component';
 import { NavBarComponent } from './navbar.component';
 import { FaComponent } from 'angular2-fontawesome/components';
 import { LoadingComponent } from './loading.component';
-import { CommentComponent } from './comment.component';
+import { CommentComponent } from './forum/comment.component';
 import { routing, routedComponents } from './app.routing';
 
-import { PostService } from './post.service';
-import { UserService } from './user.service';
-import { EventsService } from './events.service';
-import { ThreadService } from './thread.service';
-import { CommentService } from './comment.service';
-import {CommentFormComponent} from './comment-form.component';
+import { PostService } from './post/post.service';
+import { UserService } from './services/user.service';
+import { EventsService } from './services/events.service';
+import { ThreadService } from './services/thread.service';
+import { CommentService } from './services/comment.service';
+import {CommentFormComponent} from './forum/comment-form.component';
 
 @NgModule({
     imports: [

@@ -5,9 +5,9 @@
 import { Component, OnInit, trigger, state, style, transition, animate, group } from '@angular/core';
 import { Router, ActivatedRoute } from "@angular/router";
 
-import { ThreadService } from './thread.service';
-import { Thread } from './thread';
-import { EventsService } from './events.service';
+import { ThreadService } from '../services/thread.service';
+import { Thread } from '../models/thread';
+import { EventsService } from '../services/events.service';
 
 @Component({
     templateUrl: 'app/templates/thread-form.component.html',

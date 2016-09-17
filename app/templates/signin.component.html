@@ -1,11 +1,11 @@
-<div *ngIf="active" class="col-md-4 col-md-offset-4" [@flyInOut]="'in'" id="login-form">
+<div *ngIf="active" class="col-md-4 col-md-offset-4" id="login-form">
     <h2>Login</h2>
 
     <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
 
         <div class="form-group">
             <label for="email">Email</label>
-            <input type="email" class="form-control" id="email" required [(ngModel)]="loginForm.email" name="email" #email="ngModel">
+            <input type="email" class="form-control" id="email" required [(ngModel)]="form.email" name="email" #email="ngModel">
             <div [hidden]="email.valid || email.pristine" class="alert alert-danger">
                 Email is required
             </div>
@@ -14,14 +14,14 @@
 
         <div class="form-group">
             <label for="password">Password</label>
-            <input type="password" class="form-control" id="password" required [(ngModel)]="loginForm.password" name="password" #password="ngModel">
+            <input type="password" class="form-control" id="password" required [(ngModel)]="form.password" name="password" #password="ngModel">
             <div [hidden]="password.valid || password.pristine" class="alert alert-danger">
                 Password is required
             </div>
         </div>
 
         <div class="text-center">
-            <button type="button" class="btn btn-default" [disabled]="!loginForm.valid" (click)="login()">Login</button>
+            <button type="button" class="btn btn-default" [disabled]="checkForm()" (click)="signIn()">Login</button>
         </div>
 
         <div [hidden]="!msgFlag" class="alert alert-danger">

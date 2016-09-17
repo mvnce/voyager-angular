@@ -4,7 +4,7 @@
 
 import { Component, Input, OnInit, trigger, state, style, transition, animate, group } from '@angular/core';
 import { PostService } from './post.service';
-import { UserService } from './user.service';
+import { UserService } from '../services/user.service';
 
 @Component({
     templateUrl: 'app/templates/posts.component.html',
