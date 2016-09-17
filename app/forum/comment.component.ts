@@ -2,9 +2,9 @@
  * Created by vincentma on 9/12/16.
  */
 
-import {Component, OnInit, trigger, state, style, transition, animate, group } from '@angular/core';
+import { Component, OnInit, trigger, state, style, transition, animate, group } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import {CommentService} from "../services/comment.service";
+import { CommentService } from '../services/comment.service';
 
 @Component({
     selector: 'comment',
@@ -48,34 +48,9 @@ export class CommentComponent implements OnInit{
     getComments() {
         this._commentService.getComments(this.postId).subscribe(
             comments => {
-                this.comments = this.prettifyTime(comments);
+                this.comments = comments;
                 this.isLoading = false;
-                console.log(comments);
             }
         )
-    }
-
-    private prettifyTime(comments) {
-        for (var thread of comments) {
-            var dtOld = Date.parse(thread['updated']);
-            var dtNow = Date.now();
-
-            var diffMs = (dtNow - dtOld); // milliseconds between now & Christmas
-            var diffDays = Math.round(diffMs / 86400000); // days
-            var diffHrs = Math.round((diffMs % 86400000) / 3600000); // hours
-            var diffMins = Math.round(((diffMs % 86400000) % 3600000) / 60000); // minutes
-
-            if (diffDays > 0) {
-                thread['updated'] = diffDays + ' days ago';
-            }
-            else if (diffHrs > 0) {
-                thread['updated'] = diffHrs + ' hours ago';
-            }
-            else {
-                thread['updated'] = diffMins + ' mins ago';
-            }
-        }
-
-        return comments;
     }
 }

@@ -3,8 +3,7 @@
  */
 
 import {Component, OnInit, trigger, state, style, animate, transition, group} from '@angular/core';
-import {Router} from '@angular/router';
-
+import { Router } from '@angular/router';
 import { AuthenticationService } from './services/authentication.service';
 import { EventsService } from './services/events.service';
 
@@ -49,9 +48,9 @@ export class NavBarComponent implements OnInit {
         }
     }
 
-    logout() {
+    logOut() {
         this._authenticationService.signOut();
         this._eventsService.isLogin.emit(false);
-        this._router.navigate(['account/login']);
+        this._router.navigate(['account/signin']);
     }
 }

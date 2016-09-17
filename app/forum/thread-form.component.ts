@@ -53,7 +53,7 @@ export class ThreadFormComponent implements OnInit {
         );
     }
 
-    goToThreads() {
+    goToForum() {
         this._router.navigate(['threads']);
     }
 

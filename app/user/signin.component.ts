@@ -5,8 +5,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { EventsService } from '../services/events.service';
-import { SignInForm } from '../models/forms';
 import { AuthenticationService } from '../services/authentication.service';
+import { SignInForm } from '../models/forms';
 
 @Component({
     templateUrl: 'app/templates/signin.component.html',
@@ -40,6 +40,6 @@ export class SignInComponent implements OnInit{
     signIn() {
         this._authenticationService.signIn(this.form).subscribe();
         this._eventsService.isLogin.emit(true);
-        this._router.navigate(['forum']);
+        this._router.navigate(['hold']);
     }
 }

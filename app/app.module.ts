@@ -19,7 +19,7 @@ import { UserService } from './services/user.service';
 import { EventsService } from './services/events.service';
 import { ThreadService } from './services/thread.service';
 import { CommentService } from './services/comment.service';
-import {CommentFormComponent} from './forum/comment-form.component';
+import { CommentFormComponent } from './forum/comment-form.component';
 
 @NgModule({
     imports: [

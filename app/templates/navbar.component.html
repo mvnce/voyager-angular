@@ -19,10 +19,9 @@
             <ul class="nav navbar-nav navbar-right" *ngIf="isLogin">
                     <li><a routerLink="threads/new" routerLinkActive="active">New Thread</a></li>
                     <li><a routerLink="account/info" routerLinkActive="active">Accounts</a></li>
-                    <li><a class="clickable" (click)="logout()">Sign Out</a></li>
+                    <li><a class="clickable" (click)="logOut()">Sign Out</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right" *ngIf="!isLogin">
-                <li><a routerLink="thread/new" routerLinkActive="active">New Thread</a></li>
                 <li><a routerLink="account/signin">Sign In</a></li>
                 <li><a routerLink="account/signup">Sign Up</a></li>
             </ul>

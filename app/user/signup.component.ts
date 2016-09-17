@@ -3,8 +3,10 @@
  */
 
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { EventsService } from '../services/events.service';
+import { AuthenticationService } from '../services/authentication.service';
 import { SignUpForm } from "../models/forms";
-import {AuthenticationService} from "../services/authentication.service";
 
 @Component({
     templateUrl: 'app/templates/signup.component.html',
@@ -14,7 +16,9 @@ export class SignUpComponent implements OnInit {
     private form: SignUpForm;
     private password2: string;
 
-    constructor(private _authenticationService: AuthenticationService) {
+    constructor(private _router: Router,
+                private _authenticationService: AuthenticationService,
+                private _eventsService: EventsService) {
         this.form = new SignUpForm('', '', '');
         this.password2 = '';
     }
@@ -37,5 +41,7 @@ export class SignUpComponent implements OnInit {
 
     signUp() {
         this._authenticationService.signUp(this.form).subscribe();
+        this._eventsService.isLogin.emit(true);
+        this._router.navigate(['hold']);
     }
 }

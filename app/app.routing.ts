@@ -3,7 +3,6 @@
  */
 
 import { Routes, RouterModule } from '@angular/router';
-
 import { HomeComponent } from './home/home.component';
 import { PostsComponent } from './post/posts.component';
 import { NotFoundComponent } from './notfound.component';
@@ -13,7 +12,8 @@ import { LoadingComponent } from './loading.component';
 import { ThreadsComponent } from './forum/threads.component';
 import { ThreadFormComponent } from './forum/thread-form.component';
 import { ThreadComponent } from './forum/thread.component';
-import {EditThreadComponent} from "./forum/editthread.component";
+import { EditThreadComponent } from './forum/editthread.component';
+import { HoldComponent } from './hold.component';
 
 const appRoutes: Routes = [
     {
@@ -49,6 +49,10 @@ const appRoutes: Routes = [
         component: SignUpComponent,
     },
     {
+        path: 'hold',
+        component: HoldComponent,
+    },
+    {
         path: '**',
         component: NotFoundComponent,
     },
@@ -66,5 +70,6 @@ export const routedComponents = [
     NotFoundComponent,
     SignInComponent,
     SignUpComponent,
-    LoadingComponent
+    LoadingComponent,
+    HoldComponent,
 ];
