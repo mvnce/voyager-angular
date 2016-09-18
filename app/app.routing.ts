@@ -29,15 +29,15 @@ const appRoutes: Routes = [
         component: ThreadsComponent,
     },
     {
-        path: 'thread/:id',
-        component: ThreadComponent,
-    },
-    {
         path: 'thread/new',
         component: ThreadFormComponent,
     },
     {
-        path: 'threads/edit/:id',
+        path: 'thread/:id',
+        component: ThreadComponent,
+    },
+    {
+        path: 'thread/edit/:id',
         component: EditThreadComponent,
     },
     {

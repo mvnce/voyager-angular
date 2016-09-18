@@ -1,7 +1,7 @@
 <div class="col-md-4 col-md-offset-4">
     <h2>Sign Up</h2>
 
-    <form (ngSubmit)="onSubmit()" #signUpForm="ngForm">
+    <form #signUpForm="ngForm">
         <div class="form-group">
             <label for="email">Email</label>
             <input type="email" class="form-control" id="email" required [(ngModel)]="form.email" name="email" #email="ngModel">

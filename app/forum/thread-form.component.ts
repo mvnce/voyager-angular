@@ -4,10 +4,8 @@
 
 import { Component, OnInit, trigger, state, style, transition, animate, group } from '@angular/core';
 import { Router } from "@angular/router";
-
 import { ThreadService } from '../services/thread.service';
 import { Thread } from '../models/thread';
-import { EventsService } from '../services/events.service';
 
 @Component({
     templateUrl: 'app/templates/thread-form.component.html',
@@ -30,34 +28,19 @@ import { EventsService } from '../services/events.service';
     ]
 })
 export class ThreadFormComponent implements OnInit {
-    title = "New Thread";
-    public isFinish = false;
+    private title = "New Thread";
 
-    thread = new Thread('', '');
+    private thread: Thread;
 
     constructor(private _router: Router,
-                private _threadService:ThreadService,
-                private _eventsService: EventsService) {
-        this._eventsService.isFinish.subscribe((mode : boolean) => {
-            this.isFinish = mode;
-        });
+                private _threadService:ThreadService) {
+        this.thread= new Thread('', '');
     }
 
-    ngOnInit() { }
-
-    addThread() {
-        this._threadService.addThread(this.thread)
-            .subscribe(_ => {
-                this._eventsService.isFinish.emit(true);
-            }
-        );
-    }
-
-    goToForum() {
-        this._router.navigate(['threads']);
-    }
+    ngOnInit() {}
 
     addOrUpdate() {
-        this.addThread();
+        this._threadService.addThread(this.thread).subscribe();
+        this._router.navigate(['/hold']);
     }
 }

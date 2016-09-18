@@ -7,19 +7,19 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand brand-name" routerLink="">Voyager</a>
+            <a class="navbar-brand brand-name">Voyager</a>
         </div>
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li><a routerLink="" routerLinkActive="active">Home</a></li>
-                <li><a routerLink="posts" routerLinkActive="active">Posts</a></li>
-                <li><a routerLink="forum" routerLinkActive="active">Forum</a></li>
+                <li><a routerLink="/posts" routerLinkActive="active">Posts</a></li>
+                <li><a routerLink="/forum" routerLinkActive="active">Forum</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right" *ngIf="isLogin">
-                    <li><a routerLink="threads/new" routerLinkActive="active">New Thread</a></li>
-                    <li><a routerLink="account/info" routerLinkActive="active">Accounts</a></li>
-                    <li><a class="clickable" (click)="logOut()">Sign Out</a></li>
+                    <li><a routerLink="/thread/new" routerLinkActive="active">New Thread</a></li>
+                    <li><a routerLink="/account/info" routerLinkActive="active">Accounts</a></li>
+                    <li><a class="/clickable" (click)="logOut()">Sign Out</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right" *ngIf="!isLogin">
                 <li><a routerLink="account/signin">Sign In</a></li>

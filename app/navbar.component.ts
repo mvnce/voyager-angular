@@ -17,10 +17,10 @@ import { EventsService } from './services/events.service';
             transition('void => *', [
                 style({transform: 'translateY(-50px)', opacity: 0}),
                 group([
-                    animate('1.0s 0.1s ease', style({
+                    animate('0.5s 0.1s ease', style({
                         transform: 'translateY(0)',
                     })),
-                    animate('1.0s ease', style({
+                    animate('0.5s ease', style({
                         opacity: 1
                     }))
                 ])

@@ -6,7 +6,6 @@ import {Component, OnInit, trigger, state, style, transition, animate, group } f
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { ThreadService } from '../services/thread.service';
-import { EventsService } from '../services/events.service';
 
 @Component({
     templateUrl: 'app/templates/thread.component.html',
@@ -24,24 +23,12 @@ import { EventsService } from '../services/events.service';
                         opacity: 1
                     }))
                 ])
-            ]),
-            transition('* => void', [
-                style({transform: 'translateY(0px)', opacity: 1}),
-                group([
-                    animate('0s ease', style({
-                        transform: 'translateX(10px)',
-                    })),
-                    animate('0s 0.2s ease', style({
-                        opacity: 0
-                    }))
-                ])
             ])
         ])
     ]
 })
 export class ThreadComponent implements OnInit {
     private isLoading = true;
-    private isFinish = false;
     private isShowComment = true;
     private thread: any;
     private errorMessage: string;
@@ -51,12 +38,7 @@ export class ThreadComponent implements OnInit {
     constructor(
         private _route: ActivatedRoute,
         private _router: Router,
-        private _threadService: ThreadService,
-        private _eventsService: EventsService) {
-        this._eventsService.isFinish.subscribe((mode : boolean) => {
-            this.isFinish = mode;
-        });
-    }
+        private _threadService: ThreadService) {}
 
     ngOnInit() {
         this.getId();
@@ -74,7 +56,7 @@ export class ThreadComponent implements OnInit {
         this._threadService.getThread(this.id)
             .subscribe(
                 thread => {
-                    this.thread = this.prettifyTime(thread);
+                    this.thread = thread;
                     this.isLoading = false;
                 },
                 error => this.errorMessage = <any>error
@@ -82,38 +64,16 @@ export class ThreadComponent implements OnInit {
     }
 
     goToThreads() {
-        this._router.navigate(['threads']);
+        this._router.navigate(['/forum']);
     }
 
-    goToEditThread() {
-        this._router.navigate(['threads/edit', this.id]);
+    editThread() {
+        this._router.navigate(['/thread/edit', this.id]);
     }
 
     deleteThread() {
-        this._threadService.deleteThread(this.id)
-            .subscribe(_ => {this._eventsService.isFinish.emit(true) });
-    }
-
-    private prettifyTime(thread) {
-        var dtOld = Date.parse(thread['updated']);
-        var dtNow = Date.now();
-
-        var diffMs = (dtNow - dtOld); // milliseconds between now & Christmas
-        var diffDays = Math.round(diffMs / 86400000); // days
-        var diffHrs = Math.round((diffMs % 86400000) / 3600000); // hours
-        var diffMins = Math.round(((diffMs % 86400000) % 3600000) / 60000); // minutes
-
-        if (diffDays > 0) {
-            thread['updated'] = diffDays + ' days ago';
-        }
-        else if (diffHrs > 0) {
-            thread['updated'] = diffHrs + ' hours ago';
-        }
-        else {
-            thread['updated'] = diffMins + ' mins ago';
-        }
-
-        return thread;
+        this._threadService.deleteThread(this.id).subscribe();
+        this._router.navigate(['/hold']);
     }
 
     changeShowComment() {

@@ -7,7 +7,6 @@ import { Router, ActivatedRoute } from "@angular/router";
 
 import { ThreadService } from '../services/thread.service';
 import { Thread } from '../models/thread';
-import { EventsService } from '../services/events.service';
 
 @Component({
     templateUrl: 'app/templates/thread-form.component.html',
@@ -40,11 +39,8 @@ export class EditThreadComponent implements OnInit {
 
     constructor(private _route: ActivatedRoute,
                 private _router: Router,
-                private _threadService:ThreadService,
-                private _eventsService: EventsService) {
-        this._eventsService.isFinish.subscribe((mode : boolean) => {
-            this.isFinish = mode;
-        });
+                private _threadService:ThreadService) {
+        console.log('edit thread constructor');
     }
 
     ngOnInit() {
@@ -71,19 +67,8 @@ export class EditThreadComponent implements OnInit {
             );
     }
 
-    updateThread() {
-        this._threadService.updateThread(this.id, this.thread)
-            .subscribe(_ => {
-                    this._eventsService.isFinish.emit(true);
-                }
-            );
-    }
-
-    goToThreads() {
-        this._router.navigate(['threads']);
-    }
-
     addOrUpdate() {
-        this.updateThread()
+        this._threadService.updateThread(this.id, this.thread).subscribe();
+        this._router.navigate(['/hold']);
     }
 }
