@@ -1,4 +1,4 @@
-<div *ngIf="active" class="col-md-4 col-md-offset-4" id="login-form">
+<div class="col-md-4 col-md-offset-4" id="login-form" [@flyInOut]="'in'">
     <h2>Login</h2>
 
     <form #loginForm="ngForm">
@@ -10,7 +10,6 @@
                 Email is required
             </div>
         </div>
-
 
         <div class="form-group">
             <label for="password">Password</label>
@@ -24,10 +23,8 @@
             <button type="button" class="btn btn-default" [disabled]="checkForm()" (click)="signIn()">Login</button>
         </div>
 
-        <div [hidden]="!msgFlag" class="alert alert-danger">
-            Failed to login
-        </div>
-
+            <div *ngIf="msgFlag"  class="alert alert-danger login-message" [@slideInOut]="'in'">
+                Failed to login
+            </div>
     </form>
-
 </div>

@@ -33,7 +33,7 @@ export class ThreadFormComponent implements OnInit {
     private thread: Thread;
 
     constructor(private _router: Router,
-                private _threadService:ThreadService) {
+                private _threadService: ThreadService) {
         this.thread= new Thread('', '');
     }
 
