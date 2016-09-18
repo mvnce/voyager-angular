@@ -14,6 +14,7 @@ import { ThreadFormComponent } from './forum/thread-form.component';
 import { ThreadComponent } from './forum/thread.component';
 import { EditThreadComponent } from './forum/editthread.component';
 import { HoldComponent } from './hold.component';
+import { AuthenticationGuard } from './authentication.guard';
 
 const appRoutes: Routes = [
     {
@@ -23,22 +24,32 @@ const appRoutes: Routes = [
     {
         path: 'posts',
         component: PostsComponent,
+        canActivate: [AuthenticationGuard],
     },
     {
         path: 'forum',
         component: ThreadsComponent,
+        canActivate: [AuthenticationGuard],
     },
     {
         path: 'thread/new',
         component: ThreadFormComponent,
+        canActivate: [AuthenticationGuard],
     },
     {
         path: 'thread/:id',
         component: ThreadComponent,
+        canActivate: [AuthenticationGuard],
     },
     {
         path: 'thread/edit/:id',
         component: EditThreadComponent,
+        canActivate: [AuthenticationGuard],
+    },
+    {
+        path: 'hold',
+        component: HoldComponent,
+        canActivate: [AuthenticationGuard],
     },
     {
         path: 'account/signin',
@@ -47,10 +58,6 @@ const appRoutes: Routes = [
     {
         path: 'account/signup',
         component: SignUpComponent,
-    },
-    {
-        path: 'hold',
-        component: HoldComponent,
     },
     {
         path: '**',

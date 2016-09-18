@@ -12,14 +12,17 @@ import { NavBarComponent } from './navbar.component';
 import { FaComponent } from 'angular2-fontawesome/components';
 import { LoadingComponent } from './loading.component';
 import { CommentComponent } from './forum/comment.component';
+import { CommentFormComponent } from './forum/comment-form.component';
 import { routing, routedComponents } from './app.routing';
 
-import { PostService } from './post/post.service';
+import { PostService } from './services/post.service';
 import { UserService } from './services/user.service';
 import { EventsService } from './services/events.service';
 import { ThreadService } from './services/thread.service';
 import { CommentService } from './services/comment.service';
-import { CommentFormComponent } from './forum/comment-form.component';
+import { AuthenticationService } from './services/authentication.service';
+
+import { AuthenticationGuard } from './authentication.guard';
 
 @NgModule({
     imports: [
@@ -38,11 +41,14 @@ import { CommentFormComponent } from './forum/comment-form.component';
         routedComponents,
     ],
     providers: [
+        AuthenticationGuard,
+
         PostService,
         UserService,
         EventsService,
         ThreadService,
         CommentService,
+        AuthenticationService,
     ],
     bootstrap: [AppComponent]
 })

@@ -3,7 +3,7 @@
  */
 
 import { Component, Input, OnInit, trigger, state, style, transition, animate, group } from '@angular/core';
-import { PostService } from './post.service';
+import { PostService } from '../services/post.service';
 import { UserService } from '../services/user.service';
 
 @Component({
@@ -38,26 +38,9 @@ export class PostsComponent implements OnInit {
 
     ngOnInit() {
         this._postService.getPosts().subscribe(posts => {
-            this.posts = this.prettifyTime(this.addUserInfo(posts));
+            this.posts = this.prettifyTime(posts);
             this.loading = false;
         });
-    }
-
-    addUserInfo(posts) {
-        // this._userService.getUsers().subscribe(users => {
-        //
-        //     for(var post of posts) {
-        //         for(var user of users) {
-        //             if (user['id'] == post['user']) {
-        //                 post['username'] = user['username'];
-        //                 post['first_name'] = user['first_name'];
-        //                 post['last_name'] = user['last_name'];
-        //             }
-        //         }
-        //     }
-        // });
-        //
-        // return posts;
     }
 
     prettifyTime(posts) {
@@ -87,8 +70,6 @@ export class PostsComponent implements OnInit {
     likeClick() {
         this.iLike = !this.iLike;
     }
-
-    openPostModal(event) { }
 
     isLoading() {
         return this.loading;
