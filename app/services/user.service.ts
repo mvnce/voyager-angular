@@ -8,12 +8,12 @@ import { Observable }     from 'rxjs/Observable';
 
 @Injectable()
 export class UserService {
-    private _url = "http://localhost:8080/api/v1/user";
+    private url = "http://localhost:8080/api/v1/user";
 
     constructor(private _http: Http) { }
 
     private getUrl(type: string) {
-        return this._url + "/" + type;
+        return this.url + "/" + type;
     }
 
     private extractData(res: Response) {

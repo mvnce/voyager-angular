@@ -7,15 +7,16 @@ import { Router, CanActivate } from '@angular/router';
 
 @Injectable()
 export class AuthenticationGuard implements CanActivate {
-
     constructor(private _router: Router) {}
 
     canActivate() {
-        if (localStorage.getItem('authenticatedUser')) {
+        let authenticatedUser = JSON.parse(localStorage.getItem('authenticatedUser'));
+
+        if (authenticatedUser) {
             return true;
         }
-
-        this._router.navigate(['/account/signin']);
-        return false;
+        else {
+            this._router.navigate(['account/signin']);
+        }
     }
 }

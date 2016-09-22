@@ -4,15 +4,18 @@
 
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
-
 import { Observable }     from 'rxjs/Observable';
 import { Thread } from '../models/thread';
+import { AuthenticationService } from './authentication.service';
 
 @Injectable()
 export class ThreadService {
-    private url = 'http://104.131.139.229:8080/api/v1/posts';
+    private url: string;
 
-    constructor(private _http: Http) {}
+    constructor(private _http: Http, private _authenticationService: AuthenticationService) {
+        // this.url = 'http://104.131.139.229:8080/api/v1/posts';
+        this.url = 'http://127.0.0.1:8080/api/v1/posts';
+    }
 
     private getThreadUrl(id) {
         return this.url + "/" + id;
@@ -20,6 +23,9 @@ export class ThreadService {
 
     private extractData(res: Response) {
         let body = res.json();
+        console.log(res);
+        console.log(body);
+        console.log(body.data);
         return body.data || { };
     }
 
@@ -31,14 +37,24 @@ export class ThreadService {
     }
 
     getThreads(): Observable<any[]> {
-        return this._http.get(this.url)
+        let headers = new Headers({
+            'Authorization': 'Bearer '+ this._authenticationService.token
+        });
+        let options = new RequestOptions({ headers: headers });
+
+        return this._http.get(this.url, options)
             .map(this.extractData)
             .catch(this.handleError);
     }
 
     addThread(thread: Thread): Observable<any> {
+        console.log('token!!! ' + this._authenticationService.token);
         let body = JSON.stringify(thread);
-        let headers = new Headers({ 'Content-Type': 'application/json' });
+        console.log(body);
+        let headers = new Headers({
+            'Authorization': 'Bearer '+ this._authenticationService.token,
+            'Content-Type': 'application/json'
+        });
         let options = new RequestOptions({ headers: headers });
 
         return this._http.post(this.url, body, options)
@@ -47,7 +63,12 @@ export class ThreadService {
     }
 
     getThread(id: number): Observable<any> {
-        return this._http.get(this.getThreadUrl(id))
+        let headers = new Headers({
+            'Authorization': 'Bearer '+ this._authenticationService.token
+        });
+        let options = new RequestOptions({ headers: headers });
+
+        return this._http.get(this.getThreadUrl(id), options)
             .map(this.extractData)
             .catch(this.handleError);
     }

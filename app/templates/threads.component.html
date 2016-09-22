@@ -25,11 +25,11 @@
                         <hr>
                         <div class="thread-footer">
                             <ul class="left">
-                                <li><button class="btn btn-sm btn-default thread-detail-button" (click)="onSelect(thread)">&nbsp;&nbsp;&nbsp;Detail&nbsp;&nbsp;&nbsp;</button></li>
+                                <li><button class="btn btn-sm btn-default thread-detail-button">{{thread.name}}</button></li>
                             </ul>
                             <ul class="right">
-                                <li><p class="btn btn-sm btn-success" (click)="onSelect(thread)">37 Comments</p></li>
-                                <li><p class="btn btn-sm btn-success" (click)="onSelect(thread)">64 views</p></li>
+                                <li><p class="btn btn-sm btn-default" (click)="onSelect(thread)">{{thread.total_comments}} Comments</p></li>
+                                <li><p class="btn btn-sm btn-default">64 <span class="glyphicon glyphicon-heart"></span></p></li>
                             </ul>
                         </div>
                     </div>

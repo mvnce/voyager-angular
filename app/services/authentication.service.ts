@@ -10,11 +10,18 @@ import { SignInForm, SignUpForm } from '../models/forms';
 @Injectable()
 export class AuthenticationService {
     public token: string;
-    private url = 'http://104.131.139.229:8080/api/v1/auth';
+    private url: string;
 
     constructor(private _http: Http) {
-        var authenticatedUser = JSON.parse(localStorage.getItem('authenticatedUser'));
-        this.token = authenticatedUser && authenticatedUser.token;
+        // this.url = 'http://104.131.139.229:8080/api/v1/auth';
+        this.url = 'http://127.0.0.1:8080/api/v1/auth';
+
+        if (JSON.parse(localStorage.getItem('authenticatedUser'))) {
+            this.token = JSON.parse(localStorage.getItem('authenticatedUser')).token;
+        }
+        else {
+            this.token = 'xxx.xxx.xxx';
+        }
     }
 
     private getUrl(pathname: string) {
@@ -24,9 +31,11 @@ export class AuthenticationService {
     private extractData(res: Response) {
         let body = res.json();
         let token = body.data['token'];
+        console.log('auth service: ' + token);
 
         if (token) {
             localStorage.setItem('authenticatedUser', JSON.stringify(body.data));
+            this.token = token;
             return true;
         }
         else {
