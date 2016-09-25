@@ -11,13 +11,13 @@ import { Observable }     from 'rxjs/Observable';
 
 @Injectable()
 export class CommentService {
-    private _url = 'http://104.131.139.229:8080/api/v1/comments';
-    // private _url = 'http://localhost:8080/api/v1/comments';
+    // private _url = 'http://104.131.139.229:8080/api/v1/comments';
+    private url = 'http://localhost:8080/api/v1/comments';
 
     constructor(private _http: Http) {}
 
     private getCommentUrl(id) {
-        return this._url + '/' + id;
+        return this.url + '/' + id;
     }
 
     private extractData(res: Response) {
@@ -43,7 +43,7 @@ export class CommentService {
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
 
-        return this._http.post(this._url, body, options)
+        return this._http.post(this.url, body, options)
             .map(this.extractData)
             .catch(this.handleError);
     }

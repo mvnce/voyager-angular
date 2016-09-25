@@ -23,9 +23,6 @@ export class ThreadService {
 
     private extractData(res: Response) {
         let body = res.json();
-        console.log(res);
-        console.log(body);
-        console.log(body.data);
         return body.data || { };
     }
 
@@ -38,7 +35,7 @@ export class ThreadService {
 
     getThreads(): Observable<any[]> {
         let headers = new Headers({
-            'Authorization': 'Bearer '+ this._authenticationService.token
+            'Authorization': 'Bearer '+ this._authenticationService.getToken()
         });
         let options = new RequestOptions({ headers: headers });
 
@@ -48,11 +45,9 @@ export class ThreadService {
     }
 
     addThread(thread: Thread): Observable<any> {
-        console.log('token!!! ' + this._authenticationService.token);
         let body = JSON.stringify(thread);
-        console.log(body);
         let headers = new Headers({
-            'Authorization': 'Bearer '+ this._authenticationService.token,
+            'Authorization': 'Bearer '+ this._authenticationService.getToken(),
             'Content-Type': 'application/json'
         });
         let options = new RequestOptions({ headers: headers });
@@ -64,7 +59,7 @@ export class ThreadService {
 
     getThread(id: number): Observable<any> {
         let headers = new Headers({
-            'Authorization': 'Bearer '+ this._authenticationService.token
+            'Authorization': 'Bearer '+ this._authenticationService.getToken()
         });
         let options = new RequestOptions({ headers: headers });
 
