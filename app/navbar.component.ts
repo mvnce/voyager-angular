@@ -29,13 +29,17 @@ import { EventsService } from './services/events.service';
     ],
 })
 export class NavBarComponent implements OnInit {
-    public isLogin =  false;
+    public isLogin: boolean;
+    private username: string;
 
     constructor(private _router: Router,
                 private _authenticationService: AuthenticationService,
                 private _eventsService: EventsService) {
-        this._eventsService.isLogin.subscribe((mode : boolean) =>{
-            this.isLogin = mode;
+        this._eventsService.isLogin.subscribe((status : boolean) =>{
+            this.isLogin = status;
+        });
+        this._eventsService.username.subscribe((name : string) =>{
+            this.username = name;
         });
     }
 
