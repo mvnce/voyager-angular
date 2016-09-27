@@ -7,12 +7,15 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable }     from 'rxjs/Observable';
 import { Thread } from '../models/thread';
 import { AuthenticationService } from './authentication.service';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class ThreadService {
     private url: string;
 
-    constructor(private _http: Http, private _authenticationService: AuthenticationService) {
+    constructor(private _http: Http,
+                private _router: Router,
+                private _authenticationService: AuthenticationService) {
         // this.url = 'http://104.131.139.229:8080/api/v1/posts';
         this.url = 'http://127.0.0.1:8080/api/v1/posts';
     }
@@ -30,6 +33,7 @@ export class ThreadService {
         let errMsg = (error.message) ? error.message :
             error.status ? `${error.status} - ${error.statusText}` : 'Server error';
         console.error(errMsg);
+        this._router.navigate(['account/signin']);
         return Observable.throw(errMsg);
     }
 

@@ -72,4 +72,15 @@ export class AuthenticationService {
 
         return null;
     }
+
+    private validateToken(): Observable<Response> {
+        let headers = new Headers({
+            'Authorization': 'Bearer '+ this.getToken(),
+        });
+        let options = new RequestOptions({ headers: headers });
+
+        return this._http.get(this.getUrl('signin'), options)
+            .map(this.extractData)
+            .catch(this.handleError);
+    }
 }
