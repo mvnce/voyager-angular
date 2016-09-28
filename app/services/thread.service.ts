@@ -16,7 +16,7 @@ export class ThreadService {
     constructor(private _http: Http,
                 private _router: Router,
                 private _authenticationService: AuthenticationService) {
-        // this.url = 'http://104.131.139.229:8080/api/v1/posts';
+        // this.url = 'http://104.131.139.229:8080/api/v1/post';
         this.url = 'http://127.0.0.1:8080/api/v1/post';
     }
 

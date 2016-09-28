@@ -6,8 +6,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { PostsComponent } from './post/posts.component';
 import { NotFoundComponent } from './notfound.component';
-import { SignInComponent } from './user/signin.component';
-import { SignUpComponent } from './user/signup.component';
 import { LoadingComponent } from './loading.component';
 import { ThreadsComponent } from './forum/threads.component';
 import { ThreadFormComponent } from './forum/thread-form.component';
@@ -52,14 +50,6 @@ const appRoutes: Routes = [
         canActivate: [AuthenticationGuard],
     },
     {
-        path: 'account/signin',
-        component: SignInComponent,
-    },
-    {
-        path: 'account/signup',
-        component: SignUpComponent,
-    },
-    {
         path: '**',
         component: NotFoundComponent,
     },
@@ -75,8 +65,6 @@ export const routedComponents = [
     ThreadFormComponent,
     EditThreadComponent,
     NotFoundComponent,
-    SignInComponent,
-    SignUpComponent,
     LoadingComponent,
     HoldComponent,
 ];

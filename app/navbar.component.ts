@@ -5,7 +5,6 @@
 import {Component, OnInit, trigger, state, style, animate, transition, group} from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticationService } from './services/authentication.service';
-import { EventsService } from './services/events.service';
 
 @Component({
     selector: "navbar",
@@ -29,32 +28,13 @@ import { EventsService } from './services/events.service';
     ],
 })
 export class NavBarComponent implements OnInit {
-    public isLogin: boolean;
-    private username: string;
 
     constructor(private _router: Router,
-                private _authenticationService: AuthenticationService,
-                private _eventsService: EventsService) {
-        this._eventsService.isLogin.subscribe((status : boolean) =>{
-            this.isLogin = status;
-        });
-        this._eventsService.username.subscribe((name : string) =>{
-            this.username = name;
-        });
+                private _authenticationService: AuthenticationService) {
     }
 
     ngOnInit() {
-        var user = localStorage.getItem('authenticatedUser');
-        console.log('authenticatedUser' ,user);
-
-        if (user) {
-            this.isLogin = true;
-        }
-    }
-
-    logOut() {
-        this._authenticationService.signOut();
-        this._eventsService.isLogin.emit(false);
-        this._router.navigate(['account/signin']);
+        var token = localStorage.getItem('id_token');
+        console.log('id_token' ,token);
     }
 }
