@@ -37,7 +37,8 @@
         'angular2-in-memory-web-api': 'npm:angular2-in-memory-web-api',
 
         // others
-        'angular2-fontawesome': 'node_modules/angular2-fontawesome'
+        'angular2-fontawesome': 'node_modules/angular2-fontawesome',
+        'angular2-jwt': 'npm:angular2-jwt/angular2-jwt.js'
     };
 
     var packages = {
@@ -53,6 +54,9 @@
             defaultExtension: 'js'
         },
         'angular2-fontawesome': {
+            defaultExtension: 'js'
+        },
+        'angular2-jwt': {
             defaultExtension: 'js'
         }
     };

@@ -6,15 +6,39 @@ import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from "@angular/http";
 import { Observable } from 'rxjs/Observable';
 import { SignInForm, SignUpForm } from '../models/forms';
+import { tokenNotExpired } from 'angular2-jwt';
+
+// Avoid name not found warnings
+declare var Auth0Lock: any;
 
 @Injectable()
 export class AuthenticationService {
+    lock = new Auth0Lock('YGRy3khHAVSDkK5B9DR2PcnN4RdxCkb7', 'vinceeema.auth0.com', {});
     private url: string;
 
     constructor(private _http: Http) {
-        // this.url = 'http://104.131.139.229:8080/api/v1/auth';
         this.url = 'http://127.0.0.1:8080/api/v1/auth';
+        // Add callback for lock `authenticated` event
+        this.lock.on("authenticated", (authResult) => {
+            localStorage.setItem('id_token', authResult.idToken);
+        });
     }
+
+    public login() {
+        // Call the show method to display the widget.
+        this.lock.show();
+    };
+
+    public authenticated() {
+        // Check if there's an unexpired JWT
+        // This searches for an item in localStorage with key == 'id_token'
+        return tokenNotExpired();
+    };
+
+    public logout() {
+        // Remove token from localStorage
+        localStorage.removeItem('id_token');
+    };
 
     private getUrl(pathname: string) {
         return this.url + '/' + pathname;

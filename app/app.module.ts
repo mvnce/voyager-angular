@@ -23,6 +23,7 @@ import { CommentService } from './services/comment.service';
 import { AuthenticationService } from './services/authentication.service';
 
 import { AuthenticationGuard } from './authentication.guard';
+import { AUTH_PROVIDERS } from 'angular2-jwt';
 
 @NgModule({
     imports: [
@@ -42,6 +43,7 @@ import { AuthenticationGuard } from './authentication.guard';
     ],
     providers: [
         AuthenticationGuard,
+        AUTH_PROVIDERS,
 
         PostService,
         UserService,

@@ -16,14 +16,9 @@
                 <li><a routerLink="/posts" routerLinkActive="active">Posts</a></li>
                 <li><a routerLink="/forum" routerLinkActive="active">Forum</a></li>
             </ul>
-            <ul class="nav navbar-nav navbar-right" *ngIf="isLogin">
-                    <li><a routerLink="/thread/new" routerLinkActive="active">New Thread</a></li>
-                    <li><a routerLink="/account/info" routerLinkActive="active">Accounts</a></li>
-                    <li><a class="/clickable" (click)="logOut()">Sign Out</a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right" *ngIf="!isLogin">
-                <li><a routerLink="account/signin">Sign In</a></li>
-                <li><a routerLink="account/signup">Sign Up</a></li>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a class="clickable" (click)="_authenticationService.login()" *ngIf="!_authenticationService.authenticated()">Log In</a></li>
+                <li><a routerLink="" (click)="_authenticationService.logout()" *ngIf="_authenticationService.authenticated()">Log Out</a></li>
             </ul>
         </div>
     </div>

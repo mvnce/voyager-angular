@@ -17,11 +17,7 @@ export class ThreadService {
                 private _router: Router,
                 private _authenticationService: AuthenticationService) {
         // this.url = 'http://104.131.139.229:8080/api/v1/posts';
-        this.url = 'http://127.0.0.1:8080/api/v1/posts';
-    }
-
-    private getThreadUrl(id) {
-        return this.url + "/" + id;
+        this.url = 'http://127.0.0.1:8080/api/v1/post';
     }
 
     private extractData(res: Response) {
@@ -43,7 +39,7 @@ export class ThreadService {
         });
         let options = new RequestOptions({ headers: headers });
 
-        return this._http.get(this.url, options)
+        return this._http.get(this.url+'s', options)
             .map(this.extractData)
             .catch(this.handleError);
     }
@@ -67,13 +63,13 @@ export class ThreadService {
         });
         let options = new RequestOptions({ headers: headers });
 
-        return this._http.get(this.getThreadUrl(id), options)
+        return this._http.get(this.url+'/'+id, options)
             .map(this.extractData)
             .catch(this.handleError);
     }
 
     deleteThread(id: number): Observable<any> {
-        return this._http.delete(this.getThreadUrl(id))
+        return this._http.delete(this.url+'/'+id)
             .map(this.extractData)
             .catch(this.handleError);
     }
@@ -83,7 +79,7 @@ export class ThreadService {
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
 
-        return this._http.put(this.getThreadUrl(id), body, options)
+        return this._http.put(this.url+'/'+id, body, options)
             .map(this.extractData)
             .catch(this.handleError);
     }

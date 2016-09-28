@@ -1,4 +1,4 @@
-<div class="col-md-4 col-md-offset-4" id="login-form" [@flyInOut]="'in'">
+<div class="col-md-4 col-md-offset-4" id="login-form">
     <h2>Login</h2>
 
     <form #loginForm="ngForm">
@@ -23,8 +23,12 @@
             <button type="button" class="btn btn-default" [disabled]="checkForm()" (click)="signIn()">Login</button>
         </div>
 
-            <div *ngIf="msgFlag"  class="alert alert-danger login-message" [@slideInOut]="'in'">
+            <div *ngIf="msgFlag"  class="alert alert-danger login-message">
                 Failed to login
             </div>
     </form>
+
+
+    <button class="btn btn-primary btn-margin" (click)="_authenticationService.login()" *ngIf="!_authenticationService.authenticated()">Log In</button>
+    <button class="btn btn-primary btn-margin" (click)="_authenticationService.logout()" *ngIf="_authenticationService.authenticated()">Log Out</button>
 </div>
