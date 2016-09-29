@@ -7,58 +7,35 @@ import { Router } from '@angular/router';
 import { tokenNotExpired } from 'angular2-jwt';
 import { myConfig } from './authentication.config';
 
-
-declare var Auth0: any;
+declare var Auth0Lock: any;
 
 @Injectable()
 export class AuthenticationService {
-
-    auth0 = new Auth0({
-        domain: myConfig.domain,
-        clientID: myConfig.clientID,
-        callbackOnLocationHash: true,
-        callbackURL: myConfig.callbackURL,
-    });
+    lock = new Auth0Lock(myConfig.clientID, myConfig.domain, myConfig.options);
+    userProfile: Object;
 
     constructor(private _router: Router) {
-        var result = this.auth0.parseHash(window.location.hash);
+        this.userProfile = JSON.parse(localStorage.getItem('profile'));
 
-        if (result && result.idToken) {
-            localStorage.setItem('id_token', result.idToken);
-            this._router.navigate(['/forum']);
-        } else if (result && result.error) {
-            alert('error: ' + result.error);
-        }
+        this.lock.on("authenticated", (authResult) => {
+            localStorage.setItem('id_token', authResult.idToken);
+
+            this.lock.getProfile(authResult.idToken, (error, profile) => {
+                if (error) {
+                    // Handle error
+                    alert(error);
+                    return;
+                }
+
+                profile.user_metadata = profile.user_metadata || {};
+                localStorage.setItem('profile', JSON.stringify(profile));
+                this.userProfile = profile;
+            });
+        });
     }
 
-    public signIn(username, password) {
-        this.auth0.login({
-            connection: 'Username-Password-Authentication',
-            responseType: 'token',
-            email: username,
-            password: password,
-        }, function(err) {
-            if (err) alert("something went wrong: " + err.message);
-        });
-    };
-
-    public signUp(username, password) {
-        this.auth0.signup({
-            connection: 'Username-Password-Authentication',
-            responseType: 'token',
-            email: username,
-            password: password,
-        }, function(err) {
-            if (err) alert("something went wrong: " + err.message);
-        });
-    };
-
-    public googleSignIn() {
-        this.auth0.login({
-            connection: 'google-oauth2'
-        }, function(err) {
-            if (err) alert("something went wrong: " + err.message);
-        });
+    public signIn() {
+        this.lock.show();
     };
 
     public authenticated() {

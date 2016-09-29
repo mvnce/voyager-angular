@@ -13,7 +13,7 @@ import { ThreadComponent } from './forum/thread.component';
 import { EditThreadComponent } from './forum/editthread.component';
 import { HoldComponent } from './hold.component';
 import { AuthenticationGuard } from './authentication/authentication.guard';
-import { SignInComponent } from './authentication/sign-in.component';
+import { UserProfileComponent } from './authentication/user-profile.component';
 
 const appRoutes: Routes = [
     {
@@ -21,12 +21,8 @@ const appRoutes: Routes = [
         component: HomeComponent,
     },
     {
-        path: 'signin',
-        component: SignInComponent,
-    },
-    {
-        path: 'signup',
-        component: SignInComponent,
+        path: 'user/profile',
+        component: UserProfileComponent,
     },
     {
         path: 'posts',
@@ -76,5 +72,5 @@ export const routedComponents = [
     NotFoundComponent,
     LoadingComponent,
     HoldComponent,
-    SignInComponent,
+    UserProfileComponent,
 ];

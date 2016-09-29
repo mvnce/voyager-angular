@@ -17,7 +17,8 @@
                 <li><a routerLink="/forum" routerLinkActive="active" *ngIf="_authenticationService.authenticated()">Forum</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a routerLink="/signin" *ngIf="!_authenticationService.authenticated()">Sign In</a></li>
+                <li><a (click)="_authenticationService.signIn()" *ngIf="!_authenticationService.authenticated()">Sign In</a></li>
+                <li><a routerLink="/user/profile" *ngIf="_authenticationService.authenticated()">Profile</a></li>
                 <li><a routerLink="" (click)="_authenticationService.signOut()" *ngIf="_authenticationService.authenticated()">Sign Out</a></li>
             </ul>
         </div>

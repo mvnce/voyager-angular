@@ -1,0 +1,9 @@
+<div class="col-md-6 col-md-offset-3">
+    <h3>Profile</h3>
+    <img [src]="__authenticationService.userProfile.picture" alt="" class="profile-img">
+    <p><strong>Name: </strong> {{__authenticationService.userProfile.name}}</p>
+    <p><strong>Email: </strong> {{__authenticationService.userProfile.email}}</p>
+    <p><strong>Nickname: </strong> {{__authenticationService.userProfile.nickname}}</p>
+    <p><strong>Created At: </strong> {{__authenticationService.userProfile.created_at | date: 'medium'}}</p>
+    <p><strong>Updated At: </strong> {{__authenticationService.userProfile.updated_at | date: 'medium'}}</p>
+</div>
