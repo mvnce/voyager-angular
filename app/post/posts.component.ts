@@ -3,8 +3,8 @@
  */
 
 import { Component, Input, OnInit, trigger, state, style, transition, animate, group } from '@angular/core';
-import { PostService } from '../services/post.service';
-import { UserService } from '../services/user.service';
+import { PostService } from './post.service';
+import { UserService } from '../authentication/user.service';
 
 @Component({
     templateUrl: 'app/templates/posts.component.html',
@@ -32,8 +32,7 @@ export class PostsComponent implements OnInit {
     state = 'inactive';
     @Input() iLike = false;
 
-    constructor(private _postService: PostService,
-                private _userService: UserService) {
+    constructor(private _postService: PostService) {
     }
 
     ngOnInit() {

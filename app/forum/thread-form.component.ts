@@ -4,7 +4,7 @@
 
 import { Component, OnInit, trigger, state, style, transition, animate, group } from '@angular/core';
 import { Router } from "@angular/router";
-import { ThreadService } from '../services/thread.service';
+import { ThreadService } from './thread.service';
 import { Thread } from '../models/thread';
 
 @Component({

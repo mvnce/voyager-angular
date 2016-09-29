@@ -5,7 +5,7 @@
 import {Component, OnInit, trigger, state, style, transition, animate, group } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Comment } from '../models/comment';
-import { CommentService } from '../services/comment.service';
+import { CommentService } from './comment.service';
 
 @Component({
     selector: 'comment-form',

@@ -4,7 +4,7 @@
 
 import {Component, OnInit, trigger, state, style, animate, transition, group} from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthenticationService } from './services/authentication.service';
+import { AuthenticationService } from './authentication/authentication.service';
 
 @Component({
     selector: "navbar",

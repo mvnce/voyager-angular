@@ -15,14 +15,14 @@ import { CommentComponent } from './forum/comment.component';
 import { CommentFormComponent } from './forum/comment-form.component';
 import { routing, routedComponents } from './app.routing';
 
-import { PostService } from './services/post.service';
-import { UserService } from './services/user.service';
-import { EventsService } from './services/events.service';
-import { ThreadService } from './services/thread.service';
-import { CommentService } from './services/comment.service';
-import { AuthenticationService } from './services/authentication.service';
+import { PostService } from './post/post.service';
+import { UserService } from './authentication/user.service';
+import { EventsService } from './events.service';
+import { ThreadService } from './forum/thread.service';
+import { CommentService } from './forum/comment.service';
+import { AuthenticationService } from './authentication/authentication.service';
 
-import { AuthenticationGuard } from './authentication.guard';
+import { AuthenticationGuard } from './authentication/authentication.guard';
 import { AUTH_PROVIDERS } from 'angular2-jwt';
 
 @NgModule({

@@ -12,7 +12,7 @@ import { ThreadFormComponent } from './forum/thread-form.component';
 import { ThreadComponent } from './forum/thread.component';
 import { EditThreadComponent } from './forum/editthread.component';
 import { HoldComponent } from './hold.component';
-import { AuthenticationGuard } from './authentication.guard';
+import { AuthenticationGuard } from './authentication/authentication.guard';
 
 const appRoutes: Routes = [
     {
