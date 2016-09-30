@@ -4,11 +4,11 @@
 
 import {Component, OnInit, trigger, state, style, animate, transition, group} from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthenticationService } from './authentication/authentication.service';
+import { AuthenticationService } from '../authentication/authentication.service';
 
 @Component({
     selector: "navbar",
-    templateUrl: "app/templates/navbar.component.html",
+    templateUrl: "app/navbar/navbar.component.html",
     providers: [AuthenticationService],
     animations: [
         trigger('flyInOut', [

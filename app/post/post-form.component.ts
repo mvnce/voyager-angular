@@ -4,12 +4,12 @@
 
 import { Component, OnInit, trigger, state, style, transition, animate, group } from '@angular/core';
 import { Router } from "@angular/router";
-import { ThreadService } from './thread.service';
-import { Thread } from '../models/thread';
+import { PostService } from './post.service';
+import { Post } from '../models/post';
 
 @Component({
-    templateUrl: 'app/templates/thread-form.component.html',
-    providers: [ThreadService],
+    templateUrl: 'app/post/post-form.component.html',
+    providers: [PostService],
     animations: [
         trigger('flyInOut', [
             state('in', style({transform: 'translateY(0)', opacity: 1})),
@@ -27,20 +27,20 @@ import { Thread } from '../models/thread';
         ])
     ]
 })
-export class ThreadFormComponent implements OnInit {
-    private title = "New Thread";
+export class PostFormComponent implements OnInit {
+    private title = "New Post";
 
-    private thread: Thread;
+    private post: Post;
 
     constructor(private _router: Router,
-                private _threadService: ThreadService) {
-        this.thread= new Thread('', '');
+                private _threadService: PostService) {
+        this.post= new Post('', '');
     }
 
     ngOnInit() {}
 
     addOrUpdate() {
-        this._threadService.addThread(this.thread).subscribe();
+        this._threadService.addPost(this.post).subscribe();
         this._router.navigate(['/hold']);
     }
 }

@@ -9,7 +9,7 @@ import { CommentService } from './comment.service';
 
 @Component({
     selector: 'comment-form',
-    templateUrl: 'app/templates/comment-form.component.html',
+    templateUrl: 'app/post/comment-form.component.html',
     animations: [
         trigger('flyInOut', [
             state('in', style({transform: 'translateY(0)', opacity: 1})),

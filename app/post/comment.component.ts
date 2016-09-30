@@ -8,7 +8,7 @@ import { CommentService } from './comment.service';
 
 @Component({
     selector: 'comment',
-    templateUrl: 'app/templates/comment.component.html',
+    templateUrl: 'app/post/comment.component.html',
     animations: [
         trigger('flyInOut', [
             state('in', style({transform: 'translateY(0)', opacity: 1})),

@@ -5,11 +5,11 @@
         <form #threadForm="ngForm">
             <div class="form-group">
                 <label for="title">Title</label>
-                <input type="text" class="form-control" id="title" required [(ngModel)]="thread.title" name="title">
+                <input type="text" class="form-control" id="title" required [(ngModel)]="post.title" name="title">
             </div>
             <div class="form-group">
                 <label for="content">Content</label>
-                <textarea class="form-control" rows="5" id="content" required [(ngModel)]="thread.content" name="content"></textarea>
+                <textarea class="form-control" rows="5" id="content" required [(ngModel)]="post.content" name="content"></textarea>
             </div>
             <div class="form-group">
                 <label for="status">Status</label>

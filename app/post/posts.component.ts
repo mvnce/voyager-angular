@@ -1,24 +1,25 @@
 /**
- * Created by vincentma on 8/16/16.
+ * Created by vincentma on 9/9/16.
  */
 
-import { Component, Input, OnInit, trigger, state, style, transition, animate, group } from '@angular/core';
-import { PostService } from './post.service';
-import { UserService } from '../authentication/user.service';
+import { Component, OnInit, trigger, state, style, transition, animate, group } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { PostService } from "./post.service";
 
 @Component({
-    templateUrl: 'app/templates/posts.component.html',
-    providers: [PostService, UserService],
+    templateUrl: 'app/post/posts.component.html',
+    providers: [PostService],
     animations: [
         trigger('flyInOut', [
             state('in', style({transform: 'translateY(0)', opacity: 1})),
             transition('void => *', [
-                style({transform: 'translateY(50px)', opacity: 0}),
+                style({transform: 'translateY(20px)', opacity: 0}),
                 group([
-                    animate('1.0s 0.1s ease', style({
+                    animate('0.5s 0.1s ease', style({
                         transform: 'translateY(0)',
                     })),
-                    animate('1.0s ease', style({
+                    animate('0.5s ease', style({
                         opacity: 1
                     }))
                 ])
@@ -29,22 +30,19 @@ import { UserService } from '../authentication/user.service';
 export class PostsComponent implements OnInit {
     loading = true;
     posts: any[];
-    state = 'inactive';
-    @Input() iLike = false;
+    errorMessage: string;
+    mode = 'Observable';
 
-    constructor(private _postService: PostService) {
-    }
+    constructor(private _router: Router,
+                private _postService: PostService) {}
 
     ngOnInit() {
-        this._postService.getPosts().subscribe(posts => {
-            this.posts = this.prettifyTime(posts);
-            this.loading = false;
-        });
+        this.getPosts();
     }
 
-    prettifyTime(posts) {
-        for (var post of posts) {
-            var dtOld = Date.parse(post['created']);
+    private prettifyTime(threads) {
+        for (var thread of threads) {
+            var dtOld = Date.parse(thread['updated']);
             var dtNow = Date.now();
 
             var diffMs = (dtNow - dtOld); // milliseconds between now & Christmas
@@ -53,21 +51,32 @@ export class PostsComponent implements OnInit {
             var diffMins = Math.round(((diffMs % 86400000) % 3600000) / 60000); // minutes
 
             if (diffDays > 0) {
-                post['elapsed'] = diffDays + ' days ago';
+                thread['updated'] = diffDays + ' days ago';
             }
             else if (diffHrs > 0) {
-                post['elapsed'] = diffHrs + ' hours ' + diffMins + ' mins ago';
+                thread['updated'] = diffHrs + ' hours ago';
             }
             else {
-                post['elapsed'] = diffMins + ' mins ago';
+                thread['updated'] = diffMins + ' mins ago';
             }
         }
 
-        return posts;
+        return threads;
     }
 
-    likeClick() {
-        this.iLike = !this.iLike;
+    private getPosts() {
+        this._postService.getPosts()
+            .subscribe(
+                threads => {
+                    this.posts = this.prettifyTime(threads);
+                    this.loading = false;
+                },
+                error => this.errorMessage = <any>error
+            );
+    }
+
+    onSelect(post) {
+        this._router.navigate(['post', post["id"]]);
     }
 
     isLoading() {

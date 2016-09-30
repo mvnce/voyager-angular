@@ -5,12 +5,12 @@
 import { Component, OnInit, trigger, state, style, transition, animate, group } from '@angular/core';
 import { Router, ActivatedRoute } from "@angular/router";
 
-import { ThreadService } from './thread.service';
-import { Thread } from '../models/thread';
+import { PostService } from './post.service';
+import { Post } from '../models/post';
 
 @Component({
-    templateUrl: 'app/templates/thread-form.component.html',
-    providers: [ThreadService],
+    templateUrl: 'app/post/post-form.component.html',
+    providers: [PostService],
     animations: [
         trigger('flyInOut', [
             state('in', style({transform: 'translateY(0)', opacity: 1})),
@@ -28,18 +28,18 @@ import { Thread } from '../models/thread';
         ])
     ]
 })
-export class EditThreadComponent implements OnInit {
+export class EditPostComponent implements OnInit {
     title = "Edit Thread";
     loading = true;
     public isFinish = false;
     errorMessage: string;
-    thread = new Thread('', '');
+    thread = new Post('', '');
     mode = 'Observable';
     id: number;
 
     constructor(private _route: ActivatedRoute,
                 private _router: Router,
-                private _threadService:ThreadService) {
+                private _threadService:PostService) {
         console.log('edit thread constructor');
     }
 
@@ -56,7 +56,7 @@ export class EditThreadComponent implements OnInit {
     }
 
     getThread() {
-        this._threadService.getThread(this.id)
+        this._threadService.getPost(this.id)
             .subscribe(
                 thread => {
                     this.thread.title = thread['title'];
@@ -68,7 +68,7 @@ export class EditThreadComponent implements OnInit {
     }
 
     addOrUpdate() {
-        this._threadService.updateThread(this.id, this.thread).subscribe();
+        this._threadService.updatePost(this.id, this.thread).subscribe();
         this._router.navigate(['/hold']);
     }
 }

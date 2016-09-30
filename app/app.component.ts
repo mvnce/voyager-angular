@@ -7,6 +7,6 @@ import './rxjs-operators';
 
 @Component({
     selector: 'my-app',
-    templateUrl: 'app/templates/app.component.html',
+    templateUrl: 'app/app.component.html',
 })
 export class AppComponent { }

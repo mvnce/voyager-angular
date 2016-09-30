@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-    templateUrl: 'app/templates/hold.component.html',
+    templateUrl: 'app/hold.component.html',
 })
 export class HoldComponent implements OnInit {
     constructor(private _router: Router) {}

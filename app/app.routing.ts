@@ -4,13 +4,13 @@
 
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
-import { PostsComponent } from './post/posts.component';
+import { PhotoPostsComponent } from './photo-post/posts.component';
 import { NotFoundComponent } from './notfound.component';
 import { LoadingComponent } from './loading.component';
-import { ThreadsComponent } from './forum/threads.component';
-import { ThreadFormComponent } from './forum/thread-form.component';
-import { ThreadComponent } from './forum/thread.component';
-import { EditThreadComponent } from './forum/editthread.component';
+import { PostsComponent } from './post/posts.component';
+import { PostFormComponent } from './post/post-form.component';
+import { PostComponent } from './post/post.component';
+import { EditPostComponent } from './post/post-edit.component';
 import { HoldComponent } from './hold.component';
 import { AuthenticationGuard } from './authentication/authentication.guard';
 import { UserProfileComponent } from './authentication/user-profile.component';
@@ -25,28 +25,28 @@ const appRoutes: Routes = [
         component: UserProfileComponent,
     },
     {
+        path: 'photo-posts',
+        component: PhotoPostsComponent,
+        canActivate: [AuthenticationGuard],
+    },
+    {
         path: 'posts',
         component: PostsComponent,
         canActivate: [AuthenticationGuard],
     },
     {
-        path: 'forum',
-        component: ThreadsComponent,
+        path: 'post/new',
+        component: PostFormComponent,
         canActivate: [AuthenticationGuard],
     },
     {
-        path: 'thread/new',
-        component: ThreadFormComponent,
+        path: 'post/:id',
+        component: PostComponent,
         canActivate: [AuthenticationGuard],
     },
     {
-        path: 'thread/:id',
-        component: ThreadComponent,
-        canActivate: [AuthenticationGuard],
-    },
-    {
-        path: 'thread/edit/:id',
-        component: EditThreadComponent,
+        path: 'post/edit/:id',
+        component: EditPostComponent,
         canActivate: [AuthenticationGuard],
     },
     {
@@ -64,11 +64,11 @@ export const routing = RouterModule.forRoot(appRoutes);
 
 export const routedComponents = [
     HomeComponent,
+    PhotoPostsComponent,
     PostsComponent,
-    ThreadsComponent,
-    ThreadComponent,
-    ThreadFormComponent,
-    EditThreadComponent,
+    PostComponent,
+    PostFormComponent,
+    EditPostComponent,
     NotFoundComponent,
     LoadingComponent,
     HoldComponent,

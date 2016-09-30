@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
 import { AuthenticationService } from './authentication.service';
 
 @Component({
-    templateUrl: 'app/templates/user-profile.component.html',
+    templateUrl: 'app/authentication/user-profile.component.html',
 })
 
 export class UserProfileComponent {

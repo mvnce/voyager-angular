@@ -8,18 +8,18 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent }  from './app.component';
-import { NavBarComponent } from './navbar.component';
+import { NavBarComponent } from './navbar/navbar.component';
 import { FaComponent } from 'angular2-fontawesome/components';
 import { LoadingComponent } from './loading.component';
-import { CommentComponent } from './forum/comment.component';
-import { CommentFormComponent } from './forum/comment-form.component';
+import { CommentComponent } from './post/comment.component';
+import { CommentFormComponent } from './post/comment-form.component';
 import { routing, routedComponents } from './app.routing';
 
-import { PostService } from './post/post.service';
+import { PhotoPostService } from './photo-post/photo-post.service';
 import { UserService } from './authentication/user.service';
 import { EventsService } from './events.service';
-import { ThreadService } from './forum/thread.service';
-import { CommentService } from './forum/comment.service';
+import { PostService } from './post/post.service';
+import { CommentService } from './post/comment.service';
 import { AuthenticationService } from './authentication/authentication.service';
 
 import { AuthenticationGuard } from './authentication/authentication.guard';
@@ -45,10 +45,10 @@ import { AUTH_PROVIDERS } from 'angular2-jwt';
         AuthenticationGuard,
         AUTH_PROVIDERS,
 
-        PostService,
+        PhotoPostService,
         UserService,
         EventsService,
-        ThreadService,
+        PostService,
         CommentService,
         AuthenticationService,
     ],
