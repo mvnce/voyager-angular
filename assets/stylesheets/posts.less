@@ -1,38 +1,76 @@
-@import "colors.less";
+.posts-container {
 
-.posts {
   .post {
-    background-color: @postgrid;
-    border: 1px solid @postborder;
+    background-color: @grid;
+    border: 1px solid @border;
     margin-left: -1px;
     margin-right: -1px;
     margin-bottom: 20px;
-    border-radius: 10px;
+    border-radius: 5px;
   }
 
-  .post-image {
-    border: 1px solid @imageborder;
-    cursor: pointer;
-  }
-
-  .post-body {
+  .body {
     padding: 10px 10px 0 10px;
-  }
 
-  .post-title {
-    font-weight: bold;
-    font-size: 1.2em;
-  }
+    hr {
+      padding: 0;
+      margin: 0 0 0.8em 0;
+    }
 
-  .post-username {
-    font-size: 1.2em;
-  }
+    .header {
+      position: relative;
+      color: black;
 
-  .glyphicon-heart-clickable {
-    cursor: pointer;
-  }
+      ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
 
-  .highlighted {
-    color: @heart;
+      ul.right {
+        position: absolute;
+        right: 0;
+        top: 0;
+      }
+
+      .title {
+        font-weight: bold;
+      }
+    }
+
+    .footer {
+      position: relative;
+      color: black;
+
+      .glyphicon-heart-like {
+        color: red;
+      }
+
+      ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
+        li {
+          display: inline-block;
+        }
+      }
+
+      ul.left {
+        margin-bottom: 0.2em;
+      }
+
+      ul.right {
+        position: absolute;
+        right: 0;
+        top: 0;
+      }
+
+      .detail-button {
+        margin-bottom: 0.5em;
+      }
+    }
   }
 }
+
+@import "colors.less";

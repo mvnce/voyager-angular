@@ -1,32 +1,32 @@
-<div class="col-md-8 col-md-offset-2 threads" *ngIf="!isFinish">
+<div class="col-md-8 col-md-offset-2 posts" *ngIf="!isFinish">
     <div class="text-center" *ngIf="isLoading">
         <loading></loading>
     </div>
 
     <div *ngIf="!isLoading" [@flyInOut]="'in'">
-        <div class="threads-container" >
-            <article class="thread">
-                <div class="thread-body">
-                    <div class="thread-header">
+        <div class="posts-container" >
+            <article class="post">
+                <div class="body">
+                    <div class="header">
                         <ul class="left">
-                            <li><p class="thread-title">{{ post.title }}</p></li>
+                            <li><p class="title">{{ post.title }}</p></li>
                         </ul>
                         <ul class="right">
-                            <li><p class="thread-updated">{{ post.updated | date: 'medium' }}</p></li>
+                            <li><p class="updated">{{ post.updated | date: 'medium' }}</p></li>
                         </ul>
                     </div>
                     <hr>
 
-                    <div class="thread-content">
+                    <div class="content">
                         <p>{{ post.content }}</p>
                     </div>
 
                     <hr>
-                    <div class="thread-footer">
+                    <div class="footer">
                         <ul class="left">
-                            <li><button class="btn btn-sm btn-default thread-detail-button" (click)="goToPosts()">&nbsp;&nbsp;&nbsp;Back&nbsp;&nbsp;&nbsp;</button></li>
-                            <li *ngIf="post.is_author"><button class="btn btn-sm btn-warning thread-detail-button" (click)="editPost()">&nbsp;&nbsp;&nbsp;Edit&nbsp;&nbsp;&nbsp;</button></li>
-                            <li *ngIf="post.is_author"><button class="btn btn-sm btn-danger thread-detail-button" (click)="deletePost()">&nbsp;&nbsp;&nbsp;Delete&nbsp;&nbsp;&nbsp;</button></li>
+                            <li><button class="btn btn-sm btn-default detail-button" (click)="goToPosts()">&nbsp;&nbsp;&nbsp;Back&nbsp;&nbsp;&nbsp;</button></li>
+                            <li *ngIf="post.is_author"><button class="btn btn-sm btn-warning detail-button" (click)="editPost()">&nbsp;&nbsp;&nbsp;Edit&nbsp;&nbsp;&nbsp;</button></li>
+                            <li *ngIf="post.is_author"><button class="btn btn-sm btn-danger detail-button" (click)="deletePost()">&nbsp;&nbsp;&nbsp;Delete&nbsp;&nbsp;&nbsp;</button></li>
                         </ul>
                         <ul class="right">
                             <li><p class="btn btn-sm btn-default">64 <span class="glyphicon glyphicon-heart"></span></p></li>

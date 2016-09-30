@@ -1,31 +1,31 @@
-<div class="threads-container">
-    <div class="col-md-8 col-md-offset-2 threads">
+<div class="posts-container">
+    <div class="col-md-8 col-md-offset-2 posts">
         <div class="text-center" *ngIf="isLoading()">
             <loading></loading>
         </div>
 
         <div *ngIf="!isLoading()">
             <div *ngFor="let post of posts" [@flyInOut]="'in'">
-                <article class="thread">
-                    <div class="thread-body">
-                        <div class="thread-header">
+                <article class="post">
+                    <div class="body">
+                        <div class="header">
                             <ul class="left">
-                                <li><p class="thread-title">{{ post.title }}</p></li>
+                                <li><p class="title">{{ post.title }}</p></li>
                             </ul>
                             <ul class="right">
-                                <li><p class="thread-updated">{{ post.updated }}</p></li>
+                                <li><p class="updated">{{ post.updated }}</p></li>
                             </ul>
                         </div>
                         <hr>
 
-                        <div class="thread-content">
+                        <div class="content">
                             <p>{{ post.content }}</p>
                         </div>
 
                         <hr>
-                        <div class="thread-footer">
+                        <div class="footer">
                             <ul class="left">
-                                <li><button class="btn btn-sm btn-default thread-detail-button">{{ post.name }}</button></li>
+                                <li><button class="btn btn-sm btn-default detail-button">{{ post.name }}</button></li>
                             </ul>
                             <ul class="right">
                                 <li><p class="btn btn-sm btn-default" (click)="onSelect(post)">{{ post.total_comments }} Comments</p></li>

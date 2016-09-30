@@ -1,8 +1,8 @@
-<div class="col-md-8 col-md-offset-2" id="thread-form">
+<div class="col-md-8 col-md-offset-2" id="post-form">
     <div [@flyInOut]="'in'">
         <h2>{{ title }}</h2>
 
-        <form #threadForm="ngForm">
+        <form #postForm="ngForm">
             <div class="form-group">
                 <label for="title">Title</label>
                 <input type="text" class="form-control" id="title" required [(ngModel)]="post.title" name="title">
