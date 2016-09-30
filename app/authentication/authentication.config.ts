@@ -15,8 +15,8 @@ export const myConfig: AuthConfiguration = {
     callbackURL: 'http://localhost:3000/',
     options: {
         theme: {
-            logo: "assets/static/voyager-icon.png",
-            primaryColor: "#b81b1c"
+            logo: "assets/static/auth-icon.png",
+            primaryColor: "#50cbcc"
         },
         languageDictionary: {
             title: "Voyager"
