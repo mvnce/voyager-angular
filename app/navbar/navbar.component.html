@@ -16,8 +16,8 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li><a routerLink="" routerLinkActive="active">Home</a></li>
-                <li><a routerLink="/photo-posts" routerLinkActive="active" *ngIf="_authenticationService.authenticated()">Photo Posts</a></li>
                 <li><a routerLink="/posts" routerLinkActive="active" *ngIf="_authenticationService.authenticated()">Posts</a></li>
+                <li><a routerLink="/photo-posts" routerLinkActive="active" *ngIf="_authenticationService.authenticated()">Photo Posts</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a class="clickable" (click)="_authenticationService.signIn()" *ngIf="!_authenticationService.authenticated()">Sign In</a></li>
