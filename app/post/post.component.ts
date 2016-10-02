@@ -2,7 +2,7 @@
  * Created by vincentma on 9/9/16.
  */
 
-import { Component, OnInit, trigger, state, style, transition, animate, group } from '@angular/core';
+import { Component, HostBinding, OnInit, trigger, state, style, transition, animate, group } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { PostService } from './post.service';
@@ -10,19 +10,24 @@ import { PostService } from './post.service';
 @Component({
     templateUrl: 'app/post/post.component.html',
     providers: [PostService],
+    host: {
+        '[@routeAnimation]': 'true'
+    },
     animations: [
-        trigger('flyInOut', [
-            state('in', style({transform: 'translateX(0)', opacity: 1})),
+        trigger('routeAnimation', [
+            state('*', style({transform: 'translateX(0)', opacity: 1})),
             transition('void => *', [
-                style({transform: 'translateY(10px)', opacity: 0}),
-                group([
-                    animate('0.3s 0.1s ease', style({
-                        transform: 'translateY(0)',
-                    })),
-                    animate('0.3s ease', style({
-                        opacity: 1
-                    }))
-                ])
+                style({
+                    opacity: 0,
+                    transform: 'translateY(5%)'
+                }),
+                animate('0.5s 0.1s ease-in')
+            ]),
+            transition('* => void', [
+                animate('0.5s ease-out', style({
+                    opacity: 0,
+                    transform: 'translateY(5%)'
+                }))
             ])
         ])
     ]
@@ -43,6 +48,16 @@ export class PostComponent implements OnInit {
     ngOnInit() {
         this.getId();
         this.getPost();
+    }
+
+    @HostBinding('@routeAnimation') get routeAnimation() {
+        return true;
+    }
+    @HostBinding('style.display') get display() {
+        return 'block';
+    }
+    @HostBinding('style.position') get position() {
+        return 'absolute';
     }
 
     getId() {

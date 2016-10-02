@@ -1,47 +1,47 @@
-<div class="col-md-8 col-md-offset-2 posts" *ngIf="!isFinish">
-    <div class="text-center" *ngIf="isLoading">
-        <loading></loading>
-    </div>
-
-    <div *ngIf="!isLoading" [@flyInOut]="'in'">
-        <div class="posts-container" >
-            <article class="post">
-                <div class="body">
-                    <div class="header">
-                        <ul class="left">
-                            <li><p class="title">{{ post.title }}</p></li>
-                        </ul>
-                        <ul class="right">
-                            <li><p class="updated">{{ post.updated | date: 'medium' }}</p></li>
-                        </ul>
-                    </div>
-                    <hr>
-
-                    <div class="content">
-                        <p>{{ post.content }}</p>
-                    </div>
-
-                    <hr>
-                    <div class="footer">
-                        <ul class="left">
-                            <li><button class="btn btn-sm btn-default detail-button" (click)="goToPosts()">&nbsp;&nbsp;&nbsp;Back&nbsp;&nbsp;&nbsp;</button></li>
-                            <li *ngIf="post.is_author"><button class="btn btn-sm btn-warning detail-button" (click)="editPost()">&nbsp;&nbsp;&nbsp;Edit&nbsp;&nbsp;&nbsp;</button></li>
-                            <li *ngIf="post.is_author"><button class="btn btn-sm btn-danger detail-button" (click)="deletePost()">&nbsp;&nbsp;&nbsp;Delete&nbsp;&nbsp;&nbsp;</button></li>
-                        </ul>
-                        <ul class="right">
-                            <li><p class="btn btn-sm btn-default">64 <span class="glyphicon glyphicon-heart"></span></p></li>
-                        </ul>
-                    </div>
-                </div>
-            </article>
+<div class="post-container">
+    <div class="col-md-8 col-md-offset-2 posts">
+        <div class="text-center" *ngIf="isLoading">
+            <loading></loading>
         </div>
 
-        <comment [hidden]="!isShowComment"></comment>
+        <div *ngIf="!isLoading">
+                <article class="post">
+                    <div class="body">
+                        <div class="header">
+                            <ul class="left">
+                                <li><p class="title">{{ post.title }}</p></li>
+                            </ul>
+                            <ul class="right">
+                                <li><p class="updated">{{ post.updated | date: 'medium' }}</p></li>
+                            </ul>
+                        </div>
+                        <hr>
 
-        <div class="text-center">
-            <button type="button" class="btn btn-sm btn-default comment-show-button" (click)="changeShowComment()">Show/Hide Comments</button>
+                        <div class="content">
+                            <p>{{ post.content }}</p>
+                        </div>
+
+                        <hr>
+                        <div class="footer">
+                            <ul class="left">
+                                <li><button class="btn btn-sm btn-default detail-button" (click)="goToPosts()">&nbsp;&nbsp;&nbsp;Back&nbsp;&nbsp;&nbsp;</button></li>
+                                <li *ngIf="post.is_author"><button class="btn btn-sm btn-warning detail-button" (click)="editPost()">&nbsp;&nbsp;&nbsp;Edit&nbsp;&nbsp;&nbsp;</button></li>
+                                <li *ngIf="post.is_author"><button class="btn btn-sm btn-danger detail-button" (click)="deletePost()">&nbsp;&nbsp;&nbsp;Delete&nbsp;&nbsp;&nbsp;</button></li>
+                            </ul>
+                            <ul class="right">
+                                <li><p class="btn btn-sm btn-default">64 <span class="glyphicon glyphicon-heart"></span></p></li>
+                            </ul>
+                        </div>
+                    </div>
+                </article>
+
+            <comment [hidden]="!isShowComment"></comment>
+
+            <div class="text-center">
+                <button type="button" class="btn btn-sm btn-default comment-show-button" (click)="changeShowComment()">Show/Hide Comments</button>
+            </div>
+
+            <comment-form></comment-form>
         </div>
-
-        <comment-form></comment-form>
     </div>
 </div>

@@ -1,11 +1,11 @@
 <div class="posts-container">
     <div class="col-md-8 col-md-offset-2 posts">
-        <div class="text-center" *ngIf="isLoading()">
+        <div class="text-center" *ngIf="isLoading">
             <loading></loading>
         </div>
 
-        <div *ngIf="!isLoading()">
-            <div *ngFor="let post of posts" [@flyInOut]="'in'">
+        <div *ngIf="!isLoading">
+            <div *ngFor="let post of posts">
                 <article class="post">
                     <div class="body">
                         <div class="header">

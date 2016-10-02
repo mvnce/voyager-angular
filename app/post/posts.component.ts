@@ -2,7 +2,7 @@
  * Created by vincentma on 9/9/16.
  */
 
-import { Component, OnInit, trigger, state, style, transition, animate, group } from '@angular/core';
+import { Component, HostBinding, OnInit, trigger, state, style, transition, animate, group } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { PostService } from "./post.service";
@@ -11,26 +11,28 @@ import { PostService } from "./post.service";
     templateUrl: 'app/post/posts.component.html',
     providers: [PostService],
     animations: [
-        trigger('flyInOut', [
-            state('in', style({transform: 'translateY(0)', opacity: 1})),
+        trigger('routeAnimation', [
+            state('*', style({transform: 'translateX(0)', opacity: 1})),
             transition('void => *', [
-                style({transform: 'translateY(20px)', opacity: 0}),
-                group([
-                    animate('0.5s 0.1s ease', style({
-                        transform: 'translateY(0)',
-                    })),
-                    animate('0.5s ease', style({
-                        opacity: 1
-                    }))
-                ])
+                style({
+                    opacity: 0,
+                    transform: 'translateY(5%)'
+                }),
+                animate('0.5s 0.1s ease-in')
+            ]),
+            transition('* => void', [
+                animate('0.5s ease-out', style({
+                    opacity: 0,
+                    transform: 'translateY(5%)'
+                }))
             ])
         ])
     ]
 })
 export class PostsComponent implements OnInit {
-    loading = true;
-    posts: any[];
-    errorMessage: string;
+    private isLoading = true;
+    private posts: any[];
+    private errorMessage: string;
     mode = 'Observable';
 
     constructor(private _router: Router,
@@ -38,6 +40,16 @@ export class PostsComponent implements OnInit {
 
     ngOnInit() {
         this.getPosts();
+    }
+
+    @HostBinding('@routeAnimation') get routeAnimation() {
+        return true;
+    }
+    @HostBinding('style.display') get display() {
+        return 'block';
+    }
+    @HostBinding('style.position') get position() {
+        return 'absolute';
     }
 
     private prettifyTime(threads) {
@@ -69,7 +81,7 @@ export class PostsComponent implements OnInit {
             .subscribe(
                 threads => {
                     this.posts = this.prettifyTime(threads);
-                    this.loading = false;
+                    this.isLoading = false;
                 },
                 error => this.errorMessage = <any>error
             );
@@ -77,9 +89,5 @@ export class PostsComponent implements OnInit {
 
     onSelect(post) {
         this._router.navigate(['post', post["id"]]);
-    }
-
-    isLoading() {
-        return this.loading;
     }
 }
