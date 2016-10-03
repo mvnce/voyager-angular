@@ -6,7 +6,10 @@ users.css
 prebootstrap.css
 userform.css
 loader.css
-posts.css
+post.css
 comments.css
 base.css
 home.css
+bootswatch.css
+photo-posts.css
+variables.css
