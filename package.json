@@ -22,7 +22,6 @@
     "@angular/platform-browser": "6.1.0",
     "@angular/platform-browser-dynamic": "6.1.0",
     "@angular/router": "6.1.0",
-    "auth0-lock": "^10.4.0",
     "bootstrap": "^3.3.6",
     "core-js": "^2.5.4",
     "rxjs": "^6.2.2",
