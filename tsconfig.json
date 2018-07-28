@@ -2,6 +2,7 @@
   "compileOnSave": false,
   "compilerOptions": {
     "baseUrl": "./",
+    "outDir": "./dist/app",
     "sourceMap": true,
     "declaration": false,
     "module": "commonjs",

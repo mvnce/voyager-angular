@@ -10,7 +10,7 @@
 
     var map = {
         // our app is within the app folder
-        app: 'app',
+        app: 'dist/app',
 
         // angular bundles
         '@angular/core': 'npm:@angular/core/bundles/core.umd.js',
@@ -39,7 +39,7 @@
     };
 
     var packages = {
-        'app': {
+        'dist/app': {
             main: 'main.js',
             defaultExtension: 'js'
         },
