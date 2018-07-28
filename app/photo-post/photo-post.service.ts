@@ -1,25 +1,31 @@
 /**
- * Created by vincentma on 8/16/16.
+ * Created by Vincent Ma on 8/16/16.
  */
 
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { map } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class PhotoPostService {
-    private _url = "http://104.131.139.229:8000/api/posts/";
+  private _url = 'http://104.131.139.229:8000/api/posts/';
 
-    private getPostUrl(postId) {
-        return this._url + postId +"/";
-    }
+  constructor (private _httpClient: HttpClient) {
+  }
 
-    constructor(private _http: Http) { }
+  getPhotoPosts (): any {
+    return this._httpClient.get(this._url).pipe(map((res: any) => {
+      res.json();
+    }));
+  }
 
-    getPhotoPosts() {
-        return this._http.get(this._url).map(res => res.json());
-    }
+  getPhotoPost (postId): any {
+    return this._httpClient.get(this.getPostUrl(postId)).pipe(map((res: any) => {
+      res.json();
+    }));
+  }
 
-    getPhotoPost(postId) {
-        return this._http.get(this.getPostUrl(postId)).map(res => res.json());
-    }
+  private getPostUrl (postId): any {
+    return this._url + postId + '/';
+  }
 }

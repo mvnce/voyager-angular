@@ -1,36 +1,38 @@
 /**
- * Created by vincentma on 9/12/16.
+ * Created by Vincent Ma on 9/12/16.
  */
 
 import { Injectable } from '@angular/core';
-import { Headers, Http, RequestOptions, Response } from '@angular/http';
 
 import { Comment } from '../models/comment';
-
-import { Observable } from 'rxjs/Rx';
+import { Observable, throwError } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable()
 export class CommentService {
   // private _url = 'http://104.131.139.229:8080/api/v1/comments';
   private url = 'http://localhost:8080/api/v1/comments';
 
-  constructor (private _http: Http) {
+  constructor (private _httpClient: HttpClient) {
   }
 
   getComments (post_id: number): Observable<any> {
-    return this._http.get(this.getCommentUrl(post_id))
-      .map(this.extractData)
-      .catch(this.handleError);
+    return this._httpClient.get(this.getCommentUrl(post_id))
+      .pipe(map((res: any) => {
+        let body = res.json();
+        return body.data || {};
+      }), catchError(this.handleError));
   }
 
   addComment (comment: Comment): Observable<any> {
     let body = JSON.stringify(comment);
-    let headers = new Headers({'Content-Type': 'application/json'});
-    let options = new RequestOptions({headers: headers});
+    let httpOptions = {
+      headers: new HttpHeaders({'Content-Type': 'application/json'})
+    };
 
-    return this._http.post(this.url, body, options)
-      .map(this.extractData)
-      .catch(this.handleError);
+    return this._httpClient.post(this.url, body, httpOptions)
+      .pipe(map(this.extractData), catchError(this.handleError));
   }
 
   private getCommentUrl (id): any {
@@ -38,7 +40,7 @@ export class CommentService {
   }
 
   private extractData (res: Response): any {
-    let body = res.json();
+    let body: any = res.json();
     return body.data || {};
   }
 
@@ -46,6 +48,6 @@ export class CommentService {
     let errMsg = (error.message) ? error.message :
       error.status ? `${error.status} - ${error.statusText}` : 'Server error';
     console.error(errMsg); // log to console instead
-    return Observable.throw(errMsg);
+    return throwError(errMsg);
   }
 }

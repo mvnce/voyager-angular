@@ -3,17 +3,18 @@
  */
 
 import { Injectable } from '@angular/core';
-import { Headers, Http, RequestOptions, Response } from '@angular/http';
-import { Observable } from 'rxjs/Rx';
+import { Observable } from 'rxjs';
 import { Post } from '../models/post';
 import { AuthenticationService } from '../authentication/authentication.service';
 import { Router } from '@angular/router';
+import { catchError, map } from 'rxjs/operators';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable()
 export class PostService {
   private url: string;
 
-  constructor (private _http: Http,
+  constructor (private _httpClient: HttpClient,
                private _router: Router,
                private _authenticationService: AuthenticationService) {
     // this.url = 'http://104.131.139.229:8080/api/v1/post';
@@ -21,57 +22,59 @@ export class PostService {
   }
 
   getPosts (): Observable<any[]> {
-    let headers = new Headers({
+    let headers = new HttpHeaders({
       'Authorization': 'Bearer ' + this._authenticationService.getToken()
     });
-    let options = new RequestOptions({headers: headers});
+    let httpOptions = {
+      headers: headers
+    };
 
-    return this._http.get(this.url + 's', options)
-      .map(this.extractData)
-      .catch(this.handleError);
+    return this._httpClient.get(this.url + 's', httpOptions).pipe(
+      map(this.extractData),
+      catchError(this.handleError));
   }
 
   addPost (post: Post): Observable<any> {
     let body = JSON.stringify(post);
-    let headers = new Headers({
+    let headers = new HttpHeaders({
       'Authorization': 'Bearer ' + this._authenticationService.getToken(),
       'Content-Type': 'application/json'
     });
-    let options = new RequestOptions({headers: headers});
+    let httpOptions = {headers: headers};
 
-    return this._http.post(this.url, body, options)
-      .map(this.extractData)
-      .catch(this.handleError);
+    return this._httpClient.post(this.url, body, httpOptions).pipe(
+      map(this.extractData),
+      catchError(this.handleError));
   }
 
   getPost (id: number): Observable<any> {
-    let headers = new Headers({
+    let headers = new HttpHeaders({
       'Authorization': 'Bearer ' + this._authenticationService.getToken()
     });
-    let options = new RequestOptions({headers: headers});
+    let options = {headers: headers};
 
-    return this._http.get(this.url + '/' + id, options)
-      .map(this.extractData)
-      .catch(this.handleError);
+    return this._httpClient.get(this.url + '/' + id, options).pipe(
+      map(this.extractData),
+      catchError(this.handleError));
   }
 
   deletePost (id: number): Observable<any> {
-    return this._http.delete(this.url + '/' + id)
-      .map(this.extractData)
-      .catch(this.handleError);
+    return this._httpClient.delete(this.url + '/' + id).pipe(
+      map(this.extractData),
+      catchError(this.handleError));
   }
 
   updatePost (id: number, post: Post): Observable<any> {
     let body = JSON.stringify(post);
-    let headers = new Headers({'Content-Type': 'application/json'});
-    let options = new RequestOptions({headers: headers});
+    let headers = new HttpHeaders({'Content-Type': 'application/json'});
+    let options = {headers: headers};
 
-    return this._http.put(this.url + '/' + id, body, options)
-      .map(this.extractData)
-      .catch(this.handleError);
+    return this._httpClient.put(this.url + '/' + id, body, options).pipe(
+      map(this.extractData),
+      catchError(this.handleError));
   }
 
-  private extractData (res: Response): any {
+  private extractData (res: any): any {
     let body = res.json();
     return body.data || {};
   }

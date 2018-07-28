@@ -1,5 +1,9 @@
 {
   "rules": {
+    "rxjs-collapse-imports": true,
+    "rxjs-pipeable-operators-only": true,
+    "rxjs-no-static-observable-methods": true,
+    "rxjs-proper-imports": true,
     "align": [
       true,
       "statements"
@@ -26,11 +30,11 @@
       {
         "order": [
           "private-instance-field",
+          "private-constructor",
+          "private-static-field",
           "public-static-field",
           "public-instance-field",
           "public-constructor",
-          "private-static-field",
-          "private-constructor",
           "public-instance-method",
           "protected-instance-method",
           "private-instance-method"

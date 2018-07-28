@@ -5,7 +5,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { NavBarComponent } from './navbar/navbar.component';
@@ -22,12 +21,13 @@ import { CommentService } from './post/comment.service';
 import { AuthenticationService } from './authentication/authentication.service';
 
 import { AuthenticationGuard } from './authentication/authentication.guard';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule,
+    HttpClientModule,
     routing
   ],
   declarations: [
