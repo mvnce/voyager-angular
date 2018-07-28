@@ -39,23 +39,18 @@
     };
 
     var packages = {
-        app: {
-            main: './main.js',
+        'app': {
+            main: 'main.js',
             defaultExtension: 'js'
         },
-        rxjs: {
-            main: 'Rx.js',
+        'rxjs': {
+            main: 'index.js',
             defaultExtension: 'js'
         },
         'rxjs/operators': {
             main: 'index.js',
             defaultExtension: 'js'
-        },
-        // 'rxjs-compat': {defaultExtension: 'js', main: 'index.js'},
-        // 'rxjs/internal-compatibility': {'main': 'index.js', 'defaultExtension': 'js'},
-        // 'rxjs/testing': {'main': 'index.js', 'defaultExtension': 'js'},
-        // 'rxjs/ajax': {main: 'index.js', defaultExtension: 'js'},
-        // 'rxjs/webSocket': {main: 'index.js', defaultExtension: 'js'},
+        }
     };
 
     System.config({
@@ -64,15 +59,18 @@
         packages: packages
     });
 
-    global.bootstrapping = System.import('app')
-        .then(
-            function handleResolve() {
-                console.info('System.js successfully bootstrapped app.');
-            },
-            function handleReject(error) {
-                console.warn('System.js could not bootstrap the app.');
-                console.error(error);
-                return (Promise.reject(error));
-            }
-        );
+    global.bootstrapping = Promise.all([
+        System.import('rxjs'),
+        System.import('rxjs/operators'),
+        System.import('app')
+    ]).then(
+        function handleResolve() {
+            console.info('System.js successfully bootstrapped app.');
+        },
+        function handleReject(error) {
+            console.warn('System.js could not bootstrap the app.');
+            console.error(error);
+            return (Promise.reject(error));
+        }
+    );
 })(window);
