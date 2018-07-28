@@ -6,8 +6,9 @@ import { EventEmitter, Injectable } from '@angular/core';
 
 @Injectable()
 export class EventsService {
-    public isLogin: EventEmitter<boolean> = new EventEmitter();
-    public username: EventEmitter<string> = new EventEmitter();
+	public isLogin: EventEmitter<boolean> = new EventEmitter();
+	public username: EventEmitter<string> = new EventEmitter();
 
-    constructor() { }
+	constructor () {
+	}
 }

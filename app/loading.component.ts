@@ -5,9 +5,9 @@
 import { Component } from '@angular/core';
 
 @Component({
-    selector: 'loading',
-    templateUrl: 'app/loading.component.html',
+	selector: 'loading',
+	templateUrl: 'app/loading.component.html',
 })
 export class LoadingComponent {
-    isLoading = true;
+	isLoading = true;
 }

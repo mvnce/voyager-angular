@@ -1,5 +1,5 @@
 /**
- * Created by vincentma on 9/18/16.
+ * Created by Vincent Ma on 9/18/16.
  */
 
 import { Injectable } from '@angular/core';
@@ -8,16 +8,17 @@ import { tokenNotExpired } from 'angular2-jwt';
 
 @Injectable()
 export class AuthenticationGuard implements CanActivate {
-    constructor(private _router: Router) {}
+	constructor (private _router: Router) {
+	}
 
-    canActivate() {
+	canActivate () {
 
-        if (tokenNotExpired()) {
-            return true;
-        }
-        else {
-            this._router.navigate(['account/signin']);
-            return false;
-        }
-    }
+		if (tokenNotExpired()) {
+			return true;
+		}
+		else {
+			this._router.navigate(['account/signin']);
+			return false;
+		}
+	}
 }

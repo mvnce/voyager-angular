@@ -7,9 +7,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
-import { AppComponent }  from './app.component';
+import { AppComponent } from './app.component';
 import { NavBarComponent } from './navbar/navbar.component';
-import { FaComponent } from 'angular2-fontawesome/components';
+// import { FaComponent } from 'angular2-fontawesome/components';
 import { LoadingComponent } from './loading.component';
 import { CommentComponent } from './post/comment.component';
 import { CommentFormComponent } from './post/comment-form.component';
@@ -26,32 +26,33 @@ import { AuthenticationGuard } from './authentication/authentication.guard';
 import { AUTH_PROVIDERS } from 'angular2-jwt';
 
 @NgModule({
-    imports: [
-        BrowserModule,
-        FormsModule,
-        HttpModule,
-        routing,
-    ],
-    declarations: [
-        AppComponent,
-        NavBarComponent,
-        FaComponent,
-        LoadingComponent,
-        CommentComponent,
-        CommentFormComponent,
-        routedComponents,
-    ],
-    providers: [
-        AuthenticationGuard,
-        AUTH_PROVIDERS,
+	imports: [
+		BrowserModule,
+		FormsModule,
+		HttpModule,
+		routing,
+	],
+	declarations: [
+		AppComponent,
+		NavBarComponent,
+		// FaComponent,
+		LoadingComponent,
+		CommentComponent,
+		CommentFormComponent,
+		routedComponents,
+	],
+	providers: [
+		AuthenticationGuard,
+		AUTH_PROVIDERS,
 
-        PhotoPostService,
-        UserService,
-        EventsService,
-        PostService,
-        CommentService,
-        AuthenticationService,
-    ],
-    bootstrap: [AppComponent]
+		PhotoPostService,
+		UserService,
+		EventsService,
+		PostService,
+		CommentService,
+		AuthenticationService,
+	],
+	bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

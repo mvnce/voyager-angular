@@ -16,61 +16,61 @@ import { AuthenticationGuard } from './authentication/authentication.guard';
 import { UserProfileComponent } from './authentication/user-profile.component';
 
 const appRoutes: Routes = [
-    {
-        path: '',
-        component: HomeComponent,
-    },
-    {
-        path: 'user/profile',
-        component: UserProfileComponent,
-    },
-    {
-        path: 'photo-posts',
-        component: PhotoPostsComponent,
-        canActivate: [AuthenticationGuard],
-    },
-    {
-        path: 'posts',
-        component: PostsComponent,
-        canActivate: [AuthenticationGuard],
-    },
-    {
-        path: 'post/new',
-        component: PostFormComponent,
-        canActivate: [AuthenticationGuard],
-    },
-    {
-        path: 'post/:id',
-        component: PostComponent,
-        canActivate: [AuthenticationGuard],
-    },
-    {
-        path: 'post/edit/:id',
-        component: EditPostComponent,
-        canActivate: [AuthenticationGuard],
-    },
-    {
-        path: 'hold',
-        component: HoldComponent,
-        canActivate: [AuthenticationGuard],
-    },
-    {
-        path: '**',
-        component: NotFoundComponent,
-    },
+	{
+		path: '',
+		component: HomeComponent,
+	},
+	{
+		path: 'user/profile',
+		component: UserProfileComponent,
+	},
+	{
+		path: 'photo-posts',
+		component: PhotoPostsComponent,
+		canActivate: [AuthenticationGuard],
+	},
+	{
+		path: 'posts',
+		component: PostsComponent,
+		canActivate: [AuthenticationGuard],
+	},
+	{
+		path: 'post/new',
+		component: PostFormComponent,
+		canActivate: [AuthenticationGuard],
+	},
+	{
+		path: 'post/:id',
+		component: PostComponent,
+		canActivate: [AuthenticationGuard],
+	},
+	{
+		path: 'post/edit/:id',
+		component: EditPostComponent,
+		canActivate: [AuthenticationGuard],
+	},
+	{
+		path: 'hold',
+		component: HoldComponent,
+		canActivate: [AuthenticationGuard],
+	},
+	{
+		path: '**',
+		component: NotFoundComponent,
+	},
 ];
 
 export const routing = RouterModule.forRoot(appRoutes);
 
 export const routedComponents = [
-    HomeComponent,
-    PhotoPostsComponent,
-    PostsComponent,
-    PostComponent,
-    PostFormComponent,
-    EditPostComponent,
-    NotFoundComponent,
-    LoadingComponent,
-    HoldComponent,
-    UserProfileComponent,
+	HomeComponent,
+	PhotoPostsComponent,
+	PostsComponent,
+	PostComponent,
+	PostFormComponent,
+	EditPostComponent,
+	NotFoundComponent,
+	LoadingComponent,
+	HoldComponent,
+	UserProfileComponent,
 ];
