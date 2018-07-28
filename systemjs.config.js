@@ -1,14 +1,14 @@
 /**
- * Created by vincentma on 9/2/16.
+ * Created by Vincent Ma on 9/2/16.
  */
 
- (function(global) {
+(function (global) {
     var path = {
-            // paths serve as alias
-            'npm:': 'node_modules/'
-        };
+        // paths serve as alias
+        'npm:': 'node_modules/'
+    };
 
-        var map = {
+    var map = {
         // our app is within the app folder
         app: 'app',
 
@@ -16,6 +16,7 @@
         '@angular/core': 'npm:@angular/core/bundles/core.umd.js',
         '@angular/common': 'npm:@angular/common/bundles/common.umd.js',
         '@angular/compiler': 'npm:@angular/compiler/bundles/compiler.umd.js',
+        '@angular/animations': 'npm:@angular/animations/bundles/animations.umd.js',
         '@angular/platform-browser': 'npm:@angular/platform-browser/bundles/platform-browser.umd.js',
         '@angular/platform-browser-dynamic': 'npm:@angular/platform-browser-dynamic/bundles/platform-browser-dynamic.umd.js',
         '@angular/http': 'npm:@angular/http/bundles/http.umd.js',
@@ -33,12 +34,8 @@
         '@angular/forms/testing': 'npm:@angular/forms/bundles/forms-testing.umd.js',
 
         // other libraries
-        'rxjs':                       'npm:rxjs',
-        'angular2-in-memory-web-api': 'npm:angular2-in-memory-web-api',
-
-        // others
-        'angular2-fontawesome': 'node_modules/angular2-fontawesome',
-        'angular2-jwt': 'npm:angular2-jwt/angular2-jwt.js'
+        'rxjs': 'npm:rxjs',
+        'rxjs-compat': 'npm:rxjs-compat'
     };
 
     var packages = {
@@ -47,18 +44,15 @@
             defaultExtension: 'js'
         },
         rxjs: {
-            defaultExtension: 'js'
+            defaultExtension: 'js',
+            main: 'Rx.js'
         },
-        'angular2-in-memory-web-api': {
-            main: './index.js',
-            defaultExtension: 'js'
-        },
-        'angular2-fontawesome': {
-            defaultExtension: 'js'
-        },
-        'angular2-jwt': {
-            defaultExtension: 'js'
-        }
+        'rxjs-compat': {defaultExtension: 'js', main: 'index.js'},
+        'rxjs/operators': {'main': 'index.js', 'defaultExtension': 'js'},
+        'rxjs/internal-compatibility': {'main': 'index.js', 'defaultExtension': 'js'},
+        'rxjs/testing': {'main': 'index.js', 'defaultExtension': 'js'},
+        'rxjs/ajax': {main: 'index.js', defaultExtension: 'js'},
+        'rxjs/webSocket': {main: 'index.js', defaultExtension: 'js'},
     };
 
     System.config({
@@ -67,15 +61,15 @@
         packages: packages
     });
 
-    global.bootstrapping = System.import( "app" )
-    .then(
-        function handleResolve() {
-            console.info( "System.js successfully bootstrapped app." );
-        },
-        function handleReject( error ) {
-            console.warn( "System.js could not bootstrap the app." );
-            console.error( error );
-            return( Promise.reject( error ) );
-        }
+    global.bootstrapping = System.import('app')
+        .then(
+            function handleResolve() {
+                console.info('System.js successfully bootstrapped app.');
+            },
+            function handleReject(error) {
+                console.warn('System.js could not bootstrap the app.');
+                console.error(error);
+                return (Promise.reject(error));
+            }
         );
 })(window);
