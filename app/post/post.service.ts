@@ -3,7 +3,7 @@
  */
 
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { Post } from '../models/post';
 import { AuthenticationService } from '../authentication/authentication.service';
 import { Router } from '@angular/router';
@@ -84,6 +84,6 @@ export class PostService {
       error.status ? `${error.status} - ${error.statusText}` : 'Server error';
     console.error(errMsg);
     this._router.navigate(['account/signin']);
-    return Observable.throw(errMsg);
+    return throwError(errMsg);
   }
 }

@@ -7,15 +7,14 @@ import { Router, CanActivate } from '@angular/router';
 
 @Injectable()
 export class AuthenticationGuard implements CanActivate {
-	constructor (private _router: Router) {
-	}
+  constructor (private _router: Router) {
+  }
 
-	canActivate () {
-
-		return true;
-		// else {
-		// 	this._router.navigate(['account/signin']);
-		// 	return false;
-		// }
-	}
+  canActivate (): boolean {
+    return true;
+    // else {
+    // 	this._router.navigate(['account/signin']);
+    // 	return false;
+    // }
+  }
 }
