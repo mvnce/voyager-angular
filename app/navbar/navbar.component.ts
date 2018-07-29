@@ -3,35 +3,17 @@
  */
 
 import { Component, OnInit } from '@angular/core';
-import { trigger, state, style, animate, transition, group } from '@angular/animations';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../authentication/authentication.service';
 
 @Component({
   selector: 'navbar',
   templateUrl: 'app/navbar/navbar.component.html',
-  providers: [AuthenticationService],
-  animations: [
-    trigger('flyInOut', [
-      state('in', style({transform: 'translateY(0)', opacity: 1})),
-      transition('void => *', [
-        style({transform: 'translateY(-50px)', opacity: 0}),
-        group([
-          animate('0.5s 0.1s ease', style({
-            transform: 'translateY(0)'
-          })),
-          animate('0.5s ease', style({
-            opacity: 1
-          }))
-        ])
-      ])
-    ])
-  ]
+  providers: [AuthenticationService]
 })
 export class NavBarComponent implements OnInit {
 
-  constructor (private _router: Router,
-               private _authenticationService: AuthenticationService) {
+  constructor (private _router: Router, private _authenticationService: AuthenticationService) {
   }
 
   ngOnInit (): void {
