@@ -1,5 +1,6 @@
 # voyager
 [![Build Status](https://travis-ci.org/vincentsma/angular-voyager.svg?branch=master)](https://travis-ci.org/vincentsma/angular2-voyager)
+https://david-dm.org/vincentsma/angular-voyager.svg
 
 A native Angular2 application
 
