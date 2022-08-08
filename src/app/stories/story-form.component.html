@@ -1,0 +1,47 @@
+<div class="container" id="story-form-container">
+  <div [@flyInOut]="'in'">
+    <h2>{{ title }}</h2>
+
+    <form>
+      <div class="form-group">
+        <label for="story-form-title">Title</label>
+        <input
+          type="text"
+          class="form-control"
+          id="story-form-title"
+          name="story-form-title"
+          [(ngModel)]="story.title"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="story-form-content">Content</label>
+        <textarea
+          class="form-control"
+          rows="5"
+          id="story-form-content"
+          name="story-form-content"
+          [(ngModel)]="story.content"
+        ></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="status">Status</label>
+        <select class="form-control" id="status" required>
+          <option>Life</option>
+          <option>Food</option>
+          <option>Dev</option>
+          <option>Idea</option>
+        </select>
+      </div>
+
+      <hr>
+
+      <div class="text-center">
+        <button type="button" class="btn btn-success" (click)="submit()">
+          Submit
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

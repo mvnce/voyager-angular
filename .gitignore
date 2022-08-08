@@ -1,8 +1,12 @@
 # Created by Vincent Ma
 
+.DS_Store
+
 .idea/
 node_modules/
 typings/
 dist/
 npm-debug.log
 package-lock.json
+
+.angular

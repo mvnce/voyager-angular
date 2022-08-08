@@ -1,0 +1,72 @@
+<div class="container" id="stories-container">
+    <div class="posts">
+        <div class="text-center" *ngIf="isLoading">
+            <loader></loader>
+        </div>
+
+        <div *ngIf="!isLoading">
+          <div class="list-group">
+            <a href="#" class="list-group-item list-group-item-action" aria-current="true">
+              <div class="justify-content-between">
+                <h5 class="">List group item heading</h5>
+                <small>3 days ago</small>
+              </div>
+              <p class="mb-1">Some placeholder content in a paragraph.9999999999999</p>
+              <small>And some small print.</small>
+            </a>
+            <a href="#" class="list-group-item list-group-item-action">
+              <div class="justify-content-between">
+                <h5 class="">List group item heading</h5>
+                <small class="text-muted">3 days ago</small>
+              </div>
+              <p class="">Some placeholder content in a paragraph.</p>
+              <small class="text-muted">And some muted small print.</small>
+            </a>
+            <a href="#" class="list-group-item list-group-item-action">
+              <div class="justify-content-between">
+                <h5 class="">List group item heading</h5>
+                <small class="text-muted">3 days ago</small>
+              </div>
+              <p class="">Some placeholder content in a paragraph.</p>
+              <small class="text-muted">And some muted small print.</small>
+            </a>
+          </div>
+
+
+            <div *ngFor="let story of stories">
+                <div class="story">
+                    <div class="">
+                        <div class="header">
+                            <ul class="left">
+                                <li><p class="title">{{ story.title }}</p></li>
+                            </ul>
+                            <ul class="right">
+                                <li><p class="updated">{{ story.updatedAt }}</p></li>
+                            </ul>
+                        </div>
+                        <hr>
+
+                        <div class="content">
+                            <p>{{ story.content }}</p>
+                        </div>
+
+                        <hr>
+                        <div class="footer">
+                            <ul class="left">
+                                <li><button class="btn btn-sm btn-default detail-button">{{ story.title }}</button></li>
+                            </ul>
+                            <ul class="right">
+                                <li><p class="btn btn-sm btn-default" (click)="onSelect(story)">{{ story }} Comments</p></li>
+                                <li><p class="btn btn-sm btn-default"> <span class="glyphicon glyphicon-heart"></span></p></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center">
+                <p>- End -</p>
+            </div>
+        </div>
+    </div>
+</div>

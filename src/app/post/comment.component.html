@@ -1,0 +1,28 @@
+<div class="comments-container">
+
+    <div *ngIf="!isLoading">
+        <div [@flyInOut]="'in'">
+            <article class="comments">
+                <div *ngFor="let comment of comments">
+                    <div class="comment">
+                        <p>{{comment.content}}</p>
+
+                        <div class="comment-header">
+                            <ul class="left">
+                                <li>
+                                    <p class="comment-username">username</p>
+                                </li>
+                            </ul>
+                            <ul class="right">
+                                <li>
+                                    <p class="">{{comment.updated | date:'shortTime' }}</p>
+                                </li>
+                            </ul>
+                        </div>
+                        <hr>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </div>
+</div>
